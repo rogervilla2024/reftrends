@@ -228,11 +228,12 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
             />
           </svg>
           <Input
-            type="text"
+            type="search"
             placeholder="Search by name or nationality..."
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
             className="pl-10"
+            aria-label="Search referees by name or nationality"
           />
         </div>
       </div>
@@ -320,8 +321,12 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
+        <nav
+          className="flex items-center justify-between"
+          role="navigation"
+          aria-label="Pagination"
+        >
+          <p className="text-sm text-muted-foreground" aria-live="polite">
             Page {currentPage} of {totalPages}
           </p>
           <div className="flex gap-2">
@@ -330,6 +335,7 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               size="sm"
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
+              aria-label="Go to first page"
             >
               First
             </Button>
@@ -338,10 +344,11 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               size="sm"
               onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
+              aria-label="Go to previous page"
             >
               Previous
             </Button>
-            <div className="flex gap-1">
+            <div className="flex gap-1" role="group" aria-label="Page numbers">
               {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                 let pageNum: number;
                 if (totalPages <= 5) {
@@ -360,6 +367,8 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
                     size="sm"
                     onClick={() => setCurrentPage(pageNum)}
                     className="w-10"
+                    aria-label={`Go to page ${pageNum}`}
+                    aria-current={currentPage === pageNum ? 'page' : undefined}
                   >
                     {pageNum}
                   </Button>
@@ -371,6 +380,7 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               size="sm"
               onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
+              aria-label="Go to next page"
             >
               Next
             </Button>
@@ -379,11 +389,12 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               size="sm"
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
+              aria-label="Go to last page"
             >
               Last
             </Button>
           </div>
-        </div>
+        </nav>
       )}
     </div>
   );

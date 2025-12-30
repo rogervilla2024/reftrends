@@ -129,9 +129,14 @@ function calculatePredictions(
   };
 }
 
+// Memoized factorial calculation to prevent stack overflow and improve performance
+const factorialCache: Record<number, number> = { 0: 1, 1: 1 };
 function factorial(n: number): number {
-  if (n <= 1) return 1;
-  return n * factorial(n - 1);
+  if (n < 0) return 1;
+  if (n > 170) return Infinity; // Prevent overflow
+  if (factorialCache[n] !== undefined) return factorialCache[n];
+  factorialCache[n] = n * factorial(n - 1);
+  return factorialCache[n];
 }
 
 export default function MatchAnalyzerClient({

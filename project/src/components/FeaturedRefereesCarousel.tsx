@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback, memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
@@ -25,11 +25,12 @@ interface FeaturedRefereesCarouselProps {
   initialReferees?: FeaturedReferee[];
 }
 
-export function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefereesCarouselProps) {
+export const FeaturedRefereesCarousel = memo(function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefereesCarouselProps) {
   const [referees, setReferees] = useState<FeaturedReferee[]>(initialReferees);
   const [loading, setLoading] = useState(initialReferees.length === 0);
   const [error, setError] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [announcement, setAnnouncement] = useState('');
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,22 +53,38 @@ export function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefer
     fetchFeaturedReferees();
   }, [initialReferees]);
 
-  const scrollToIndex = (index: number) => {
+  const scrollToIndex = useCallback((index: number) => {
     if (!carouselRef.current) return;
-    const scrollAmount = carouselRef.current.scrollWidth / referees.length * index;
-    carouselRef.current.scrollTo({ left: scrollAmount, behavior: 'smooth' });
     setCurrentIndex(index);
-  };
+  }, []);
 
-  const scrollPrev = () => {
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : referees.length - 1;
-    scrollToIndex(newIndex);
-  };
+  // Update scroll position when currentIndex changes
+  useEffect(() => {
+    if (!carouselRef.current || referees.length === 0) return;
+    const scrollAmount = carouselRef.current.scrollWidth / referees.length * currentIndex;
+    carouselRef.current.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    // Announce slide change for screen readers
+    setAnnouncement(`Showing ${referees[currentIndex]?.name || 'referee'}, slide ${currentIndex + 1} of ${referees.length}`);
+  }, [currentIndex, referees]);
 
-  const scrollNext = () => {
-    const newIndex = currentIndex < referees.length - 1 ? currentIndex + 1 : 0;
-    scrollToIndex(newIndex);
-  };
+  const scrollPrev = useCallback(() => {
+    setCurrentIndex(prev => prev > 0 ? prev - 1 : referees.length - 1);
+  }, [referees.length]);
+
+  const scrollNext = useCallback(() => {
+    setCurrentIndex(prev => prev < referees.length - 1 ? prev + 1 : 0);
+  }, [referees.length]);
+
+  // Keyboard navigation for carousel
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollPrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollNext();
+    }
+  }, [scrollPrev, scrollNext]);
 
   const getStrictnessLabel = (index: number): { label: string; color: string } => {
     if (index >= 7) return { label: 'Very Strict', color: 'text-red-500' };
@@ -111,17 +128,29 @@ export function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefer
   }
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured referees"
+      onKeyDown={handleKeyDown}
+    >
+      {/* Live region for screen reader announcements */}
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {announcement}
+      </div>
+
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold">Featured Referees</h2>
-        <div className="flex gap-2">
+        <h2 id="carousel-heading" className="text-2xl font-bold">Featured Referees</h2>
+        <div className="flex gap-2" role="group" aria-label="Carousel controls">
           <Button
             variant="outline"
             size="icon"
             onClick={scrollPrev}
             aria-label="Previous referee"
+            aria-controls="carousel-items"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </Button>
@@ -130,8 +159,9 @@ export function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefer
             size="icon"
             onClick={scrollNext}
             aria-label="Next referee"
+            aria-controls="carousel-items"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </Button>
@@ -139,21 +169,27 @@ export function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefer
       </div>
 
       <div
+        id="carousel-items"
         ref={carouselRef}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        tabIndex={0}
+        aria-labelledby="carousel-heading"
       >
-        {referees.map((referee) => {
+        {referees.map((referee, index) => {
           const strictness = referee.stats
             ? getStrictnessLabel(referee.stats.strictnessIndex)
             : null;
 
           return (
-            <Link
+            <div
               key={referee.id}
-              href={`/referees/${referee.slug}`}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${index + 1} of ${referees.length}: ${referee.name}`}
               className="flex-shrink-0 snap-start w-[280px]"
             >
+              <Link href={`/referees/${referee.slug}`}>
               <Card className="h-full hover:border-primary transition-colors cursor-pointer">
                 <CardContent className="pt-6">
                   {/* Referee Avatar */}
@@ -229,28 +265,41 @@ export function FeaturedRefereesCarousel({ initialReferees = [] }: FeaturedRefer
                   )}
                 </CardContent>
               </Card>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>
 
-      {/* Dots Indicator */}
+      {/* Dots Indicator - 44px touch targets for accessibility */}
       {referees.length > 1 && (
-        <div className="flex justify-center gap-2 mt-4">
-          {referees.map((_, index) => (
+        <div
+          className="flex justify-center gap-1 mt-4"
+          role="tablist"
+          aria-label="Carousel navigation"
+        >
+          {referees.map((referee, index) => (
             <button
               key={index}
+              role="tab"
               onClick={() => scrollToIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-primary' : 'bg-muted-foreground/30'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+              className="w-11 h-11 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-full"
+              aria-label={`Go to slide ${index + 1}: ${referee.name}`}
+              aria-selected={index === currentIndex}
+              tabIndex={index === currentIndex ? 0 : -1}
+            >
+              <span
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-primary' : 'bg-muted-foreground/30'
+                }`}
+                aria-hidden="true"
+              />
+            </button>
           ))}
         </div>
       )}
     </div>
   );
-}
+});
 
 export default FeaturedRefereesCarousel;
