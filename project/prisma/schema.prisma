@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Referee {
+  id          Int      @id @default(autoincrement())
+  apiId       Int      @unique
+  name        String
+  nationality String?
+  photo       String?
+  slug        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  matches     Match[]
+  seasonStats RefereeSeasonStats[]
+
+  @@map("referees")
+}
+
+model League {
+  id        Int      @id @default(autoincrement())
+  apiId     Int      @unique
+  name      String
+  country   String
+  logo      String?
+  season    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  matches Match[]
+  teams   Team[]
+
+  @@map("leagues")
+}
+
+model Team {
+  id        Int      @id @default(autoincrement())
+  apiId     Int      @unique
+  name      String
+  logo      String?
+  leagueId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  league     League  @relation(fields: [leagueId], references: [id])
+  homeMatches Match[] @relation("HomeTeam")
+  awayMatches Match[] @relation("AwayTeam")
+
+  @@map("teams")
+}
+
+model Match {
+  id         Int      @id @default(autoincrement())
+  apiId      Int      @unique
+  date       DateTime
+  venue      String?
+  status     String
+  homeGoals  Int?
+  awayGoals  Int?
+  leagueId   Int
+  homeTeamId Int
+  awayTeamId Int
+  refereeId  Int?
+  season     Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  league   League    @relation(fields: [leagueId], references: [id])
+  homeTeam Team      @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam Team      @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  referee  Referee?  @relation(fields: [refereeId], references: [id])
+  stats    MatchStats?
+
+  @@map("matches")
+}
+
+model MatchStats {
+  id              Int   @id @default(autoincrement())
+  matchId         Int   @unique
+  yellowCards     Int   @default(0)
+  redCards        Int   @default(0)
+  homeYellowCards Int   @default(0)
+  awayYellowCards Int   @default(0)
+  homeRedCards    Int   @default(0)
+  awayRedCards    Int   @default(0)
+  fouls           Int   @default(0)
+  homeFouls       Int   @default(0)
+  awayFouls       Int   @default(0)
+  penalties       Int   @default(0)
+  homePenalties   Int   @default(0)
+  awayPenalties   Int   @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@map("match_stats")
+}
+
+model RefereeSeasonStats {
+  id               Int    @id @default(autoincrement())
+  refereeId        Int
+  season           Int
+  leagueApiId      Int
+  matchesOfficiated Int   @default(0)
+  totalYellowCards Int    @default(0)
+  totalRedCards    Int    @default(0)
+  avgYellowCards   Float  @default(0)
+  avgRedCards      Float  @default(0)
+  totalPenalties   Int    @default(0)
+  avgPenalties     Float  @default(0)
+  totalFouls       Int    @default(0)
+  avgFouls         Float  @default(0)
+  strictnessIndex  Float  @default(0)
+  homeBiasScore    Float  @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  referee Referee @relation(fields: [refereeId], references: [id])
+
+  @@unique([refereeId, season, leagueApiId])
+  @@map("referee_season_stats")
+}

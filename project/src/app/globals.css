@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* RefStats Dark Theme - Primary Colors */
+    --background: 222.2 47.4% 11.2%;      /* Deep Navy #0f172a */
+    --foreground: 0 0% 100%;               /* White */
+    --card: 217.2 32.6% 17.5%;            /* Slate #1e293b */
+    --card-foreground: 0 0% 100%;
+    --popover: 217.2 32.6% 17.5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 60%;                /* Electric Blue #3b82f6 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;       /* Slate */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;  /* #94a3b8 */
+    --accent: 217 91% 60%;                 /* Electric Blue */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;         /* Rose #ef4444 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 217.2 32.6% 25%;
+    --input: 217.2 32.6% 25%;
+    --ring: 217 91% 60%;
+
+    /* Custom Status Colors */
+    --success: 160 84% 39%;               /* Emerald #10b981 */
+    --warning: 38 92% 50%;                /* Amber #f59e0b */
+    --danger: 0 84% 60%;                  /* Rose #ef4444 */
+
+    /* Chart Colors */
+    --chart-1: 217 91% 60%;               /* Electric Blue */
+    --chart-2: 160 84% 39%;               /* Emerald */
+    --chart-3: 38 92% 50%;                /* Amber */
+    --chart-4: 280 65% 60%;               /* Purple */
+    --chart-5: 340 75% 55%;               /* Pink */
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
