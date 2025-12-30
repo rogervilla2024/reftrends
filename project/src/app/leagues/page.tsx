@@ -1,8 +1,26 @@
+import { Metadata } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Leagues',
+  description: 'Explore referee statistics across Europe\'s top 5 football leagues: Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Compare discipline ratings and card averages.',
+  openGraph: {
+    title: 'Leagues - RefStats',
+    description: 'Explore referee statistics across Europe\'s top 5 football leagues.',
+    url: 'https://refstats.com/leagues',
+  },
+  twitter: {
+    title: 'Leagues - RefStats',
+    description: 'Explore referee statistics across Europe\'s top 5 football leagues.',
+  },
+  alternates: {
+    canonical: 'https://refstats.com/leagues',
+  },
+};
 
 const adapter = new PrismaBetterSqlite3({ url: 'file:dev.db' });
 const prisma = new PrismaClient({ adapter });

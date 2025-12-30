@@ -1,5 +1,23 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Betting Tools',
+  description: 'Professional referee-based betting analysis tools. Match analyzer with card predictions, referee comparison charts, and statistical insights for smarter betting.',
+  openGraph: {
+    title: 'Betting Tools - RefStats',
+    description: 'Professional referee-based betting analysis tools for card predictions and statistical insights.',
+    url: 'https://refstats.com/tools',
+  },
+  twitter: {
+    title: 'Betting Tools - RefStats',
+    description: 'Professional referee-based betting analysis tools for card predictions and statistical insights.',
+  },
+  alternates: {
+    canonical: 'https://refstats.com/tools',
+  },
+};
 
 const tools = [
   {

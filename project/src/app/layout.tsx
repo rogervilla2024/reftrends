@@ -29,6 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://refstats.com"),
   title: {
     default: "RefStats - Referee Statistics for Smart Bettors",
     template: "%s | RefStats",
@@ -44,15 +45,28 @@ export const metadata: Metadata = {
     siteName: "RefStats",
     title: "RefStats - Referee Statistics for Smart Bettors",
     description: "Comprehensive referee statistics and betting analytics for Europe's top 5 leagues.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "RefStats - Referee Statistics for Smart Bettors",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "RefStats - Referee Statistics for Smart Bettors",
     description: "Comprehensive referee statistics and betting analytics for Europe's top 5 leagues.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  manifest: "/manifest.json",
+  alternates: {
+    canonical: "/",
   },
 };
 

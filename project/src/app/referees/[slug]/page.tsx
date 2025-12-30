@@ -50,6 +50,14 @@ export async function generateMetadata({
       title: `${referee.name} - Referee Statistics`,
       description,
       type: 'profile',
+      url: `https://refstats.com/referees/${referee.slug}`,
+    },
+    twitter: {
+      title: `${referee.name} - RefStats`,
+      description,
+    },
+    alternates: {
+      canonical: `https://refstats.com/referees/${referee.slug}`,
     },
   };
 }

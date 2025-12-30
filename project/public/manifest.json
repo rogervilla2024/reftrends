@@ -1,0 +1,27 @@
+{
+  "name": "RefStats - Referee Statistics",
+  "short_name": "RefStats",
+  "description": "Comprehensive referee statistics and betting analytics for Europe's top 5 football leagues.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#22c55e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}

@@ -1,7 +1,25 @@
+import { Metadata } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Referee Comparison',
+  description: 'Compare football referees side-by-side with statistical charts, career stats, and export functionality. Analyze strictness, card averages, and home bias.',
+  openGraph: {
+    title: 'Referee Comparison - RefStats',
+    description: 'Compare referees side-by-side with statistical charts and career analysis.',
+    url: 'https://refstats.com/tools/referee-comparison',
+  },
+  twitter: {
+    title: 'Referee Comparison - RefStats',
+    description: 'Compare referees side-by-side with statistical charts and career analysis.',
+  },
+  alternates: {
+    canonical: 'https://refstats.com/tools/referee-comparison',
+  },
+};
 
 // Dynamic import for heavy client component with charts
 const RefereeComparisonClient = dynamic(() => import('@/components/RefereeComparisonClient'), {

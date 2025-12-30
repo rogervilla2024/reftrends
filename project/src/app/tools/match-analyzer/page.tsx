@@ -1,8 +1,26 @@
+import { Metadata } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Match Analyzer',
+  description: 'Analyze upcoming football matches with referee impact predictions, card probabilities, over/under estimates, and team head-to-head statistics.',
+  openGraph: {
+    title: 'Match Analyzer - RefStats',
+    description: 'Analyze matches with referee impact predictions and card probabilities.',
+    url: 'https://refstats.com/tools/match-analyzer',
+  },
+  twitter: {
+    title: 'Match Analyzer - RefStats',
+    description: 'Analyze matches with referee impact predictions and card probabilities.',
+  },
+  alternates: {
+    canonical: 'https://refstats.com/tools/match-analyzer',
+  },
+};
 
 // Dynamic import for heavy client component
 const MatchAnalyzerClient = dynamic(() => import('@/components/MatchAnalyzerClient'), {

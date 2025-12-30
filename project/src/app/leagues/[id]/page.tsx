@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { notFound } from 'next/navigation';
@@ -23,6 +24,36 @@ const leagueInfo: Record<number, { name: string; country: string; flag: string }
   78: { name: 'Bundesliga', country: 'Germany', flag: '🇩🇪' },
   61: { name: 'Ligue 1', country: 'France', flag: '🇫🇷' },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const apiId = parseInt(params.id, 10);
+  const info = leagueInfo[apiId];
+
+  if (!info) {
+    return { title: 'League Not Found' };
+  }
+
+  return {
+    title: info.name,
+    description: `${info.name} referee statistics: rankings, card averages, strictness indices, and match history for ${info.country}'s top football league.`,
+    openGraph: {
+      title: `${info.name} - RefStats`,
+      description: `Referee statistics and rankings for ${info.name}.`,
+      url: `https://refstats.com/leagues/${apiId}`,
+    },
+    twitter: {
+      title: `${info.name} - RefStats`,
+      description: `Referee statistics and rankings for ${info.name}.`,
+    },
+    alternates: {
+      canonical: `https://refstats.com/leagues/${apiId}`,
+    },
+  };
+}
 
 interface LeagueData {
   id: number;

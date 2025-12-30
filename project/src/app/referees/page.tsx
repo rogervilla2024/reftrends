@@ -1,6 +1,24 @@
+import { Metadata } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import RefereeDataTable, { RefereeTableData, LeagueFilter } from '@/components/RefereeDataTable';
+
+export const metadata: Metadata = {
+  title: 'Referees',
+  description: 'Browse and compare referee statistics across Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Filter by league, search by name, and analyze card averages.',
+  openGraph: {
+    title: 'Referees - RefStats',
+    description: 'Browse and compare referee statistics across Europe\'s top 5 football leagues.',
+    url: 'https://refstats.com/referees',
+  },
+  twitter: {
+    title: 'Referees - RefStats',
+    description: 'Browse and compare referee statistics across Europe\'s top 5 football leagues.',
+  },
+  alternates: {
+    canonical: 'https://refstats.com/referees',
+  },
+};
 
 const adapter = new PrismaBetterSqlite3({ url: 'file:dev.db' });
 const prisma = new PrismaClient({ adapter });
