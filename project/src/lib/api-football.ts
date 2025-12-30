@@ -123,6 +123,64 @@ export async function getFixtures(leagueId: number, season: number): Promise<{ r
   });
 }
 
+export async function getTodaysFixtures(): Promise<{ response: Fixture[] }> {
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+  const leagueIds = Object.values(LEAGUE_IDS).join('-');
+
+  return apiRequest('/fixtures', {
+    date: today,
+    league: leagueIds,
+  });
+}
+
+export interface TodaysRefereeAssignment {
+  referee: string;
+  fixture: {
+    id: number;
+    homeTeam: string;
+    awayTeam: string;
+    homeLogo: string;
+    awayLogo: string;
+    time: string;
+    venue: string;
+    league: string;
+    leagueId: number;
+  };
+}
+
+export function extractTodaysAssignments(fixtures: Fixture[]): TodaysRefereeAssignment[] {
+  const assignments: TodaysRefereeAssignment[] = [];
+
+  for (const fixture of fixtures) {
+    if (fixture.referee && fixture.referee.trim() !== '') {
+      const fixtureDate = new Date(fixture.date);
+      const timeStr = fixtureDate.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      });
+
+      assignments.push({
+        referee: fixture.referee.trim(),
+        fixture: {
+          id: fixture.id,
+          homeTeam: fixture.teams.home.name,
+          awayTeam: fixture.teams.away.name,
+          homeLogo: fixture.teams.home.logo,
+          awayLogo: fixture.teams.away.logo,
+          time: timeStr,
+          venue: fixture.venue.name,
+          league: fixture.league.name,
+          leagueId: fixture.league.id,
+        },
+      });
+    }
+  }
+
+  // Sort by time
+  return assignments.sort((a, b) => a.fixture.time.localeCompare(b.fixture.time));
+}
+
 export async function getFixtureStatistics(fixtureId: number): Promise<{ response: unknown[] }> {
   return apiRequest('/fixtures/statistics', {
     fixture: fixtureId.toString(),
@@ -144,6 +202,107 @@ export async function getReferees(leagueId: number, season: number): Promise<{ r
     league: leagueId.toString(),
     season: season.toString(),
   });
+}
+
+// Referee data extracted from fixtures
+export interface ExtractedReferee {
+  name: string;
+  fixtureId: number;
+  leagueId: number;
+  season: number;
+  date: string;
+}
+
+// Extract unique referees from a list of fixtures
+export function extractRefereesFromFixtures(fixtures: Fixture[]): ExtractedReferee[] {
+  const referees: ExtractedReferee[] = [];
+
+  for (const fixture of fixtures) {
+    if (fixture.referee && fixture.referee.trim() !== '') {
+      referees.push({
+        name: fixture.referee.trim(),
+        fixtureId: fixture.id,
+        leagueId: fixture.league.id,
+        season: fixture.league.season,
+        date: fixture.date,
+      });
+    }
+  }
+
+  return referees;
+}
+
+// Get unique referee names from fixtures
+export function getUniqueRefereeNames(fixtures: Fixture[]): string[] {
+  const refereeSet = new Set<string>();
+
+  for (const fixture of fixtures) {
+    if (fixture.referee && fixture.referee.trim() !== '') {
+      refereeSet.add(fixture.referee.trim());
+    }
+  }
+
+  return Array.from(refereeSet).sort();
+}
+
+// Generate a URL-friendly slug from referee name
+export function generateRefereeSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+// Group fixtures by referee
+export function groupFixturesByReferee(fixtures: Fixture[]): Map<string, Fixture[]> {
+  const groupedFixtures = new Map<string, Fixture[]>();
+
+  for (const fixture of fixtures) {
+    if (fixture.referee && fixture.referee.trim() !== '') {
+      const refName = fixture.referee.trim();
+      const existing = groupedFixtures.get(refName) || [];
+      existing.push(fixture);
+      groupedFixtures.set(refName, existing);
+    }
+  }
+
+  return groupedFixtures;
+}
+
+// Calculate basic stats from fixtures for a referee
+export interface RefereeBasicStats {
+  name: string;
+  matchCount: number;
+  leagues: number[];
+  firstMatch: string;
+  lastMatch: string;
+}
+
+export function calculateRefereeBasicStats(
+  refereeName: string,
+  fixtures: Fixture[]
+): RefereeBasicStats | null {
+  const refereeFixtures = fixtures.filter(
+    f => f.referee?.trim() === refereeName
+  );
+
+  if (refereeFixtures.length === 0) return null;
+
+  const sortedFixtures = refereeFixtures.sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
+  const leagueIds = Array.from(new Set(refereeFixtures.map(f => f.league.id)));
+
+  return {
+    name: refereeName,
+    matchCount: refereeFixtures.length,
+    leagues: leagueIds,
+    firstMatch: sortedFixtures[0].date,
+    lastMatch: sortedFixtures[sortedFixtures.length - 1].date,
+  };
 }
 
 export { apiRequest };

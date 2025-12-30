@@ -1,0 +1,14 @@
+# RefStats Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://refstats.com/sitemap.xml
+
+# Disallow API routes
+Disallow: /api/
+
+# Allow search engines to crawl main pages
+Allow: /referees/
+Allow: /leagues/
+Allow: /tools/

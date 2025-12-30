@@ -6,35 +6,60 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "db:seed": "npx tsx src/scripts/seed-referees.ts",
+    "db:reset": "npx prisma migrate reset --force && npm run db:seed",
+    "test:api": "npx tsx src/scripts/test-api.ts"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@prisma/adapter-better-sqlite3": "^7.2.0",
     "@prisma/client": "^7.2.0",
     "@radix-ui/react-slot": "^1.2.4",
+    "@stripe/stripe-js": "^8.6.0",
+    "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
     "lucide-react": "^0.562.0",
     "next": "14.2.35",
+    "next-auth": "^4.24.13",
     "react": "^18",
     "react-dom": "^18",
     "recharts": "^3.6.0",
+    "stripe": "^20.1.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^5.0.9"
   },
+  "prisma": {
+    "seed": "npx tsx src/scripts/seed-referees.ts"
+  },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^5.1.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
+    "jsdom": "^27.4.0",
     "postcss": "^8",
     "prisma": "^7.2.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tsx": "^4.21.0",
+    "typescript": "^5",
+    "vitest": "^4.0.16"
   }
 }

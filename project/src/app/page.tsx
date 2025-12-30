@@ -1,7 +1,31 @@
 import Link from 'next/link';
+import Script from 'next/script';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import TodaysReferees from '@/components/TodaysReferees';
+import FeaturedRefereesCarousel from '@/components/FeaturedRefereesCarousel';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'RefStats',
+  description: 'Comprehensive referee statistics and betting analytics for Europe\'s top 5 football leagues.',
+  url: 'https://refstats.com',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://refstats.com/referees?search={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'RefStats',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://refstats.com/logo.png',
+    },
+  },
+};
 
 const leagues = [
   { id: 39, name: 'Premier League', country: 'England' },
@@ -20,7 +44,13 @@ const quickStats = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -36,22 +66,40 @@ export default function Home() {
         </p>
 
         {/* Search Bar */}
-        <div className="max-w-xl mx-auto flex gap-2 mb-12">
-          <Input
-            placeholder="Search referee by name..."
-            className="flex-1"
-          />
-          <Button>Search</Button>
-        </div>
+        <form
+          action="/referees"
+          method="get"
+          className="max-w-xl mx-auto mb-12"
+          role="search"
+          aria-label="Search referees"
+        >
+          <div className="flex gap-2">
+            <label htmlFor="home-search" className="sr-only">
+              Search referee by name
+            </label>
+            <Input
+              id="home-search"
+              name="search"
+              type="search"
+              placeholder="Search referee by name..."
+              className="flex-1"
+              autoComplete="off"
+            />
+            <Button type="submit">Search</Button>
+          </div>
+        </form>
       </section>
 
       {/* Quick Stats */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8" aria-labelledby="quick-stats-heading">
+        <h2 id="quick-stats-heading" className="sr-only">Platform Statistics</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {quickStats.map((stat) => (
             <Card key={stat.label}>
               <CardContent className="pt-6 text-center">
-                <div className="text-3xl font-bold text-primary">{stat.value}</div>
+                <div className="text-3xl font-bold text-primary" aria-label={`${stat.value} ${stat.label}`}>
+                  {stat.value}
+                </div>
                 <div className="text-sm font-medium">{stat.label}</div>
                 <div className="text-xs text-muted-foreground">{stat.description}</div>
               </CardContent>
@@ -60,16 +108,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Today's Referee Assignments */}
+      <section className="container mx-auto px-4 py-8" aria-label="Today's referee assignments">
+        <TodaysReferees />
+      </section>
+
+      {/* Featured Referees Carousel */}
+      <section className="container mx-auto px-4 py-8" aria-label="Featured referees">
+        <FeaturedRefereesCarousel />
+      </section>
+
       {/* Leagues Section */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-6 text-center">Browse by League</h2>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <section className="container mx-auto px-4 py-12" aria-labelledby="leagues-heading">
+        <h2 id="leagues-heading" className="text-2xl font-bold mb-6 text-center">Browse by League</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {leagues.map((league) => (
             <Link key={league.id} href={`/leagues/${league.id}`}>
-              <Card className="hover:border-primary transition-colors cursor-pointer h-full">
-                <CardHeader className="text-center">
-                  <CardTitle className="text-lg">{league.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{league.country}</p>
+              <Card className="hover:border-primary transition-colors cursor-pointer h-full focus-within:ring-2 focus-within:ring-ring">
+                <CardHeader className="text-center p-4 sm:p-6">
+                  <CardTitle className="text-base sm:text-lg">{league.name}</CardTitle>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{league.country}</p>
                 </CardHeader>
               </Card>
             </Link>
@@ -97,21 +155,7 @@ export default function Home() {
         </Card>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border mt-12">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-muted-foreground text-sm">
-              &copy; 2024 RefStats. All rights reserved.
-            </div>
-            <div className="flex gap-6 text-sm text-muted-foreground">
-              <Link href="/about" className="hover:text-foreground">About</Link>
-              <Link href="/api" className="hover:text-foreground">API</Link>
-              <Link href="/contact" className="hover:text-foreground">Contact</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </>
   );
 }
