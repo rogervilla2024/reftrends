@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useMemo, memo } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   Table,
@@ -63,24 +62,9 @@ const RefereeRow = memo(function RefereeRow({ referee }: RefereeRowProps) {
       <TableCell className="font-medium">
         <Link
           href={`/referees/${referee.slug}`}
-          className="flex items-center gap-3 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+          className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
         >
-          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-muted flex-shrink-0">
-            {referee.photo ? (
-              <Image
-                src={referee.photo}
-                alt={referee.name}
-                fill
-                sizes="40px"
-                className="object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm font-medium">
-                {referee.name.charAt(0).toUpperCase()}
-              </div>
-            )}
-          </div>
-          <span>{referee.name}</span>
+          {referee.name}
         </Link>
       </TableCell>
       <TableCell className="text-muted-foreground hidden sm:table-cell">

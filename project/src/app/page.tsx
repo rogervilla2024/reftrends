@@ -3,7 +3,6 @@ import Script from 'next/script';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import TodaysReferees from '@/components/TodaysReferees';
 import FeaturedRefereesCarousel from '@/components/FeaturedRefereesCarousel';
 import TopRefereesStats from '@/components/TopRefereesStats';
 
@@ -163,11 +162,6 @@ export default function Home() {
             </Card>
           ))}
         </div>
-      </section>
-
-      {/* Today's Referee Assignments */}
-      <section className="container mx-auto px-4 py-8" aria-label="Today's referee assignments">
-        <TodaysReferees />
       </section>
 
       {/* Featured Referees Carousel */}

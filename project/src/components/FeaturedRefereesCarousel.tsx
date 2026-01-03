@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef, useCallback, memo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -192,32 +191,8 @@ export const FeaturedRefereesCarousel = memo(function FeaturedRefereesCarousel({
               <Link href={`/referees/${referee.slug}`}>
               <Card className="h-full hover:border-primary transition-colors cursor-pointer">
                 <CardContent className="pt-6">
-                  {/* Referee Avatar */}
+                  {/* Referee Info */}
                   <div className="flex flex-col items-center mb-4">
-                    <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-3 overflow-hidden relative">
-                      {referee.photo ? (
-                        <Image
-                          src={referee.photo}
-                          alt={referee.name}
-                          fill
-                          className="object-cover"
-                        />
-                      ) : (
-                        <svg
-                          className="w-10 h-10 text-muted-foreground"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                          />
-                        </svg>
-                      )}
-                    </div>
                     <h3 className="font-semibold text-lg text-center">{referee.name}</h3>
                     {referee.nationality && (
                       <p className="text-sm text-muted-foreground">{referee.nationality}</p>
