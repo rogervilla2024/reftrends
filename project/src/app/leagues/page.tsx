@@ -1,29 +1,27 @@
 import { Metadata } from 'next';
-import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { LEAGUE_INFO } from '@/lib/api-football';
+import { formatSeason, getCurrentSeason } from '@/lib/season';
+import prisma from '@/lib/db';
 
 export const metadata: Metadata = {
-  title: 'Leagues',
-  description: 'Explore referee statistics across Europe\'s top 5 football leagues: Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Compare discipline ratings and card averages.',
+  title: 'Leagues & Tournaments',
+  description: 'Explore referee statistics across top football leagues and tournaments: Premier League, La Liga, Serie A, Bundesliga, Ligue 1, UEFA Champions League, World Cup, and more.',
   openGraph: {
-    title: 'Leagues - RefStats',
-    description: 'Explore referee statistics across Europe\'s top 5 football leagues.',
+    title: 'Leagues & Tournaments - RefStats',
+    description: 'Explore referee statistics across top football leagues and international tournaments.',
     url: 'https://refstats.com/leagues',
   },
   twitter: {
-    title: 'Leagues - RefStats',
-    description: 'Explore referee statistics across Europe\'s top 5 football leagues.',
+    title: 'Leagues & Tournaments - RefStats',
+    description: 'Explore referee statistics across top football leagues and international tournaments.',
   },
   alternates: {
     canonical: 'https://refstats.com/leagues',
   },
 };
-
-const adapter = new PrismaBetterSqlite3({ url: 'file:dev.db' });
-const prisma = new PrismaClient({ adapter });
 
 interface LeagueWithStats {
   id: number;
@@ -92,104 +90,180 @@ async function getLeagues(): Promise<LeagueWithStats[]> {
   }
 }
 
-const defaultLeagues = [
-  { apiId: 39, name: 'Premier League', country: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-  { apiId: 140, name: 'La Liga', country: 'Spain', flag: '🇪🇸' },
-  { apiId: 135, name: 'Serie A', country: 'Italy', flag: '🇮🇹' },
-  { apiId: 78, name: 'Bundesliga', country: 'Germany', flag: '🇩🇪' },
-  { apiId: 61, name: 'Ligue 1', country: 'France', flag: '🇫🇷' },
-];
+// Convert LEAGUE_INFO to array for display
+const allLeagues = Object.entries(LEAGUE_INFO).map(([apiId, info]) => ({
+  apiId: parseInt(apiId),
+  ...info,
+}));
+
+const domesticLeagues = allLeagues.filter(l => l.type === 'league');
+const tournaments = allLeagues.filter(l => l.type === 'cup');
 
 export default async function LeaguesPage() {
-  const leagues = await getLeagues();
+  const dbLeagues = await getLeagues();
+  const currentSeason = getCurrentSeason();
 
-  // Merge database leagues with default leagues
-  const displayLeagues = defaultLeagues.map((defaultLeague) => {
-    const dbLeague = leagues.find((l) => l.apiId === defaultLeague.apiId);
+  // Helper to merge db data with league info
+  const getLeagueData = (apiId: number) => {
+    const info = LEAGUE_INFO[apiId];
+    const dbLeague = dbLeagues.find((l) => l.apiId === apiId);
     return {
-      ...defaultLeague,
-      id: dbLeague?.id || defaultLeague.apiId,
+      apiId,
+      name: info?.name || 'Unknown',
+      country: info?.country || '',
+      type: info?.type || 'league',
       logo: dbLeague?.logo || null,
-      season: dbLeague?.season || 2025,
+      season: dbLeague?.season || currentSeason,
       matchCount: dbLeague?.matchCount || 0,
       refereeCount: dbLeague?.refereeCount || 0,
       avgYellowCards: dbLeague?.avgYellowCards || 0,
       avgRedCards: dbLeague?.avgRedCards || 0,
     };
-  });
+  };
+
+  const displayDomesticLeagues = domesticLeagues.map(l => getLeagueData(l.apiId));
+  const displayTournaments = tournaments.map(l => getLeagueData(l.apiId));
+  const allDisplayLeagues = [...displayDomesticLeagues, ...displayTournaments];
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Leagues</h1>
+        <h1 className="text-3xl font-bold">Leagues & Tournaments</h1>
         <p className="text-muted-foreground mt-2">
-          Explore referee statistics across Europe&apos;s top 5 leagues
+          Explore referee statistics across domestic leagues and international tournaments
         </p>
       </div>
 
-      {/* League Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayLeagues.map((league) => (
-          <Link key={league.apiId} href={`/leagues/${league.apiId}`}>
-            <Card className="hover:border-primary transition-all cursor-pointer h-full hover:shadow-lg">
-              <CardHeader className="flex flex-row items-center gap-4">
-                <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
-                  {league.logo ? (
-                    <Image
-                      src={league.logo}
-                      alt={league.name}
-                      width={48}
-                      height={48}
-                      className="object-contain"
-                    />
-                  ) : (
-                    <span className="text-3xl">{league.flag}</span>
-                  )}
-                </div>
-                <div>
-                  <CardTitle className="text-xl">{league.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    {league.country}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-3 bg-muted rounded-lg">
-                    <div className="text-2xl font-bold text-primary">
-                      {league.matchCount}
-                    </div>
-                    <div className="text-xs text-muted-foreground">Matches</div>
+      {/* Domestic Leagues */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6">Domestic Leagues</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayDomesticLeagues.map((league) => (
+            <Link key={league.apiId} href={`/leagues/${league.apiId}`}>
+              <Card className="hover:border-primary transition-all cursor-pointer h-full hover:shadow-lg">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
+                    {league.logo ? (
+                      <Image
+                        src={league.logo}
+                        alt={league.name}
+                        width={48}
+                        height={48}
+                        className="object-contain"
+                      />
+                    ) : (
+                      <span className="text-2xl font-bold text-primary">
+                        {league.name.charAt(0)}
+                      </span>
+                    )}
                   </div>
-                  <div className="text-center p-3 bg-muted rounded-lg">
-                    <div className="text-2xl font-bold text-primary">
-                      {league.refereeCount}
-                    </div>
-                    <div className="text-xs text-muted-foreground">Referees</div>
+                  <div>
+                    <CardTitle className="text-xl">{league.name}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      {league.country}
+                    </p>
                   </div>
-                  <div className="text-center p-3 bg-muted rounded-lg">
-                    <div className="text-2xl font-bold text-yellow-500">
-                      {league.avgYellowCards.toFixed(1)}
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-primary">
+                        {league.matchCount}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Matches</div>
                     </div>
-                    <div className="text-xs text-muted-foreground">Avg Yellow/Match</div>
-                  </div>
-                  <div className="text-center p-3 bg-muted rounded-lg">
-                    <div className="text-2xl font-bold text-red-500">
-                      {league.avgRedCards.toFixed(2)}
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-primary">
+                        {league.refereeCount}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Referees</div>
                     </div>
-                    <div className="text-xs text-muted-foreground">Avg Red/Match</div>
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-yellow-500">
+                        {league.avgYellowCards.toFixed(1)}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Avg Yellow</div>
+                    </div>
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-red-500">
+                        {league.avgRedCards.toFixed(2)}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Avg Red</div>
+                    </div>
                   </div>
-                </div>
-                <div className="mt-4 text-center">
-                  <span className="text-sm text-muted-foreground">
-                    Season {league.season - 1}/{league.season.toString().slice(2)}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
+                  <div className="mt-4 text-center">
+                    <span className="text-sm text-muted-foreground">
+                      Season {formatSeason(currentSeason)}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* UEFA/FIFA Tournaments */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6">International Tournaments</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayTournaments.map((tournament) => (
+            <Link key={tournament.apiId} href={`/leagues/${tournament.apiId}`}>
+              <Card className="hover:border-primary transition-all cursor-pointer h-full hover:shadow-lg border-primary/20">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center overflow-hidden">
+                    {tournament.logo ? (
+                      <Image
+                        src={tournament.logo}
+                        alt={tournament.name}
+                        width={48}
+                        height={48}
+                        className="object-contain"
+                      />
+                    ) : (
+                      <span className="text-2xl">🏆</span>
+                    )}
+                  </div>
+                  <div>
+                    <CardTitle className="text-xl">{tournament.name}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      {tournament.country}
+                    </p>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-primary">
+                        {tournament.matchCount}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Matches</div>
+                    </div>
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-primary">
+                        {tournament.refereeCount}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Referees</div>
+                    </div>
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-yellow-500">
+                        {tournament.avgYellowCards.toFixed(1)}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Avg Yellow</div>
+                    </div>
+                    <div className="text-center p-3 bg-muted rounded-lg">
+                      <div className="text-2xl font-bold text-red-500">
+                        {tournament.avgRedCards.toFixed(2)}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Avg Red</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* League Comparison Section */}
       <section className="mt-12">
@@ -200,16 +274,18 @@ export default async function LeaguesPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4">League</th>
+                    <th className="text-left py-3 px-4">Competition</th>
+                    <th className="text-center py-3 px-4">Type</th>
                     <th className="text-center py-3 px-4">Matches</th>
                     <th className="text-center py-3 px-4">Referees</th>
                     <th className="text-center py-3 px-4">Avg Yellow</th>
                     <th className="text-center py-3 px-4">Avg Red</th>
-                    <th className="text-center py-3 px-4">Discipline Rating</th>
+                    <th className="text-center py-3 px-4">Discipline</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {displayLeagues
+                  {allDisplayLeagues
+                    .filter(l => l.matchCount > 0)
                     .sort((a, b) => b.avgYellowCards - a.avgYellowCards)
                     .map((league, index) => {
                       const disciplineRating = (
@@ -223,9 +299,17 @@ export default async function LeaguesPage() {
                               <span className="text-muted-foreground">
                                 #{index + 1}
                               </span>
-                              <span className="text-lg">{league.flag}</span>
                               <span className="font-medium">{league.name}</span>
                             </div>
+                          </td>
+                          <td className="text-center py-3 px-4">
+                            <span className={`px-2 py-1 rounded text-xs ${
+                              league.type === 'cup'
+                                ? 'bg-primary/10 text-primary'
+                                : 'bg-muted'
+                            }`}>
+                              {league.type === 'cup' ? 'Tournament' : 'League'}
+                            </span>
                           </td>
                           <td className="text-center py-3 px-4">{league.matchCount}</td>
                           <td className="text-center py-3 px-4">{league.refereeCount}</td>
@@ -251,7 +335,7 @@ export default async function LeaguesPage() {
               </table>
             </div>
             <p className="text-xs text-muted-foreground mt-4 text-center">
-              Discipline Rating = (Avg Yellow × 1) + (Avg Red × 3). Higher = stricter officiating.
+              Discipline Rating = (Avg Yellow x 1) + (Avg Red x 3). Higher = stricter officiating.
             </p>
           </CardContent>
         </Card>

@@ -102,8 +102,25 @@ model MatchStats {
   updatedAt       DateTime @updatedAt
 
   match Match @relation(fields: [matchId], references: [id])
+  cardEvents CardEvent[]
 
   @@map("match_stats")
+}
+
+model CardEvent {
+  id           Int      @id @default(autoincrement())
+  matchStatsId Int
+  minute       Int
+  extraMinute  Int?
+  type         String   // 'yellow' or 'red'
+  teamId       Int
+  playerName   String?
+  isHome       Boolean
+  createdAt    DateTime @default(now())
+
+  matchStats MatchStats @relation(fields: [matchStatsId], references: [id])
+
+  @@map("card_events")
 }
 
 model RefereeSeasonStats {

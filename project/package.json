@@ -14,7 +14,13 @@
     "test:e2e:ui": "playwright test --ui",
     "db:seed": "npx tsx src/scripts/seed-referees.ts",
     "db:reset": "npx prisma migrate reset --force && npm run db:seed",
-    "test:api": "npx tsx src/scripts/test-api.ts"
+    "test:api": "npx tsx src/scripts/test-api.ts",
+    "sync:daily": "npx tsx src/scripts/daily-sync.ts",
+    "sync:full": "npx tsx src/scripts/fetch-league-data.ts",
+    "sync:photos": "npx tsx src/scripts/fetch-referee-photos.ts",
+    "sync:events": "npx tsx src/scripts/fetch-card-events.ts",
+    "sync:history": "npx tsx src/scripts/fetch-historical-data.ts",
+    "sync:leagues": "npx tsx src/scripts/sync-leagues.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
@@ -53,7 +59,7 @@
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^5.1.2",
     "eslint": "^8",
-    "eslint-config-next": "14.2.35",
+    "eslint-config-next": "^16.1.1",
     "jsdom": "^27.4.0",
     "postcss": "^8",
     "prisma": "^7.2.0",

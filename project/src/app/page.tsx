@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import TodaysReferees from '@/components/TodaysReferees';
 import FeaturedRefereesCarousel from '@/components/FeaturedRefereesCarousel';
+import TopRefereesStats from '@/components/TopRefereesStats';
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -172,6 +173,11 @@ export default function Home() {
       {/* Featured Referees Carousel */}
       <section className="container mx-auto px-4 py-8" aria-label="Featured referees">
         <FeaturedRefereesCarousel />
+      </section>
+
+      {/* Top Referees Stats */}
+      <section className="container mx-auto px-4 py-12" aria-label="Top referee statistics">
+        <TopRefereesStats />
       </section>
 
       {/* Leagues Section */}

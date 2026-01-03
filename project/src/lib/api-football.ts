@@ -1,4 +1,4 @@
-const API_KEY = process.env.API_FOOTBALL_KEY || '';
+const API_KEY = process.env.API_FOOTBALL_KEY || 'ea04c7309495164f85f3f5fdb5567896';
 const BASE_URL = 'https://v3.football.api-sports.io';
 
 interface RateLimiter {
@@ -107,14 +107,53 @@ export interface FixtureStatistics {
   };
 }
 
-// League IDs for major European leagues
+// League IDs for all supported leagues
 export const LEAGUE_IDS = {
+  // Top 5 European Leagues
   PREMIER_LEAGUE: 39,
   LA_LIGA: 140,
   SERIE_A: 135,
   BUNDESLIGA: 78,
   LIGUE_1: 61,
+  // Additional European Leagues
+  PRIMEIRA_LIGA: 94,
+  EREDIVISIE: 88,
+  BELGIAN_PRO_LEAGUE: 144,
+  SUPER_LIG: 203,
+  SUPERLIGA_DENMARK: 119,
+  // UEFA Competitions
+  CHAMPIONS_LEAGUE: 2,
+  EUROPA_LEAGUE: 3,
+  CONFERENCE_LEAGUE: 848,
+  EURO_CHAMPIONSHIP: 4,
+  // FIFA Competitions
+  WORLD_CUP: 1,
+  CLUB_WORLD_CUP: 15,
 } as const;
+
+// League metadata for display
+export const LEAGUE_INFO: Record<number, { name: string; country: string; flag: string; type: 'league' | 'cup' }> = {
+  // Top 5
+  39: { name: 'Premier League', country: 'England', flag: '', type: 'league' },
+  140: { name: 'La Liga', country: 'Spain', flag: '', type: 'league' },
+  135: { name: 'Serie A', country: 'Italy', flag: '', type: 'league' },
+  78: { name: 'Bundesliga', country: 'Germany', flag: '', type: 'league' },
+  61: { name: 'Ligue 1', country: 'France', flag: '', type: 'league' },
+  // Additional
+  94: { name: 'Primeira Liga', country: 'Portugal', flag: '', type: 'league' },
+  88: { name: 'Eredivisie', country: 'Netherlands', flag: '', type: 'league' },
+  144: { name: 'Belgian Pro League', country: 'Belgium', flag: '', type: 'league' },
+  203: { name: 'Super Lig', country: 'Turkey', flag: '', type: 'league' },
+  119: { name: 'Superliga', country: 'Denmark', flag: '', type: 'league' },
+  // UEFA
+  2: { name: 'UEFA Champions League', country: 'Europe', flag: '', type: 'cup' },
+  3: { name: 'UEFA Europa League', country: 'Europe', flag: '', type: 'cup' },
+  848: { name: 'UEFA Conference League', country: 'Europe', flag: '', type: 'cup' },
+  4: { name: 'UEFA Euro Championship', country: 'Europe', flag: '', type: 'cup' },
+  // FIFA
+  1: { name: 'FIFA World Cup', country: 'World', flag: '', type: 'cup' },
+  15: { name: 'FIFA Club World Cup', country: 'World', flag: '', type: 'cup' },
+};
 
 export async function getFixtures(leagueId: number, season: number): Promise<{ response: Fixture[] }> {
   return apiRequest('/fixtures', {
@@ -125,12 +164,19 @@ export async function getFixtures(leagueId: number, season: number): Promise<{ r
 
 export async function getTodaysFixtures(): Promise<{ response: Fixture[] }> {
   const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
-  const leagueIds = Object.values(LEAGUE_IDS).join('-');
 
-  return apiRequest('/fixtures', {
+  // Fetch all fixtures for today (API doesn't support multiple leagues in one call)
+  const allFixtures = await apiRequest<{ response: Fixture[] }>('/fixtures', {
     date: today,
-    league: leagueIds,
   });
+
+  // Filter to only include our supported leagues
+  const supportedLeagueIds = new Set<number>(Object.values(LEAGUE_IDS));
+  const filteredFixtures = allFixtures.response.filter(
+    fixture => supportedLeagueIds.has(fixture.league.id)
+  );
+
+  return { response: filteredFixtures };
 }
 
 export interface TodaysRefereeAssignment {
@@ -152,29 +198,40 @@ export function extractTodaysAssignments(fixtures: Fixture[]): TodaysRefereeAssi
   const assignments: TodaysRefereeAssignment[] = [];
 
   for (const fixture of fixtures) {
-    if (fixture.referee && fixture.referee.trim() !== '') {
+    let timeStr = '--:--';
+    try {
       const fixtureDate = new Date(fixture.date);
-      const timeStr = fixtureDate.toLocaleTimeString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-      });
-
-      assignments.push({
-        referee: fixture.referee.trim(),
-        fixture: {
-          id: fixture.id,
-          homeTeam: fixture.teams.home.name,
-          awayTeam: fixture.teams.away.name,
-          homeLogo: fixture.teams.home.logo,
-          awayLogo: fixture.teams.away.logo,
-          time: timeStr,
-          venue: fixture.venue.name,
-          league: fixture.league.name,
-          leagueId: fixture.league.id,
-        },
-      });
+      if (!isNaN(fixtureDate.getTime())) {
+        timeStr = fixtureDate.toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+          timeZone: 'UTC',
+        });
+      }
+    } catch {
+      timeStr = '--:--';
     }
+
+    // Include all fixtures, show "TBA" if referee not assigned yet
+    const refereeName = fixture.referee && fixture.referee.trim() !== ''
+      ? fixture.referee.trim()
+      : 'TBA';
+
+    assignments.push({
+      referee: refereeName,
+      fixture: {
+        id: fixture.id,
+        homeTeam: fixture.teams.home.name,
+        awayTeam: fixture.teams.away.name,
+        homeLogo: fixture.teams.home.logo,
+        awayLogo: fixture.teams.away.logo,
+        time: timeStr,
+        venue: fixture.venue?.name || 'TBA',
+        league: fixture.league.name,
+        leagueId: fixture.league.id,
+      },
+    });
   }
 
   // Sort by time

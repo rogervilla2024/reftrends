@@ -1,5 +1,3 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -14,15 +12,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { formatSeason } from '@/lib/season';
+import prisma from '@/lib/db';
 
 // Dynamic import for chart component (reduces initial bundle size)
 const RefereeStatsChart = dynamic(() => import('@/components/RefereeStatsChart'), {
   loading: () => <div className="h-[500px] flex items-center justify-center text-muted-foreground">Loading chart...</div>,
   ssr: false,
 });
-
-const adapter = new PrismaBetterSqlite3({ url: 'file:dev.db' });
-const prisma = new PrismaClient({ adapter });
 
 export async function generateMetadata({
   params,
@@ -270,7 +267,7 @@ export default async function RefereeProfilePage({
   // Prepare chart data - cards per match by season
   const chartData = referee.seasonStats
     .map((stat) => ({
-      season: `${stat.season - 1}/${stat.season.toString().slice(2)}`,
+      season: formatSeason(stat.season),
       yellowCards: stat.avgYellowCards,
       redCards: stat.avgRedCards,
       penalties: stat.avgPenalties,
@@ -320,7 +317,7 @@ export default async function RefereeProfilePage({
                 <div className="bg-muted px-4 py-2 rounded-lg">
                   <span className="text-sm text-muted-foreground">Current Season</span>
                   <p className="font-semibold">
-                    {currentStats.season - 1}/{currentStats.season.toString().slice(2)}
+                    {formatSeason(currentStats.season)}
                   </p>
                 </div>
                 <div className="bg-muted px-4 py-2 rounded-lg">
@@ -408,7 +405,7 @@ export default async function RefereeProfilePage({
                     return (
                       <TableRow key={stat.id}>
                         <TableCell className="font-medium">
-                          {stat.season - 1}/{stat.season.toString().slice(2)}
+                          {formatSeason(stat.season)}
                         </TableCell>
                         <TableCell>
                           {leagueMap[stat.leagueApiId]?.name || 'Unknown'}

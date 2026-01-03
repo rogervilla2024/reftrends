@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,17 +11,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
-const adapter = new PrismaBetterSqlite3({ url: 'file:dev.db' });
-const prisma = new PrismaClient({ adapter });
-
-const leagueInfo: Record<number, { name: string; country: string; flag: string }> = {
-  39: { name: 'Premier League', country: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-  140: { name: 'La Liga', country: 'Spain', flag: '🇪🇸' },
-  135: { name: 'Serie A', country: 'Italy', flag: '🇮🇹' },
-  78: { name: 'Bundesliga', country: 'Germany', flag: '🇩🇪' },
-  61: { name: 'Ligue 1', country: 'France', flag: '🇫🇷' },
-};
+import { LeagueRefereeTable, type RefereeRanking as LeagueRefereeRankingType } from '@/components/LeagueRefereeTable';
+import { formatSeason, getCurrentSeason } from '@/lib/season';
+import { LEAGUE_INFO } from '@/lib/api-football';
+import prisma from '@/lib/db';
 
 export async function generateMetadata({
   params,
@@ -31,15 +22,17 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const apiId = parseInt(params.id, 10);
-  const info = leagueInfo[apiId];
+  const info = LEAGUE_INFO[apiId];
 
   if (!info) {
     return { title: 'League Not Found' };
   }
 
+  const typeLabel = info.type === 'cup' ? 'tournament' : 'league';
+
   return {
     title: info.name,
-    description: `${info.name} referee statistics: rankings, card averages, strictness indices, and match history for ${info.country}'s top football league.`,
+    description: `${info.name} referee statistics: rankings, card averages, strictness indices, and match history for this ${info.country} ${typeLabel}.`,
     openGraph: {
       title: `${info.name} - RefStats`,
       description: `Referee statistics and rankings for ${info.name}.`,
@@ -64,18 +57,7 @@ interface LeagueData {
   season: number;
 }
 
-interface RefereeRanking {
-  id: number;
-  name: string;
-  slug: string;
-  photo: string | null;
-  matchesOfficiated: number;
-  avgYellowCards: number;
-  avgRedCards: number;
-  totalYellowCards: number;
-  totalRedCards: number;
-  strictnessIndex: number;
-}
+// Using LeagueRefereeRankingType from component
 
 interface FixtureData {
   id: number;
@@ -104,18 +86,20 @@ async function getLeague(apiId: number): Promise<LeagueData | null> {
   }
 }
 
-async function getRefereeRankings(leagueApiId: number): Promise<RefereeRanking[]> {
+async function getRefereeRankings(leagueApiId: number): Promise<LeagueRefereeRankingType[]> {
   try {
+
+    // Get stats for current season first, then fallback to any season
     const stats = await prisma.refereeSeasonStats.findMany({
       where: { leagueApiId },
       include: {
         referee: true,
       },
-      orderBy: { matchesOfficiated: 'desc' },
+      orderBy: [{ season: 'desc' }, { matchesOfficiated: 'desc' }],
     });
 
     // Group by referee and get latest season stats
-    const refereeMap = new Map<number, RefereeRanking>();
+    const refereeMap = new Map<number, LeagueRefereeRankingType>();
     stats.forEach((stat) => {
       if (!refereeMap.has(stat.refereeId)) {
         refereeMap.set(stat.refereeId, {
@@ -134,8 +118,7 @@ async function getRefereeRankings(leagueApiId: number): Promise<RefereeRanking[]
     });
 
     return Array.from(refereeMap.values())
-      .sort((a, b) => b.matchesOfficiated - a.matchesOfficiated)
-      .slice(0, 20);
+      .sort((a, b) => b.matchesOfficiated - a.matchesOfficiated);
   } catch (error) {
     console.error('Error fetching referee rankings:', error);
     return [];
@@ -144,6 +127,7 @@ async function getRefereeRankings(leagueApiId: number): Promise<RefereeRanking[]
 
 async function getFixtures(leagueId: number): Promise<FixtureData[]> {
   try {
+
     const fixtures = await prisma.match.findMany({
       where: { leagueId },
       include: {
@@ -153,7 +137,7 @@ async function getFixtures(leagueId: number): Promise<FixtureData[]> {
         stats: true,
       },
       orderBy: { date: 'desc' },
-      take: 30,
+      take: 50,
     });
 
     return fixtures.map((f) => ({
@@ -236,21 +220,13 @@ async function getLeagueStats(leagueId: number) {
   }
 }
 
-function getStrictnessLabel(index: number): { label: string; color: string } {
-  if (index >= 8) return { label: 'Very Strict', color: 'text-red-500' };
-  if (index >= 6) return { label: 'Strict', color: 'text-orange-500' };
-  if (index >= 4) return { label: 'Average', color: 'text-yellow-500' };
-  if (index >= 2) return { label: 'Lenient', color: 'text-green-500' };
-  return { label: 'Very Lenient', color: 'text-emerald-500' };
-}
-
 export default async function LeagueDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
   const apiId = parseInt(params.id, 10);
-  const info = leagueInfo[apiId];
+  const info = LEAGUE_INFO[apiId];
 
   if (!info) {
     notFound();
@@ -273,9 +249,13 @@ export default async function LeagueDetailPage({
   ]);
 
   const fixtures = league ? await getFixtures(league.id) : [];
+
+  // Upcoming fixtures: future matches only
   const upcomingFixtures = fixtures.filter(
-    (f) => f.status !== 'FT' && f.status !== 'Match Finished'
-  );
+    (f) => new Date(f.date) > new Date() && f.status !== 'FT' && f.status !== 'Match Finished'
+  ).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  // Recent results: completed matches
   const recentResults = fixtures.filter(
     (f) => f.status === 'FT' || f.status === 'Match Finished'
   );
@@ -300,11 +280,9 @@ export default async function LeagueDetailPage({
         <div className="text-center md:text-left">
           <h1 className="text-3xl md:text-4xl font-bold">{info.name}</h1>
           <p className="text-lg text-muted-foreground">{info.country}</p>
-          {league && (
-            <p className="text-sm text-muted-foreground mt-1">
-              Season {league.season - 1}/{league.season.toString().slice(2)}
-            </p>
-          )}
+          <p className="text-sm text-muted-foreground mt-1">
+            Season {formatSeason(getCurrentSeason())}
+          </p>
         </div>
       </div>
 
@@ -362,86 +340,7 @@ export default async function LeagueDetailPage({
             <CardTitle>Referee Rankings</CardTitle>
           </CardHeader>
           <CardContent>
-            {refereeRankings.length > 0 ? (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-12">#</TableHead>
-                    <TableHead>Referee</TableHead>
-                    <TableHead className="text-center">Matches</TableHead>
-                    <TableHead className="text-center">Yellow Cards</TableHead>
-                    <TableHead className="text-center">Red Cards</TableHead>
-                    <TableHead className="text-center">Strictness</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {refereeRankings.map((referee, index) => {
-                    const strictness = getStrictnessLabel(referee.strictnessIndex);
-                    return (
-                      <TableRow key={referee.id}>
-                        <TableCell className="font-medium text-muted-foreground">
-                          {index + 1}
-                        </TableCell>
-                        <TableCell>
-                          <Link
-                            href={`/referees/${referee.slug}`}
-                            className="flex items-center gap-3 hover:text-primary transition-colors"
-                          >
-                            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden">
-                              {referee.photo ? (
-                                <Image
-                                  src={referee.photo}
-                                  alt={referee.name}
-                                  width={32}
-                                  height={32}
-                                  className="object-cover"
-                                />
-                              ) : (
-                                <span className="text-sm">
-                                  {referee.name.charAt(0)}
-                                </span>
-                              )}
-                            </div>
-                            <span className="font-medium">{referee.name}</span>
-                          </Link>
-                        </TableCell>
-                        <TableCell className="text-center">
-                          {referee.matchesOfficiated}
-                        </TableCell>
-                        <TableCell className="text-center">
-                          <span className="text-yellow-500">
-                            {referee.totalYellowCards}
-                          </span>
-                          <span className="text-muted-foreground text-xs ml-1">
-                            ({referee.avgYellowCards.toFixed(2)})
-                          </span>
-                        </TableCell>
-                        <TableCell className="text-center">
-                          <span className="text-red-500">
-                            {referee.totalRedCards}
-                          </span>
-                          <span className="text-muted-foreground text-xs ml-1">
-                            ({referee.avgRedCards.toFixed(2)})
-                          </span>
-                        </TableCell>
-                        <TableCell className="text-center">
-                          <span className={strictness.color}>
-                            {referee.strictnessIndex.toFixed(1)}
-                          </span>
-                          <span className="text-muted-foreground text-xs ml-1">
-                            ({strictness.label})
-                          </span>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            ) : (
-              <p className="text-muted-foreground text-center py-8">
-                No referee data available yet for this league.
-              </p>
-            )}
+            <LeagueRefereeTable referees={refereeRankings} />
           </CardContent>
         </Card>
       </section>

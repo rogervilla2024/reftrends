@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import RefereeDataTable, { RefereeTableData, LeagueFilter } from '@/components/RefereeDataTable';
+import prisma from '@/lib/db';
 
 export const metadata: Metadata = {
   title: 'Referees',
@@ -19,9 +18,6 @@ export const metadata: Metadata = {
     canonical: 'https://refstats.com/referees',
   },
 };
-
-const adapter = new PrismaBetterSqlite3({ url: 'file:dev.db' });
-const prisma = new PrismaClient({ adapter });
 
 async function getReferees(): Promise<RefereeTableData[]> {
   try {
@@ -48,6 +44,7 @@ async function getReferees(): Promise<RefereeTableData[]> {
         name: referee.name,
         slug: referee.slug,
         nationality: referee.nationality,
+        photo: referee.photo,
         matchesOfficiated: stats?.matchesOfficiated ?? 0,
         avgYellowCards: stats?.avgYellowCards ?? 0,
         avgRedCards: stats?.avgRedCards ?? 0,

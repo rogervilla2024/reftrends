@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo, useCallback, memo } from 'react';
+import { useState, useMemo, memo } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Table,
@@ -21,6 +22,7 @@ export interface RefereeTableData {
   name: string;
   slug: string;
   nationality: string | null;
+  photo: string | null;
   matchesOfficiated: number;
   avgYellowCards: number;
   avgRedCards: number;
@@ -45,21 +47,40 @@ interface RefereeDataTableProps {
 
 const ITEMS_PER_PAGE = 15;
 
-// Memoized row component to prevent unnecessary re-renders
 interface RefereeRowProps {
   referee: RefereeTableData;
-  getStrictnessColor: (index: number) => string;
 }
 
-const RefereeRow = memo(function RefereeRow({ referee, getStrictnessColor }: RefereeRowProps) {
+const RefereeRow = memo(function RefereeRow({ referee }: RefereeRowProps) {
+  const getStrictnessColor = (index: number): string => {
+    if (index >= 7) return 'text-red-500';
+    if (index >= 5) return 'text-yellow-500';
+    return 'text-green-500';
+  };
+
   return (
     <TableRow className="hover:bg-secondary/50">
       <TableCell className="font-medium">
         <Link
           href={`/referees/${referee.slug}`}
-          className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+          className="flex items-center gap-3 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
         >
-          {referee.name}
+          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-muted flex-shrink-0">
+            {referee.photo ? (
+              <Image
+                src={referee.photo}
+                alt={referee.name}
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm font-medium">
+                {referee.name.charAt(0).toUpperCase()}
+              </div>
+            )}
+          </div>
+          <span>{referee.name}</span>
         </Link>
       </TableCell>
       <TableCell className="text-muted-foreground hidden sm:table-cell">
@@ -94,52 +115,72 @@ const RefereeRow = memo(function RefereeRow({ referee, getStrictnessColor }: Ref
 });
 
 export function RefereeDataTable({ referees, leagues = [], isLoading = false }: RefereeDataTableProps) {
-  const [sortField, setSortField] = useState<SortField>('name');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  // State
+  const [sortField, setSortField] = useState<SortField>('matchesOfficiated');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [selectedLeague, setSelectedLeague] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [minMatches, setMinMatches] = useState<string>('');
+  const [minYellow, setMinYellow] = useState<string>('');
+  const [maxYellow, setMaxYellow] = useState<string>('');
 
-  const handleSort = useCallback((field: SortField) => {
-    setSortField((currentField) => {
-      if (currentField === field) {
-        setSortOrder((currentOrder) => currentOrder === 'asc' ? 'desc' : 'asc');
-        return currentField;
-      }
-      setSortOrder('asc');
-      return field;
-    });
-  }, []);
+  // Sorting handler
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      const numericFields: SortField[] = ['matchesOfficiated', 'avgYellowCards', 'avgRedCards', 'strictnessIndex'];
+      setSortOrder(numericFields.includes(field) ? 'desc' : 'asc');
+    }
+  };
 
-  const filteredAndSortedReferees = useMemo(() => {
-    let filtered = referees;
+  // Filter and sort referees
+  const processedReferees = useMemo(() => {
+    let result = [...referees];
 
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(r =>
+    // Text search filter
+    const query = searchQuery.trim().toLowerCase();
+    if (query) {
+      result = result.filter(r =>
         r.name.toLowerCase().includes(query) ||
         (r.nationality && r.nationality.toLowerCase().includes(query))
       );
     }
 
-    // Apply league filter
+    // League filter
     if (selectedLeague !== null) {
-      filtered = filtered.filter(r => r.leagueId === selectedLeague);
+      result = result.filter(r => r.leagueId === selectedLeague);
     }
 
-    // Apply sorting
-    return [...filtered].sort((a, b) => {
-      let aVal = a[sortField];
-      let bVal = b[sortField];
+    // Numeric filters
+    const minMatchesNum = parseInt(minMatches, 10);
+    if (!isNaN(minMatchesNum) && minMatchesNum > 0) {
+      result = result.filter(r => r.matchesOfficiated >= minMatchesNum);
+    }
 
-      if (aVal === null) aVal = '';
-      if (bVal === null) bVal = '';
+    const minYellowNum = parseFloat(minYellow);
+    if (!isNaN(minYellowNum) && minYellowNum > 0) {
+      result = result.filter(r => r.avgYellowCards >= minYellowNum);
+    }
+
+    const maxYellowNum = parseFloat(maxYellow);
+    if (!isNaN(maxYellowNum) && maxYellowNum > 0) {
+      result = result.filter(r => r.avgYellowCards <= maxYellowNum);
+    }
+
+    // Sort
+    result.sort((a, b) => {
+      const aVal = a[sortField];
+      const bVal = b[sortField];
+
+      if (aVal === null || aVal === undefined) return sortOrder === 'asc' ? -1 : 1;
+      if (bVal === null || bVal === undefined) return sortOrder === 'asc' ? 1 : -1;
 
       if (typeof aVal === 'string' && typeof bVal === 'string') {
-        return sortOrder === 'asc'
-          ? aVal.localeCompare(bVal)
-          : bVal.localeCompare(aVal);
+        const cmp = aVal.localeCompare(bVal, 'tr');
+        return sortOrder === 'asc' ? cmp : -cmp;
       }
 
       if (typeof aVal === 'number' && typeof bVal === 'number') {
@@ -148,74 +189,55 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
 
       return 0;
     });
-  }, [referees, sortField, sortOrder, selectedLeague, searchQuery]);
 
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredAndSortedReferees.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const paginatedReferees = filteredAndSortedReferees.slice(startIndex, endIndex);
+    return result;
+  }, [referees, searchQuery, selectedLeague, minMatches, minYellow, maxYellow, sortField, sortOrder]);
 
-  // Reset to page 1 when filters change
-  const handleSearchChange = useCallback((value: string) => {
-    setSearchQuery(value);
-    setCurrentPage(1);
-  }, []);
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(processedReferees.length / ITEMS_PER_PAGE));
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+  const startIndex = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, processedReferees.length);
+  const paginatedReferees = processedReferees.slice(startIndex, endIndex);
 
-  const handleLeagueChange = useCallback((leagueId: number | null) => {
-    setSelectedLeague(leagueId);
-    setCurrentPage(1);
-  }, []);
+  // Reset page when filters change
+  const resetPage = () => setCurrentPage(1);
 
-  const clearFilters = useCallback(() => {
+  // Clear all filters
+  const clearFilters = () => {
     setSearchQuery('');
     setSelectedLeague(null);
+    setMinMatches('');
+    setMinYellow('');
+    setMaxYellow('');
     setCurrentPage(1);
-  }, []);
+  };
 
-  // Memoized sort button component
-  const SortButton = useCallback(({ field, children }: { field: SortField; children: React.ReactNode }) => (
-    <Button
-      variant="ghost"
-      size="sm"
-      className={cn(
-        "h-8 px-2 hover:bg-secondary",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      )}
-      onClick={() => handleSort(field)}
-      aria-label={`Sort by ${field}`}
-      aria-sort={sortField === field ? (sortOrder === 'asc' ? 'ascending' : 'descending') : undefined}
-    >
-      {children}
-      <span className="ml-1 text-muted-foreground" aria-hidden="true">
-        {sortField === field ? (sortOrder === 'asc' ? '↑' : '↓') : ''}
-      </span>
-    </Button>
-  ), [handleSort, sortField, sortOrder]);
-
-  const getStrictnessColor = useCallback((index: number) => {
-    if (index >= 7) return 'text-red-500';
-    if (index >= 5) return 'text-yellow-500';
-    return 'text-green-500';
-  }, []);
+  // Check if any filter is active
+  const hasActiveFilters = searchQuery.trim() !== '' ||
+    selectedLeague !== null ||
+    minMatches !== '' ||
+    minYellow !== '' ||
+    maxYellow !== '';
 
   // Loading state
   if (isLoading) {
-    return (
-      <div className="space-y-4">
-        <SkeletonTable rows={10} cols={7} />
-      </div>
-    );
+    return <SkeletonTable rows={10} cols={7} />;
   }
+
+  // Sort indicator
+  const getSortIndicator = (field: SortField) => {
+    if (sortField !== field) return null;
+    return sortOrder === 'asc' ? ' ↑' : ' ↓';
+  };
 
   return (
     <div className="space-y-4">
-      {/* Search and Filter Controls */}
+      {/* Search */}
       <div className="flex flex-col sm:flex-row gap-4">
-        {/* Search Input */}
         <div className="relative flex-1 max-w-md">
           <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -231,9 +253,71 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
             type="search"
             placeholder="Search by name or nationality..."
             value={searchQuery}
-            onChange={(e) => handleSearchChange(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              resetPage();
+            }}
             className="pl-10"
-            aria-label="Search referees by name or nationality"
+            aria-label="Search referees"
+          />
+        </div>
+
+        {hasActiveFilters && (
+          <Button variant="outline" size="sm" onClick={clearFilters}>
+            Clear Filters
+          </Button>
+        )}
+      </div>
+
+      {/* Numeric Filters */}
+      <div className="flex flex-wrap gap-3">
+        <div className="flex items-center gap-2">
+          <label htmlFor="minMatches" className="text-sm text-muted-foreground whitespace-nowrap">
+            Min Matches:
+          </label>
+          <Input
+            id="minMatches"
+            type="number"
+            min="0"
+            placeholder="0"
+            value={minMatches}
+            onChange={(e) => {
+              setMinMatches(e.target.value);
+              resetPage();
+            }}
+            className="w-20"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <label htmlFor="minYellow" className="text-sm text-muted-foreground whitespace-nowrap">
+            Avg Yellow:
+          </label>
+          <Input
+            id="minYellow"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Min"
+            value={minYellow}
+            onChange={(e) => {
+              setMinYellow(e.target.value);
+              resetPage();
+            }}
+            className="w-20"
+          />
+          <span className="text-muted-foreground">-</span>
+          <Input
+            id="maxYellow"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Max"
+            value={maxYellow}
+            onChange={(e) => {
+              setMaxYellow(e.target.value);
+              resetPage();
+            }}
+            className="w-20"
           />
         </div>
       </div>
@@ -244,7 +328,10 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
           <Button
             variant={selectedLeague === null ? 'default' : 'outline'}
             size="sm"
-            onClick={() => handleLeagueChange(null)}
+            onClick={() => {
+              setSelectedLeague(null);
+              resetPage();
+            }}
           >
             All Leagues
           </Button>
@@ -253,7 +340,10 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               key={league.id}
               variant={selectedLeague === league.id ? 'default' : 'outline'}
               size="sm"
-              onClick={() => handleLeagueChange(league.id)}
+              onClick={() => {
+                setSelectedLeague(league.id);
+                resetPage();
+              }}
             >
               {league.name}
             </Button>
@@ -261,15 +351,21 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
         </div>
       )}
 
-      {/* Results count */}
-      <p className="text-sm text-muted-foreground">
-        Showing {startIndex + 1}-{Math.min(endIndex, filteredAndSortedReferees.length)} of {filteredAndSortedReferees.length} referees
-        {filteredAndSortedReferees.length !== referees.length && ` (${referees.length} total)`}
-        {searchQuery.trim() && <span> matching &quot;{searchQuery.trim()}&quot;</span>}
-        {selectedLeague !== null && leagues.length > 0 && (
-          <span> in {leagues.find(l => l.id === selectedLeague)?.name}</span>
-        )}
-      </p>
+      {/* Results Info */}
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          {processedReferees.length === 0 ? (
+            'No referees found'
+          ) : (
+            <>
+              Showing {startIndex + 1}-{endIndex} of {processedReferees.length} referees
+              {processedReferees.length !== referees.length && (
+                <span className="text-xs ml-1">({referees.length} total)</span>
+              )}
+            </>
+          )}
+        </p>
+      </div>
 
       {/* Table */}
       <div className="rounded-md border overflow-hidden">
@@ -277,22 +373,76 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
           <TableHeader>
             <TableRow>
               <TableHead>
-                <SortButton field="name">Name</SortButton>
+                <button
+                  type="button"
+                  onClick={() => handleSort('name')}
+                  className={cn(
+                    "flex items-center gap-1 hover:text-foreground transition-colors",
+                    sortField === 'name' && "text-foreground font-semibold"
+                  )}
+                >
+                  Name{getSortIndicator('name')}
+                </button>
               </TableHead>
               <TableHead className="hidden sm:table-cell">
-                <SortButton field="nationality">Nationality</SortButton>
+                <button
+                  type="button"
+                  onClick={() => handleSort('nationality')}
+                  className={cn(
+                    "flex items-center gap-1 hover:text-foreground transition-colors",
+                    sortField === 'nationality' && "text-foreground font-semibold"
+                  )}
+                >
+                  Nationality{getSortIndicator('nationality')}
+                </button>
               </TableHead>
               <TableHead className="text-right">
-                <SortButton field="matchesOfficiated">Matches</SortButton>
+                <button
+                  type="button"
+                  onClick={() => handleSort('matchesOfficiated')}
+                  className={cn(
+                    "flex items-center gap-1 ml-auto hover:text-foreground transition-colors",
+                    sortField === 'matchesOfficiated' && "text-foreground font-semibold"
+                  )}
+                >
+                  Matches{getSortIndicator('matchesOfficiated')}
+                </button>
               </TableHead>
               <TableHead className="text-right">
-                <SortButton field="avgYellowCards">Avg Yellow</SortButton>
+                <button
+                  type="button"
+                  onClick={() => handleSort('avgYellowCards')}
+                  className={cn(
+                    "flex items-center gap-1 ml-auto hover:text-foreground transition-colors",
+                    sortField === 'avgYellowCards' && "text-foreground font-semibold"
+                  )}
+                >
+                  Avg Yellow{getSortIndicator('avgYellowCards')}
+                </button>
               </TableHead>
               <TableHead className="text-right hidden md:table-cell">
-                <SortButton field="avgRedCards">Avg Red</SortButton>
+                <button
+                  type="button"
+                  onClick={() => handleSort('avgRedCards')}
+                  className={cn(
+                    "flex items-center gap-1 ml-auto hover:text-foreground transition-colors",
+                    sortField === 'avgRedCards' && "text-foreground font-semibold"
+                  )}
+                >
+                  Avg Red{getSortIndicator('avgRedCards')}
+                </button>
               </TableHead>
               <TableHead className="text-right hidden lg:table-cell">
-                <SortButton field="strictnessIndex">Strictness</SortButton>
+                <button
+                  type="button"
+                  onClick={() => handleSort('strictnessIndex')}
+                  className={cn(
+                    "flex items-center gap-1 ml-auto hover:text-foreground transition-colors",
+                    sortField === 'strictnessIndex' && "text-foreground font-semibold"
+                  )}
+                >
+                  Strictness{getSortIndicator('strictnessIndex')}
+                </button>
               </TableHead>
               <TableHead className="text-right">
                 <span className="sr-only">Actions</span>
@@ -308,67 +458,55 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               </TableRow>
             ) : (
               paginatedReferees.map((referee) => (
-                <RefereeRow
-                  key={referee.id}
-                  referee={referee}
-                  getStrictnessColor={getStrictnessColor}
-                />
+                <RefereeRow key={referee.id} referee={referee} />
               ))
             )}
           </TableBody>
         </Table>
       </div>
 
-      {/* Pagination Controls */}
+      {/* Pagination */}
       {totalPages > 1 && (
-        <nav
-          className="flex items-center justify-between"
-          role="navigation"
-          aria-label="Pagination"
-        >
-          <p className="text-sm text-muted-foreground" aria-live="polite">
-            Page {currentPage} of {totalPages}
+        <nav className="flex items-center justify-between" aria-label="Pagination">
+          <p className="text-sm text-muted-foreground">
+            Page {safeCurrentPage} of {totalPages}
           </p>
           <div className="flex gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={() => setCurrentPage(1)}
-              disabled={currentPage === 1}
-              aria-label="Go to first page"
+              disabled={safeCurrentPage === 1}
             >
               First
             </Button>
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-              disabled={currentPage === 1}
-              aria-label="Go to previous page"
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={safeCurrentPage === 1}
             >
-              Previous
+              Prev
             </Button>
-            <div className="flex gap-1" role="group" aria-label="Page numbers">
+            <div className="flex gap-1">
               {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                 let pageNum: number;
                 if (totalPages <= 5) {
                   pageNum = i + 1;
-                } else if (currentPage <= 3) {
+                } else if (safeCurrentPage <= 3) {
                   pageNum = i + 1;
-                } else if (currentPage >= totalPages - 2) {
+                } else if (safeCurrentPage >= totalPages - 2) {
                   pageNum = totalPages - 4 + i;
                 } else {
-                  pageNum = currentPage - 2 + i;
+                  pageNum = safeCurrentPage - 2 + i;
                 }
                 return (
                   <Button
                     key={pageNum}
-                    variant={currentPage === pageNum ? 'default' : 'outline'}
+                    variant={safeCurrentPage === pageNum ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setCurrentPage(pageNum)}
                     className="w-10"
-                    aria-label={`Go to page ${pageNum}`}
-                    aria-current={currentPage === pageNum ? 'page' : undefined}
                   >
                     {pageNum}
                   </Button>
@@ -378,9 +516,8 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-              disabled={currentPage === totalPages}
-              aria-label="Go to next page"
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={safeCurrentPage === totalPages}
             >
               Next
             </Button>
@@ -388,8 +525,7 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
               variant="outline"
               size="sm"
               onClick={() => setCurrentPage(totalPages)}
-              disabled={currentPage === totalPages}
-              aria-label="Go to last page"
+              disabled={safeCurrentPage === totalPages}
             >
               Last
             </Button>

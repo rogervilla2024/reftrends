@@ -1,0 +1,7 @@
+{
+  "name": "autonomous-referee-stats",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "kill-port 3001 && dotenv -- npm run dev --prefix project -- -p 3001"
+  }
+}

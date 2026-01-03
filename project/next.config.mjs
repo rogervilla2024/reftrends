@@ -13,6 +13,21 @@ const nextConfig = {
         hostname: 'media-*.api-sports.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.a.transfermarkt.technology',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tmssl.akamaized.net',
+        pathname: '/**',
+      },
     ],
     // Optimize image formats
     formats: ['image/avif', 'image/webp'],

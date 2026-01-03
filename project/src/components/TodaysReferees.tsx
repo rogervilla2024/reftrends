@@ -67,29 +67,49 @@ const MatchCard = memo(function MatchCard({ assignment }: MatchCardProps) {
 
       {/* Referee */}
       <div className="sm:w-40 shrink-0">
-        <Link
-          href={`/referees/${generateRefereeSlug(assignment.referee)}`}
-          className={cn(
-            "inline-flex items-center gap-2 text-sm text-primary hover:underline",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
-          )}
-        >
-          <svg
-            className="w-4 h-4 shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
+        {assignment.referee === 'TBA' ? (
+          <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+            <svg
+              className="w-4 h-4 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
+            </svg>
+            <span>TBA</span>
+          </span>
+        ) : (
+          <Link
+            href={`/referees/${generateRefereeSlug(assignment.referee)}`}
+            className={cn(
+              "inline-flex items-center gap-2 text-sm text-primary hover:underline",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+            )}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
-          <span className="truncate">{assignment.referee}</span>
-        </Link>
+            <svg
+              className="w-4 h-4 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
+            </svg>
+            <span className="truncate">{assignment.referee}</span>
+          </Link>
+        )}
       </div>
     </article>
   );
