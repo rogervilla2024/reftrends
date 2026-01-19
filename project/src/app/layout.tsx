@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SkipLink } from "@/components/SkipLink";
-import Providers from "@/components/Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,35 +28,35 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://refstats.com"),
+  metadataBase: new URL("https://reftrends.com"),
   title: {
-    default: "RefStats - Referee Statistics for Smart Bettors",
-    template: "%s | RefStats",
+    default: "RefTrends - Referee Statistics & Betting Analytics",
+    template: "%s | RefTrends",
   },
-  description: "Comprehensive referee statistics and betting analytics for Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Track cards, penalties, and referee tendencies.",
+  description: "Comprehensive referee statistics and betting analytics for Premier League, La Liga, Serie A, Bundesliga, Ligue 1, Eredivisie, Liga Portugal, and Super Lig. Track cards, penalties, and referee tendencies.",
   keywords: ["referee statistics", "betting", "football", "soccer", "analytics", "Premier League", "La Liga", "Serie A", "Bundesliga", "Ligue 1", "yellow cards", "red cards", "betting tips"],
-  authors: [{ name: "RefStats" }],
-  creator: "RefStats",
-  publisher: "RefStats",
+  authors: [{ name: "RefTrends" }],
+  creator: "RefTrends",
+  publisher: "RefTrends",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "RefStats",
-    title: "RefStats - Referee Statistics for Smart Bettors",
-    description: "Comprehensive referee statistics and betting analytics for Europe's top 5 leagues.",
+    siteName: "RefTrends",
+    title: "RefTrends - Referee Statistics & Betting Analytics",
+    description: "Comprehensive referee statistics and betting analytics for Europe's top leagues.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "RefStats - Referee Statistics for Smart Bettors",
+        alt: "RefTrends - Referee Statistics & Betting Analytics",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "RefStats - Referee Statistics for Smart Bettors",
-    description: "Comprehensive referee statistics and betting analytics for Europe's top 5 leagues.",
+    title: "RefTrends - Referee Statistics & Betting Analytics",
+    description: "Comprehensive referee statistics and betting analytics for Europe's top leagues.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -80,19 +79,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Providers>
-          <SkipLink />
-          <Navigation />
-          <main
-            id="main-content"
-            className="flex-1"
-            tabIndex={-1}
-            role="main"
-          >
-            {children}
-          </main>
-          <Footer />
-        </Providers>
+        <SkipLink />
+        <Navigation />
+        <main
+          id="main-content"
+          className="flex-1"
+          tabIndex={-1}
+          role="main"
+        >
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

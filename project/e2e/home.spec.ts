@@ -9,7 +9,7 @@ test.describe('Home Page', () => {
 
     // Check for navigation
     await expect(page.locator('nav')).toBeVisible();
-    await expect(page.locator('text=RefStats')).toBeVisible();
+    await expect(page.locator('text=RefTrends')).toBeVisible();
   });
 
   test('should have working navigation links', async ({ page }) => {
@@ -50,7 +50,7 @@ test.describe('Home Page', () => {
     await page.goto('/');
 
     await expect(page.locator('footer')).toBeVisible();
-    await expect(page.locator('footer').locator('text=RefStats')).toBeVisible();
+    await expect(page.locator('footer').locator('text=RefTrends')).toBeVisible();
     await expect(page.locator('footer').locator('text=Premier League')).toBeVisible();
   });
 });

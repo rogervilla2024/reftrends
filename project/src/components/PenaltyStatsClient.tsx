@@ -139,7 +139,7 @@ export default function PenaltyStatsClient({ data }: PenaltyStatsClientProps) {
         </CardHeader>
         <CardContent>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={leagueChartData} layout="vertical" margin={{ left: 80 }}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis type="number" className="text-xs" />
@@ -325,7 +325,7 @@ export default function PenaltyStatsClient({ data }: PenaltyStatsClientProps) {
                     <p className="text-xs text-muted-foreground">Total</p>
                   </div>
                   <span className="text-muted-foreground">
-                    {expandedReferee === referee.id ? '▲' : '▼'}
+                    {expandedReferee === referee.id ? 'v' : '>'}
                   </span>
                 </div>
               </div>

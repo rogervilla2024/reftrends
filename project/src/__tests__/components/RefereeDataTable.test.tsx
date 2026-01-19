@@ -8,9 +8,11 @@ const mockReferees: RefereeTableData[] = [
     name: 'Anthony Taylor',
     slug: 'anthony-taylor',
     nationality: 'England',
+    photo: null,
     matchesOfficiated: 50,
     avgYellowCards: 3.5,
     avgRedCards: 0.2,
+    avgPenalties: 0.25,
     strictnessIndex: 6.5,
     leagueId: 39,
     leagueName: 'Premier League',
@@ -20,9 +22,11 @@ const mockReferees: RefereeTableData[] = [
     name: 'Felix Brych',
     slug: 'felix-brych',
     nationality: 'Germany',
+    photo: null,
     matchesOfficiated: 45,
     avgYellowCards: 2.8,
     avgRedCards: 0.1,
+    avgPenalties: 0.18,
     strictnessIndex: 5.0,
     leagueId: 78,
     leagueName: 'Bundesliga',
@@ -32,9 +36,11 @@ const mockReferees: RefereeTableData[] = [
     name: 'Szymon Marciniak',
     slug: 'szymon-marciniak',
     nationality: 'Poland',
+    photo: null,
     matchesOfficiated: 60,
     avgYellowCards: 4.0,
     avgRedCards: 0.3,
+    avgPenalties: 0.32,
     strictnessIndex: 8.0,
     leagueId: 39,
     leagueName: 'Premier League',
@@ -97,7 +103,8 @@ describe('RefereeDataTable', () => {
     const searchInput = screen.getByPlaceholderText('Search by name or nationality...');
     fireEvent.change(searchInput, { target: { value: 'xyz123' } });
 
-    expect(screen.getByText('No referees found')).toBeInTheDocument();
+    const noResultsElements = screen.getAllByText('No referees found');
+    expect(noResultsElements.length).toBeGreaterThan(0);
   });
 
   it('renders league filter buttons when leagues are provided', () => {

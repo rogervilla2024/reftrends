@@ -1,6 +1,6 @@
 {
-  "name": "RefStats - Referee Statistics",
-  "short_name": "RefStats",
+  "name": "RefTrends - Referee Statistics & Analytics",
+  "short_name": "RefTrends",
   "description": "Comprehensive referee statistics and betting analytics for Europe's top 5 football leagues.",
   "start_url": "/",
   "display": "standalone",

@@ -2,27 +2,47 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 const footerLinks = {
-  product: [
-    { href: '/referees', label: 'Referees' },
-    { href: '/leagues', label: 'Leagues' },
-    { href: '/tools', label: 'Betting Tools' },
-    { href: '/tools/match-analyzer', label: 'Match Analyzer' },
-  ],
   leagues: [
     { href: '/leagues/39', label: 'Premier League' },
     { href: '/leagues/140', label: 'La Liga' },
     { href: '/leagues/135', label: 'Serie A' },
     { href: '/leagues/78', label: 'Bundesliga' },
     { href: '/leagues/61', label: 'Ligue 1' },
+    { href: '/leagues/88', label: 'Eredivisie' },
+    { href: '/leagues/94', label: 'Liga Portugal' },
+    { href: '/leagues/203', label: 'Super Lig' },
+  ],
+  tools: [
+    { href: '/referees', label: 'Referee Lookup' },
+    { href: '/tools/referee-comparison', label: 'Compare Refs' },
+    { href: '/tools/seasonal-trends', label: 'Trend Analyzer' },
+    { href: '/tools/match-analyzer', label: 'Match Predictor' },
+    { href: '/tools/penalty-stats', label: 'Penalty Stats' },
+    { href: '/tools/card-calculator', label: 'Card Calculator' },
+  ],
+  resources: [
+    { href: '/methodology', label: 'Methodology' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/glossary', label: 'Glossary' },
+    { href: '/about', label: 'About Us' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/contact', label: 'Contact' },
   ],
   company: [
-    { href: '/about', label: 'About Us' },
-    { href: '/api', label: 'API Access' },
-    { href: '/contact', label: 'Contact' },
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/terms', label: 'Terms of Service' },
+    { href: '/press-kit', label: 'Press Kit' },
+    { href: '/careers', label: 'Careers' },
+    { href: '/advertise', label: 'Advertise' },
+    { href: '/partners', label: 'Partners' },
   ],
 } as const;
+
+
+const legalLinks = [
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/terms-of-service', label: 'Terms of Service' },
+  { href: '/disclaimer', label: 'Disclaimer' },
+  { href: '/cookies', label: 'Cookie Policy' },
+] as const;
 
 interface FooterLinkGroupProps {
   title: string;
@@ -64,71 +84,107 @@ export function Footer() {
       aria-label="Site footer"
     >
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1 sm:col-span-2 md:col-span-1">
-            <Link
-              href="/"
-              className={cn(
-                "text-2xl font-bold text-primary",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
-              )}
-              aria-label="RefStats - Home"
-            >
-              RefStats
-            </Link>
-            <p className="mt-4 text-sm text-muted-foreground">
-              The ultimate referee statistics platform for smart sports bettors.
-              Track cards, penalties, and tendencies across Europe&apos;s top leagues.
-            </p>
-            <div className="mt-4 flex space-x-4" role="list" aria-label="Social media links">
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  "text-muted-foreground hover:text-primary transition-colors",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded",
-                  "p-1 -m-1"
-                )}
-                aria-label="Follow us on Twitter (opens in new tab)"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  "text-muted-foreground hover:text-primary transition-colors",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded",
-                  "p-1 -m-1"
-                )}
-                aria-label="View our GitHub repository (opens in new tab)"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          {/* Link Groups */}
-          <FooterLinkGroup title="Product" links={footerLinks.product} />
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <FooterLinkGroup title="Leagues" links={footerLinks.leagues} />
+          <FooterLinkGroup title="Tools" links={footerLinks.tools} />
+          <FooterLinkGroup title="Resources" links={footerLinks.resources} />
           <FooterLinkGroup title="Company" links={footerLinks.company} />
         </div>
 
+        {/* Newsletter Section */}
+        <div className="bg-muted/30 rounded-lg p-6 mb-12">
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            Get Weekly Referee Insights
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Get weekly referee insights and betting edges delivered to your inbox.
+          </p>
+          <form className="flex flex-col sm:flex-row gap-3" action="#" method="post">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className={cn(
+                "flex-1 px-4 py-2 rounded-md border border-input bg-background",
+                "text-sm text-foreground placeholder:text-muted-foreground",
+                "focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent",
+                "transition-colors"
+              )}
+              aria-label="Email address for newsletter"
+            />
+            <button
+              type="submit"
+              className={cn(
+                "px-6 py-2 rounded-md bg-primary text-primary-foreground",
+                "text-sm font-medium hover:bg-primary/90 transition-colors",
+                "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              )}
+            >
+              Subscribe
+            </button>
+          </form>
+          <label className="flex items-start gap-2 mt-4 cursor-pointer">
+            <input
+              type="checkbox"
+              className={cn(
+                "mt-0.5 rounded border-input text-primary",
+                "focus:ring-2 focus:ring-ring focus:ring-offset-0"
+              )}
+              aria-label="Agree to receive marketing emails"
+            />
+            <span className="text-xs text-muted-foreground">
+              I agree to receive marketing emails. Unsubscribe anytime.
+            </span>
+          </label>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-border">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
             <p className="text-sm text-muted-foreground">
-              &copy; {currentYear} RefStats. All rights reserved.
+              &copy; {currentYear} RefTrends. All rights reserved.
+            </p>
+            <nav className="flex flex-wrap justify-center gap-4" aria-label="Legal links">
+              {legalLinks.map((link, index) => (
+                <span key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "text-sm text-muted-foreground hover:text-foreground transition-colors",
+                      "focus:outline-none focus:ring-2 focus:ring-ring rounded"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                  {index < legalLinks.length - 1 && (
+                    <span className="ml-4 text-muted-foreground" aria-hidden="true">|</span>
+                  )}
+                </span>
+              ))}
+            </nav>
+          </div>
+
+          {/* Responsible Gambling Disclaimer */}
+          <div className="space-y-2 text-center">
+            <p className="text-xs text-muted-foreground">
+              Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
             </p>
             <p className="text-xs text-muted-foreground">
-              Data provided by API-Football. Not affiliated with any league or governing body.
+              If you have a gambling problem, visit{' '}
+              <a
+                href="https://www.begambleaware.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "underline hover:text-foreground transition-colors",
+                  "focus:outline-none focus:ring-2 focus:ring-ring rounded"
+                )}
+              >
+                BeGambleAware.org
+              </a>
+            </p>
+            <p className="text-xs font-medium text-muted-foreground">
+              18+ - Gambling can be addictive. Play responsibly.
             </p>
           </div>
         </div>

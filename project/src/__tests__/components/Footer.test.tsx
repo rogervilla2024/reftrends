@@ -3,24 +3,10 @@ import { render, screen } from '@testing-library/react';
 import { Footer } from '@/components/Footer';
 
 describe('Footer', () => {
-  it('renders the RefStats logo', () => {
+  it('renders copyright with current year', () => {
     render(<Footer />);
-    expect(screen.getByText('RefStats')).toBeInTheDocument();
-  });
-
-  it('renders the tagline', () => {
-    render(<Footer />);
-    expect(
-      screen.getByText(/ultimate referee statistics platform/i)
-    ).toBeInTheDocument();
-  });
-
-  it('renders all product links', () => {
-    render(<Footer />);
-    expect(screen.getByRole('link', { name: 'Referees' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Leagues' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Betting Tools' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Match Analyzer' })).toBeInTheDocument();
+    const currentYear = new Date().getFullYear();
+    expect(screen.getByText(new RegExp(`${currentYear} RefTrends`))).toBeInTheDocument();
   });
 
   it('renders all league links', () => {
@@ -30,32 +16,34 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: 'Serie A' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Bundesliga' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Ligue 1' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Eredivisie' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Liga Portugal' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Super Lig' })).toBeInTheDocument();
   });
 
-  it('renders all company links', () => {
+  it('renders tools links', () => {
     render(<Footer />);
-    expect(screen.getByRole('link', { name: 'About Us' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'API Access' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Contact' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Referee Lookup' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Compare Refs' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Card Calculator' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Trend Analyzer' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Match Predictor' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Penalty Stats' })).toBeInTheDocument();
+  });
+
+  it('renders company links', () => {
+    render(<Footer />);
+    expect(screen.getByRole('link', { name: 'Press Kit' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Careers' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Advertise' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Partners' })).toBeInTheDocument();
+  });
+
+  it('renders legal links', () => {
+    render(<Footer />);
     expect(screen.getByRole('link', { name: 'Privacy Policy' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Terms of Service' })).toBeInTheDocument();
-  });
-
-  it('renders social media links', () => {
-    render(<Footer />);
-    expect(screen.getByRole('link', { name: 'Twitter' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'GitHub' })).toBeInTheDocument();
-  });
-
-  it('renders copyright with current year', () => {
-    render(<Footer />);
-    const currentYear = new Date().getFullYear();
-    expect(screen.getByText(new RegExp(`${currentYear} RefStats`))).toBeInTheDocument();
-  });
-
-  it('renders API attribution', () => {
-    render(<Footer />);
-    expect(screen.getByText(/Data provided by API-Football/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Disclaimer' })).toBeInTheDocument();
   });
 
   it('has correct link hrefs for leagues', () => {
@@ -65,5 +53,23 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: 'Serie A' })).toHaveAttribute('href', '/leagues/135');
     expect(screen.getByRole('link', { name: 'Bundesliga' })).toHaveAttribute('href', '/leagues/78');
     expect(screen.getByRole('link', { name: 'Ligue 1' })).toHaveAttribute('href', '/leagues/61');
+  });
+
+  it('renders newsletter section', () => {
+    render(<Footer />);
+    expect(screen.getByText('Get Weekly Referee Insights')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Subscribe' })).toBeInTheDocument();
+  });
+
+  it('renders responsible gambling disclaimer', () => {
+    render(<Footer />);
+    expect(screen.getByText(/bet responsibly/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'BeGambleAware.org' })).toBeInTheDocument();
+  });
+
+  it('renders resource links', () => {
+    render(<Footer />);
+    expect(screen.getByRole('link', { name: 'Methodology' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'FAQ' })).toBeInTheDocument();
   });
 });

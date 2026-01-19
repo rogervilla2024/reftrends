@@ -133,7 +133,7 @@ export default function TimeAnalysisClient({ data }: TimeAnalysisClientProps) {
           </CardHeader>
           <CardContent>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                 <PieChart>
                   <Pie
                     data={halfData}
@@ -161,7 +161,7 @@ export default function TimeAnalysisClient({ data }: TimeAnalysisClientProps) {
           </CardHeader>
           <CardContent>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                 <BarChart data={data.byPeriod}>
                   <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                   <XAxis dataKey="period" className="text-xs" />
@@ -172,8 +172,8 @@ export default function TimeAnalysisClient({ data }: TimeAnalysisClientProps) {
                       border: '1px solid hsl(var(--border))',
                     }}
                   />
-                  <Bar dataKey="yellow" fill="#eab308" name="Yellow" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="red" fill="#ef4444" name="Red" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="yellow" fill="hsl(var(--yellow-card))" name="Yellow" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="red" fill="hsl(var(--red-card))" name="Red" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -188,7 +188,7 @@ export default function TimeAnalysisClient({ data }: TimeAnalysisClientProps) {
         </CardHeader>
         <CardContent>
           <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={data.byMinute}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis dataKey="range" className="text-xs" angle={-45} textAnchor="end" height={60} />
@@ -200,8 +200,8 @@ export default function TimeAnalysisClient({ data }: TimeAnalysisClientProps) {
                   }}
                 />
                 <Legend />
-                <Bar dataKey="yellow" fill="#eab308" name="Yellow Cards" stackId="a" />
-                <Bar dataKey="red" fill="#ef4444" name="Red Cards" stackId="a" />
+                <Bar dataKey="yellow" fill="hsl(var(--yellow-card))" name="Yellow Cards" stackId="a" />
+                <Bar dataKey="red" fill="hsl(var(--red-card))" name="Red Cards" stackId="a" />
               </BarChart>
             </ResponsiveContainer>
           </div>

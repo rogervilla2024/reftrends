@@ -1,9 +1,9 @@
 # Windows Task Scheduler Cron Job Setup Script
 # Run this script as Administrator to create the daily sync task
 
-$taskName = "RefStats-DailySync"
+$taskName = "RefTrends-DailySync"
 $taskPath = "C:\Users\onurm\.claude\projects\autonomous-referee-stats\project\scripts\daily-sync.bat"
-$description = "Daily sync of referee statistics from API Football"
+$description = "Daily sync of referee statistics from API Football for RefTrends"
 
 # Check if task already exists
 $existingTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue

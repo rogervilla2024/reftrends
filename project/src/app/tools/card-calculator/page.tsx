@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Card Calculator',
   description: 'Calculate expected cards for any football match based on referee and team historical data. Get Over/Under probabilities for card betting markets.',
   openGraph: {
-    title: 'Card Calculator - RefStats',
+    title: 'Card Calculator - RefTrends',
     description: 'Calculate expected cards for matches based on historical data.',
-    url: 'https://refstats.com/tools/card-calculator',
+    url: 'https://reftrends.com/tools/card-calculator',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/card-calculator',
+    canonical: 'https://reftrends.com/tools/card-calculator',
   },
 };
 

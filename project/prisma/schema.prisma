@@ -22,6 +22,7 @@ model Referee {
   matches     Match[]
   seasonStats RefereeSeasonStats[]
   favoritedBy FavoriteReferee[]
+  ratings     RefereeRating[]
 
   @@map("referees")
 }
@@ -234,4 +235,19 @@ model Alert {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("alerts")
+}
+
+model RefereeRating {
+  id         Int      @id @default(autoincrement())
+  refereeId  Int
+  rating     Int      // 1-5 stars
+  comment    String?
+  ipHash     String   // Hashed IP for anonymous rating (prevents duplicates)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  referee Referee @relation(fields: [refereeId], references: [id], onDelete: Cascade)
+
+  @@unique([refereeId, ipHash])
+  @@map("referee_ratings")
 }

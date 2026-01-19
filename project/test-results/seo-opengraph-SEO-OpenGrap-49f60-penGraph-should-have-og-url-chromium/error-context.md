@@ -1,0 +1,242 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "RefTrends - Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RefTrends
+      - menubar [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Referees" [ref=e10] [cursor=pointer]:
+          - /url: /referees
+        - link "Leagues" [ref=e11] [cursor=pointer]:
+          - /url: /leagues
+        - button "Tools menu" [ref=e13] [cursor=pointer]:
+          - text: Tools
+          - img [ref=e14]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - heading "RefTrends Referee Statistics for Smart Bettors" [level=1] [ref=e19]:
+          - text: RefTrends
+          - text: Referee Statistics for Smart Bettors
+        - paragraph [ref=e20]: Gain an edge with comprehensive referee analytics. Track cards, penalties, and tendencies across Europe's top leagues.
+        - search "Search referees" [ref=e21]:
+          - generic [ref=e22]:
+            - generic [ref=e23]: Search referee by name
+            - searchbox "Search referee by name" [ref=e24]
+            - button "Search" [ref=e25] [cursor=pointer]
+      - region "Platform Statistics" [ref=e26]:
+        - heading "Platform Statistics" [level=2] [ref=e27]
+        - generic [ref=e28]:
+          - generic [ref=e30]:
+            - generic "500+ Referees" [ref=e31]: 500+
+            - generic [ref=e32]: Referees
+            - generic [ref=e33]: Tracked referees
+          - generic [ref=e35]:
+            - generic "10,000+ Matches" [ref=e36]: 10,000+
+            - generic [ref=e37]: Matches
+            - generic [ref=e38]: Analyzed matches
+          - generic [ref=e40]:
+            - generic "8 Leagues" [ref=e41]: "8"
+            - generic [ref=e42]: Leagues
+            - generic [ref=e43]: European leagues
+          - generic [ref=e45]:
+            - generic "Daily Updates" [ref=e46]: Daily
+            - generic [ref=e47]: Updates
+            - generic [ref=e48]: Fresh data
+      - region "Featured referees" [ref=e49]:
+        - generic [ref=e53]: Loading featured referees...
+      - generic [ref=e56]:
+        - generic [ref=e57]: Loading value bets...
+        - generic [ref=e58]: Analyzing today's matches
+      - region "Browse by League" [ref=e59]:
+        - heading "Browse by League" [level=2] [ref=e60]
+        - generic [ref=e61]:
+          - link "England Premier League England" [ref=e62] [cursor=pointer]:
+            - /url: /leagues/39
+            - generic [ref=e64]:
+              - img "England" [ref=e65]
+              - paragraph [ref=e66]: Premier League
+              - paragraph [ref=e67]: England
+          - link "Spain La Liga Spain" [ref=e68] [cursor=pointer]:
+            - /url: /leagues/140
+            - generic [ref=e70]:
+              - img "Spain" [ref=e71]
+              - paragraph [ref=e72]: La Liga
+              - paragraph [ref=e73]: Spain
+          - link "Italy Serie A Italy" [ref=e74] [cursor=pointer]:
+            - /url: /leagues/135
+            - generic [ref=e76]:
+              - img "Italy" [ref=e77]
+              - paragraph [ref=e78]: Serie A
+              - paragraph [ref=e79]: Italy
+          - link "Germany Bundesliga Germany" [ref=e80] [cursor=pointer]:
+            - /url: /leagues/78
+            - generic [ref=e82]:
+              - img "Germany" [ref=e83]
+              - paragraph [ref=e84]: Bundesliga
+              - paragraph [ref=e85]: Germany
+          - link "France Ligue 1 France" [ref=e86] [cursor=pointer]:
+            - /url: /leagues/61
+            - generic [ref=e88]:
+              - img "France" [ref=e89]
+              - paragraph [ref=e90]: Ligue 1
+              - paragraph [ref=e91]: France
+          - link "Netherlands Eredivisie Netherlands" [ref=e92] [cursor=pointer]:
+            - /url: /leagues/88
+            - generic [ref=e94]:
+              - img "Netherlands" [ref=e95]
+              - paragraph [ref=e96]: Eredivisie
+              - paragraph [ref=e97]: Netherlands
+          - link "Portugal Liga Portugal Portugal" [ref=e98] [cursor=pointer]:
+            - /url: /leagues/94
+            - generic [ref=e100]:
+              - img "Portugal" [ref=e101]
+              - paragraph [ref=e102]: Liga Portugal
+              - paragraph [ref=e103]: Portugal
+          - link "Turkey Super Lig Turkey" [ref=e104] [cursor=pointer]:
+            - /url: /leagues/203
+            - generic [ref=e106]:
+              - img "Turkey" [ref=e107]
+              - paragraph [ref=e108]: Super Lig
+              - paragraph [ref=e109]: Turkey
+      - generic [ref=e112]:
+        - heading "Ready to Get Started?" [level=2] [ref=e113]
+        - paragraph [ref=e114]: Explore our comprehensive referee database and start making more informed betting decisions today.
+        - generic [ref=e115]:
+          - link "Browse Referees" [ref=e116] [cursor=pointer]:
+            - /url: /referees
+            - button "Browse Referees" [ref=e117]
+          - link "Betting Tools" [ref=e118] [cursor=pointer]:
+            - /url: /tools
+            - button "Betting Tools" [ref=e119]
+  - contentinfo "Site footer" [ref=e120]:
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - heading "Leagues" [level=3] [ref=e124]
+          - list [ref=e125]:
+            - listitem [ref=e126]:
+              - link "Premier League" [ref=e127] [cursor=pointer]:
+                - /url: /leagues/39
+            - listitem [ref=e128]:
+              - link "La Liga" [ref=e129] [cursor=pointer]:
+                - /url: /leagues/140
+            - listitem [ref=e130]:
+              - link "Serie A" [ref=e131] [cursor=pointer]:
+                - /url: /leagues/135
+            - listitem [ref=e132]:
+              - link "Bundesliga" [ref=e133] [cursor=pointer]:
+                - /url: /leagues/78
+            - listitem [ref=e134]:
+              - link "Ligue 1" [ref=e135] [cursor=pointer]:
+                - /url: /leagues/61
+            - listitem [ref=e136]:
+              - link "Eredivisie" [ref=e137] [cursor=pointer]:
+                - /url: /leagues/88
+            - listitem [ref=e138]:
+              - link "Liga Portugal" [ref=e139] [cursor=pointer]:
+                - /url: /leagues/94
+            - listitem [ref=e140]:
+              - link "Super Lig" [ref=e141] [cursor=pointer]:
+                - /url: /leagues/203
+        - generic [ref=e142]:
+          - heading "Tools" [level=3] [ref=e143]
+          - list [ref=e144]:
+            - listitem [ref=e145]:
+              - link "Referee Lookup" [ref=e146] [cursor=pointer]:
+                - /url: /referees
+            - listitem [ref=e147]:
+              - link "Compare Refs" [ref=e148] [cursor=pointer]:
+                - /url: /tools/referee-comparison
+            - listitem [ref=e149]:
+              - link "Trend Analyzer" [ref=e150] [cursor=pointer]:
+                - /url: /tools/seasonal-trends
+            - listitem [ref=e151]:
+              - link "Match Predictor" [ref=e152] [cursor=pointer]:
+                - /url: /tools/match-analyzer
+            - listitem [ref=e153]:
+              - link "Penalty Stats" [ref=e154] [cursor=pointer]:
+                - /url: /tools/penalty-stats
+            - listitem [ref=e155]:
+              - link "Card Calculator" [ref=e156] [cursor=pointer]:
+                - /url: /tools/card-calculator
+        - generic [ref=e157]:
+          - heading "Resources" [level=3] [ref=e158]
+          - list [ref=e159]:
+            - listitem [ref=e160]:
+              - link "Methodology" [ref=e161] [cursor=pointer]:
+                - /url: /methodology
+            - listitem [ref=e162]:
+              - link "FAQ" [ref=e163] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e164]:
+              - link "Glossary" [ref=e165] [cursor=pointer]:
+                - /url: /glossary
+            - listitem [ref=e166]:
+              - link "About Us" [ref=e167] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e168]:
+              - link "Blog" [ref=e169] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e170]:
+              - link "Contact" [ref=e171] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e172]:
+          - heading "Company" [level=3] [ref=e173]
+          - list [ref=e174]:
+            - listitem [ref=e175]:
+              - link "Press Kit" [ref=e176] [cursor=pointer]:
+                - /url: /press-kit
+            - listitem [ref=e177]:
+              - link "Careers" [ref=e178] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e179]:
+              - link "Advertise" [ref=e180] [cursor=pointer]:
+                - /url: /advertise
+            - listitem [ref=e181]:
+              - link "Partners" [ref=e182] [cursor=pointer]:
+                - /url: /partners
+      - generic [ref=e183]:
+        - heading "Get Weekly Referee Insights" [level=3] [ref=e184]
+        - paragraph [ref=e185]: Get weekly referee insights and betting edges delivered to your inbox.
+        - generic [ref=e186]:
+          - textbox "Email address for newsletter" [ref=e187]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=e188] [cursor=pointer]
+        - generic [ref=e189] [cursor=pointer]:
+          - checkbox "Agree to receive marketing emails" [ref=e190]
+          - generic [ref=e191]: I agree to receive marketing emails. Unsubscribe anytime.
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - paragraph [ref=e194]: © 2026 RefTrends. All rights reserved.
+          - navigation "Legal links" [ref=e195]:
+            - generic [ref=e196]:
+              - link "Privacy Policy" [ref=e197] [cursor=pointer]:
+                - /url: /privacy-policy
+              - text: "|"
+            - generic [ref=e198]:
+              - link "Terms of Service" [ref=e199] [cursor=pointer]:
+                - /url: /terms-of-service
+              - text: "|"
+            - generic [ref=e200]:
+              - link "Disclaimer" [ref=e201] [cursor=pointer]:
+                - /url: /disclaimer
+              - text: "|"
+            - link "Cookie Policy" [ref=e203] [cursor=pointer]:
+              - /url: /cookies
+        - generic [ref=e204]:
+          - paragraph [ref=e205]: Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
+          - paragraph [ref=e206]:
+            - text: If you have a gambling problem, visit
+            - link "BeGambleAware.org" [ref=e207] [cursor=pointer]:
+              - /url: https://www.begambleaware.org
+          - paragraph [ref=e208]: 18+ - Gambling can be addictive. Play responsibly.
+  - alert [ref=e209]
+```

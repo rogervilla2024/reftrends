@@ -34,16 +34,16 @@ export async function generateMetadata({
     title: info.name,
     description: `${info.name} referee statistics: rankings, card averages, strictness indices, and match history for this ${info.country} ${typeLabel}.`,
     openGraph: {
-      title: `${info.name} - RefStats`,
+      title: `${info.name} - RefTrends`,
       description: `Referee statistics and rankings for ${info.name}.`,
-      url: `https://refstats.com/leagues/${apiId}`,
+      url: `https://reftrends.com/leagues/${apiId}`,
     },
     twitter: {
-      title: `${info.name} - RefStats`,
+      title: `${info.name} - RefTrends`,
       description: `Referee statistics and rankings for ${info.name}.`,
     },
     alternates: {
-      canonical: `https://refstats.com/leagues/${apiId}`,
+      canonical: `https://reftrends.com/leagues/${apiId}`,
     },
   };
 }

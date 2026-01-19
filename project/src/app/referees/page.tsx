@@ -6,16 +6,16 @@ export const metadata: Metadata = {
   title: 'Referees',
   description: 'Browse and compare referee statistics across Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Filter by league, search by name, and analyze card averages.',
   openGraph: {
-    title: 'Referees - RefStats',
+    title: 'Referees - RefTrends',
     description: 'Browse and compare referee statistics across Europe\'s top 5 football leagues.',
-    url: 'https://refstats.com/referees',
+    url: 'https://reftrends.com/referees',
   },
   twitter: {
-    title: 'Referees - RefStats',
+    title: 'Referees - RefTrends',
     description: 'Browse and compare referee statistics across Europe\'s top 5 football leagues.',
   },
   alternates: {
-    canonical: 'https://refstats.com/referees',
+    canonical: 'https://reftrends.com/referees',
   },
 };
 
@@ -48,6 +48,7 @@ async function getReferees(): Promise<RefereeTableData[]> {
         matchesOfficiated: stats?.matchesOfficiated ?? 0,
         avgYellowCards: stats?.avgYellowCards ?? 0,
         avgRedCards: stats?.avgRedCards ?? 0,
+        avgPenalties: stats?.avgPenalties ?? 0,
         strictnessIndex: stats?.strictnessIndex ?? 0,
         leagueId: league?.id,
         leagueName: league?.name,

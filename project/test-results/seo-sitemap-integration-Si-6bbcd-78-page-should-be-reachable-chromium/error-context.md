@@ -1,0 +1,1052 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "RefTrends - Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RefTrends
+      - menubar [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Referees" [ref=e10] [cursor=pointer]:
+          - /url: /referees
+        - link "Leagues" [ref=e11] [cursor=pointer]:
+          - /url: /leagues
+        - button "Tools menu" [ref=e13] [cursor=pointer]:
+          - text: Tools
+          - img [ref=e14]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - img "Bundesliga" [ref=e20]
+        - generic [ref=e21]:
+          - heading "Bundesliga" [level=1] [ref=e22]
+          - paragraph [ref=e23]: Germany
+          - paragraph [ref=e24]: Season 2025/26
+      - generic [ref=e25]:
+        - heading "Season Overview" [level=2] [ref=e26]
+        - generic [ref=e27]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: "235"
+            - generic [ref=e31]: Matches
+          - generic [ref=e33]:
+            - generic [ref=e34]: "50"
+            - generic [ref=e35]: Referees
+          - generic [ref=e37]:
+            - generic [ref=e38]: "4.04"
+            - generic [ref=e39]: Avg Yellow/Match
+          - generic [ref=e41]:
+            - generic [ref=e42]: "0.20"
+            - generic [ref=e43]: Avg Red/Match
+          - generic [ref=e45]:
+            - generic [ref=e46]: "3.32"
+            - generic [ref=e47]: Avg Goals/Match
+      - generic [ref=e49]:
+        - generic [ref=e51]: Referee Rankings
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - img [ref=e55]
+            - searchbox "Search referees..." [ref=e57]
+          - paragraph [ref=e58]: Showing 50 of 50 referees
+          - table [ref=e60]:
+            - rowgroup [ref=e61]:
+              - row "# Referee Matches v Yellow Cards Red Cards Strictness" [ref=e62]:
+                - columnheader "#" [ref=e63]
+                - columnheader "Referee" [ref=e64]:
+                  - button "Referee" [ref=e65] [cursor=pointer]: Referee
+                - columnheader "Matches v" [ref=e66]:
+                  - button "Matches v" [ref=e67] [cursor=pointer]:
+                    - text: Matches
+                    - generic [ref=e68]: v
+                - columnheader "Yellow Cards" [ref=e69]:
+                  - button "Yellow Cards" [ref=e70] [cursor=pointer]: Yellow Cards
+                - columnheader "Red Cards" [ref=e71]:
+                  - button "Red Cards" [ref=e72] [cursor=pointer]: Red Cards
+                - columnheader "Strictness" [ref=e73]:
+                  - button "Strictness" [ref=e74] [cursor=pointer]: Strictness
+            - rowgroup [ref=e75]:
+              - row "1 Felix Zwayer 8 44(5.50) 2(0.25) 6.3(Strict)" [ref=e76]:
+                - cell "1" [ref=e77]
+                - cell "Felix Zwayer" [ref=e78]:
+                  - link "Felix Zwayer" [ref=e79] [cursor=pointer]:
+                    - /url: /referees/felix-zwayer
+                - cell "8" [ref=e80]
+                - cell "44(5.50)" [ref=e81]:
+                  - text: "44"
+                  - generic [ref=e82]: (5.50)
+                - cell "2(0.25)" [ref=e83]:
+                  - text: "2"
+                  - generic [ref=e84]: (0.25)
+                - cell "6.3(Strict)" [ref=e85]:
+                  - text: "6.3"
+                  - generic [ref=e86]: (Strict)
+              - row "2 Benjamin Brand 8 26(3.25) 0(0.00) 3.3(Lenient)" [ref=e87]:
+                - cell "2" [ref=e88]
+                - cell "Benjamin Brand" [ref=e89]:
+                  - link "Benjamin Brand" [ref=e90] [cursor=pointer]:
+                    - /url: /referees/benjamin-brand
+                - cell "8" [ref=e91]
+                - cell "26(3.25)" [ref=e92]:
+                  - text: "26"
+                  - generic [ref=e93]: (3.25)
+                - cell "0(0.00)" [ref=e94]:
+                  - text: "0"
+                  - generic [ref=e95]: (0.00)
+                - cell "3.3(Lenient)" [ref=e96]:
+                  - text: "3.3"
+                  - generic [ref=e97]: (Lenient)
+              - row "3 Sven Jablonski 8 27(3.38) 0(0.00) 3.4(Lenient)" [ref=e98]:
+                - cell "3" [ref=e99]
+                - cell "Sven Jablonski" [ref=e100]:
+                  - link "Sven Jablonski" [ref=e101] [cursor=pointer]:
+                    - /url: /referees/sven-jablonski
+                - cell "8" [ref=e102]
+                - cell "27(3.38)" [ref=e103]:
+                  - text: "27"
+                  - generic [ref=e104]: (3.38)
+                - cell "0(0.00)" [ref=e105]:
+                  - text: "0"
+                  - generic [ref=e106]: (0.00)
+                - cell "3.4(Lenient)" [ref=e107]:
+                  - text: "3.4"
+                  - generic [ref=e108]: (Lenient)
+              - row "4 Daniel Siebert 7 21(3.00) 1(0.14) 3.4(Lenient)" [ref=e109]:
+                - cell "4" [ref=e110]
+                - cell "Daniel Siebert" [ref=e111]:
+                  - link "Daniel Siebert" [ref=e112] [cursor=pointer]:
+                    - /url: /referees/daniel-siebert
+                - cell "7" [ref=e113]
+                - cell "21(3.00)" [ref=e114]:
+                  - text: "21"
+                  - generic [ref=e115]: (3.00)
+                - cell "1(0.14)" [ref=e116]:
+                  - text: "1"
+                  - generic [ref=e117]: (0.14)
+                - cell "3.4(Lenient)" [ref=e118]:
+                  - text: "3.4"
+                  - generic [ref=e119]: (Lenient)
+              - row "5 Tobias Stieler 7 21(3.00) 2(0.29) 3.9(Lenient)" [ref=e120]:
+                - cell "5" [ref=e121]
+                - cell "Tobias Stieler" [ref=e122]:
+                  - link "Tobias Stieler" [ref=e123] [cursor=pointer]:
+                    - /url: /referees/tobias-stieler
+                - cell "7" [ref=e124]
+                - cell "21(3.00)" [ref=e125]:
+                  - text: "21"
+                  - generic [ref=e126]: (3.00)
+                - cell "2(0.29)" [ref=e127]:
+                  - text: "2"
+                  - generic [ref=e128]: (0.29)
+                - cell "3.9(Lenient)" [ref=e129]:
+                  - text: "3.9"
+                  - generic [ref=e130]: (Lenient)
+              - row "6 Sascha Stegemann 7 27(3.86) 2(0.29) 4.7(Average)" [ref=e131]:
+                - cell "6" [ref=e132]
+                - cell "Sascha Stegemann" [ref=e133]:
+                  - link "Sascha Stegemann" [ref=e134] [cursor=pointer]:
+                    - /url: /referees/sascha-stegemann
+                - cell "7" [ref=e135]
+                - cell "27(3.86)" [ref=e136]:
+                  - text: "27"
+                  - generic [ref=e137]: (3.86)
+                - cell "2(0.29)" [ref=e138]:
+                  - text: "2"
+                  - generic [ref=e139]: (0.29)
+                - cell "4.7(Average)" [ref=e140]:
+                  - text: "4.7"
+                  - generic [ref=e141]: (Average)
+              - row "7 Daniel Schlager 7 24(3.43) 4(0.57) 5.1(Average)" [ref=e142]:
+                - cell "7" [ref=e143]
+                - cell "Daniel Schlager" [ref=e144]:
+                  - link "Daniel Schlager" [ref=e145] [cursor=pointer]:
+                    - /url: /referees/daniel-schlager
+                - cell "7" [ref=e146]
+                - cell "24(3.43)" [ref=e147]:
+                  - text: "24"
+                  - generic [ref=e148]: (3.43)
+                - cell "4(0.57)" [ref=e149]:
+                  - text: "4"
+                  - generic [ref=e150]: (0.57)
+                - cell "5.1(Average)" [ref=e151]:
+                  - text: "5.1"
+                  - generic [ref=e152]: (Average)
+              - row "8 Florian Badstubner 6 13(2.17) 0(0.00) 2.2(Lenient)" [ref=e153]:
+                - cell "8" [ref=e154]
+                - cell "Florian Badstubner" [ref=e155]:
+                  - link "Florian Badstubner" [ref=e156] [cursor=pointer]:
+                    - /url: /referees/florian-badstubner
+                - cell "6" [ref=e157]
+                - cell "13(2.17)" [ref=e158]:
+                  - text: "13"
+                  - generic [ref=e159]: (2.17)
+                - cell "0(0.00)" [ref=e160]:
+                  - text: "0"
+                  - generic [ref=e161]: (0.00)
+                - cell "2.2(Lenient)" [ref=e162]:
+                  - text: "2.2"
+                  - generic [ref=e163]: (Lenient)
+              - row "9 Harm Osmers 6 25(4.17) 1(0.17) 4.7(Average)" [ref=e164]:
+                - cell "9" [ref=e165]
+                - cell "Harm Osmers" [ref=e166]:
+                  - link "Harm Osmers" [ref=e167] [cursor=pointer]:
+                    - /url: /referees/harm-osmers
+                - cell "6" [ref=e168]
+                - cell "25(4.17)" [ref=e169]:
+                  - text: "25"
+                  - generic [ref=e170]: (4.17)
+                - cell "1(0.17)" [ref=e171]:
+                  - text: "1"
+                  - generic [ref=e172]: (0.17)
+                - cell "4.7(Average)" [ref=e173]:
+                  - text: "4.7"
+                  - generic [ref=e174]: (Average)
+              - row "10 Robert Hartmann 6 25(4.17) 1(0.17) 4.7(Average)" [ref=e175]:
+                - cell "10" [ref=e176]
+                - cell "Robert Hartmann" [ref=e177]:
+                  - link "Robert Hartmann" [ref=e178] [cursor=pointer]:
+                    - /url: /referees/robert-hartmann
+                - cell "6" [ref=e179]
+                - cell "25(4.17)" [ref=e180]:
+                  - text: "25"
+                  - generic [ref=e181]: (4.17)
+                - cell "1(0.17)" [ref=e182]:
+                  - text: "1"
+                  - generic [ref=e183]: (0.17)
+                - cell "4.7(Average)" [ref=e184]:
+                  - text: "4.7"
+                  - generic [ref=e185]: (Average)
+              - row "11 Matthias Jollenbeck 6 19(3.17) 1(0.17) 3.7(Lenient)" [ref=e186]:
+                - cell "11" [ref=e187]
+                - cell "Matthias Jollenbeck" [ref=e188]:
+                  - link "Matthias Jollenbeck" [ref=e189] [cursor=pointer]:
+                    - /url: /referees/matthias-jollenbeck
+                - cell "6" [ref=e190]
+                - cell "19(3.17)" [ref=e191]:
+                  - text: "19"
+                  - generic [ref=e192]: (3.17)
+                - cell "1(0.17)" [ref=e193]:
+                  - text: "1"
+                  - generic [ref=e194]: (0.17)
+                - cell "3.7(Lenient)" [ref=e195]:
+                  - text: "3.7"
+                  - generic [ref=e196]: (Lenient)
+              - row "12 Florian Exner 6 33(5.50) 0(0.00) 5.5(Average)" [ref=e197]:
+                - cell "12" [ref=e198]
+                - cell "Florian Exner" [ref=e199]:
+                  - link "Florian Exner" [ref=e200] [cursor=pointer]:
+                    - /url: /referees/florian-exner
+                - cell "6" [ref=e201]
+                - cell "33(5.50)" [ref=e202]:
+                  - text: "33"
+                  - generic [ref=e203]: (5.50)
+                - cell "0(0.00)" [ref=e204]:
+                  - text: "0"
+                  - generic [ref=e205]: (0.00)
+                - cell "5.5(Average)" [ref=e206]:
+                  - text: "5.5"
+                  - generic [ref=e207]: (Average)
+              - row "13 Christian Dingert 5 20(4.00) 2(0.40) 5.2(Average)" [ref=e208]:
+                - cell "13" [ref=e209]
+                - cell "Christian Dingert" [ref=e210]:
+                  - link "Christian Dingert" [ref=e211] [cursor=pointer]:
+                    - /url: /referees/christian-dingert
+                - cell "5" [ref=e212]
+                - cell "20(4.00)" [ref=e213]:
+                  - text: "20"
+                  - generic [ref=e214]: (4.00)
+                - cell "2(0.40)" [ref=e215]:
+                  - text: "2"
+                  - generic [ref=e216]: (0.40)
+                - cell "5.2(Average)" [ref=e217]:
+                  - text: "5.2"
+                  - generic [ref=e218]: (Average)
+              - row "14 Robin Braun 5 21(4.20) 2(0.40) 5.4(Average)" [ref=e219]:
+                - cell "14" [ref=e220]
+                - cell "Robin Braun" [ref=e221]:
+                  - link "Robin Braun" [ref=e222] [cursor=pointer]:
+                    - /url: /referees/robin-braun
+                - cell "5" [ref=e223]
+                - cell "21(4.20)" [ref=e224]:
+                  - text: "21"
+                  - generic [ref=e225]: (4.20)
+                - cell "2(0.40)" [ref=e226]:
+                  - text: "2"
+                  - generic [ref=e227]: (0.40)
+                - cell "5.4(Average)" [ref=e228]:
+                  - text: "5.4"
+                  - generic [ref=e229]: (Average)
+              - row "15 Frank Willenborg 5 18(3.60) 0(0.00) 3.6(Lenient)" [ref=e230]:
+                - cell "15" [ref=e231]
+                - cell "Frank Willenborg" [ref=e232]:
+                  - link "Frank Willenborg" [ref=e233] [cursor=pointer]:
+                    - /url: /referees/frank-willenborg
+                - cell "5" [ref=e234]
+                - cell "18(3.60)" [ref=e235]:
+                  - text: "18"
+                  - generic [ref=e236]: (3.60)
+                - cell "0(0.00)" [ref=e237]:
+                  - text: "0"
+                  - generic [ref=e238]: (0.00)
+                - cell "3.6(Lenient)" [ref=e239]:
+                  - text: "3.6"
+                  - generic [ref=e240]: (Lenient)
+              - row "16 Sören Storks 5 30(6.00) 3(0.60) 7.8(Strict)" [ref=e241]:
+                - cell "16" [ref=e242]
+                - cell "Sören Storks" [ref=e243]:
+                  - link "Sören Storks" [ref=e244] [cursor=pointer]:
+                    - /url: /referees/soren-storks
+                - cell "5" [ref=e245]
+                - cell "30(6.00)" [ref=e246]:
+                  - text: "30"
+                  - generic [ref=e247]: (6.00)
+                - cell "3(0.60)" [ref=e248]:
+                  - text: "3"
+                  - generic [ref=e249]: (0.60)
+                - cell "7.8(Strict)" [ref=e250]:
+                  - text: "7.8"
+                  - generic [ref=e251]: (Strict)
+              - row "17 Tobias Reichel 5 17(3.40) 1(0.20) 4.0(Average)" [ref=e252]:
+                - cell "17" [ref=e253]
+                - cell "Tobias Reichel" [ref=e254]:
+                  - link "Tobias Reichel" [ref=e255] [cursor=pointer]:
+                    - /url: /referees/tobias-reichel
+                - cell "5" [ref=e256]
+                - cell "17(3.40)" [ref=e257]:
+                  - text: "17"
+                  - generic [ref=e258]: (3.40)
+                - cell "1(0.20)" [ref=e259]:
+                  - text: "1"
+                  - generic [ref=e260]: (0.20)
+                - cell "4.0(Average)" [ref=e261]:
+                  - text: "4.0"
+                  - generic [ref=e262]: (Average)
+              - row "18 Deniz Aytekin 5 24(4.80) 3(0.60) 6.6(Strict)" [ref=e263]:
+                - cell "18" [ref=e264]
+                - cell "Deniz Aytekin" [ref=e265]:
+                  - link "Deniz Aytekin" [ref=e266] [cursor=pointer]:
+                    - /url: /referees/deniz-aytekin
+                - cell "5" [ref=e267]
+                - cell "24(4.80)" [ref=e268]:
+                  - text: "24"
+                  - generic [ref=e269]: (4.80)
+                - cell "3(0.60)" [ref=e270]:
+                  - text: "3"
+                  - generic [ref=e271]: (0.60)
+                - cell "6.6(Strict)" [ref=e272]:
+                  - text: "6.6"
+                  - generic [ref=e273]: (Strict)
+              - row "19 Bastian Dankert 5 19(3.80) 1(0.20) 4.4(Average)" [ref=e274]:
+                - cell "19" [ref=e275]
+                - cell "Bastian Dankert" [ref=e276]:
+                  - link "Bastian Dankert" [ref=e277] [cursor=pointer]:
+                    - /url: /referees/bastian-dankert
+                - cell "5" [ref=e278]
+                - cell "19(3.80)" [ref=e279]:
+                  - text: "19"
+                  - generic [ref=e280]: (3.80)
+                - cell "1(0.20)" [ref=e281]:
+                  - text: "1"
+                  - generic [ref=e282]: (0.20)
+                - cell "4.4(Average)" [ref=e283]:
+                  - text: "4.4"
+                  - generic [ref=e284]: (Average)
+              - row "20 Tobias Welz 5 26(5.20) 1(0.20) 5.8(Average)" [ref=e285]:
+                - cell "20" [ref=e286]
+                - cell "Tobias Welz" [ref=e287]:
+                  - link "Tobias Welz" [ref=e288] [cursor=pointer]:
+                    - /url: /referees/tobias-welz
+                - cell "5" [ref=e289]
+                - cell "26(5.20)" [ref=e290]:
+                  - text: "26"
+                  - generic [ref=e291]: (5.20)
+                - cell "1(0.20)" [ref=e292]:
+                  - text: "1"
+                  - generic [ref=e293]: (0.20)
+                - cell "5.8(Average)" [ref=e294]:
+                  - text: "5.8"
+                  - generic [ref=e295]: (Average)
+              - row "21 Timo Gerach 4 19(4.75) 0(0.00) 4.8(Average)" [ref=e296]:
+                - cell "21" [ref=e297]
+                - cell "Timo Gerach" [ref=e298]:
+                  - link "Timo Gerach" [ref=e299] [cursor=pointer]:
+                    - /url: /referees/timo-gerach
+                - cell "4" [ref=e300]
+                - cell "19(4.75)" [ref=e301]:
+                  - text: "19"
+                  - generic [ref=e302]: (4.75)
+                - cell "0(0.00)" [ref=e303]:
+                  - text: "0"
+                  - generic [ref=e304]: (0.00)
+                - cell "4.8(Average)" [ref=e305]:
+                  - text: "4.8"
+                  - generic [ref=e306]: (Average)
+              - row "22 Martin Petersen 4 21(5.25) 0(0.00) 5.3(Average)" [ref=e307]:
+                - cell "22" [ref=e308]
+                - cell "Martin Petersen" [ref=e309]:
+                  - link "Martin Petersen" [ref=e310] [cursor=pointer]:
+                    - /url: /referees/martin-petersen
+                - cell "4" [ref=e311]
+                - cell "21(5.25)" [ref=e312]:
+                  - text: "21"
+                  - generic [ref=e313]: (5.25)
+                - cell "0(0.00)" [ref=e314]:
+                  - text: "0"
+                  - generic [ref=e315]: (0.00)
+                - cell "5.3(Average)" [ref=e316]:
+                  - text: "5.3"
+                  - generic [ref=e317]: (Average)
+              - row "23 Patrick Ittrich 4 15(3.75) 0(0.00) 3.8(Lenient)" [ref=e318]:
+                - cell "23" [ref=e319]
+                - cell "Patrick Ittrich" [ref=e320]:
+                  - link "Patrick Ittrich" [ref=e321] [cursor=pointer]:
+                    - /url: /referees/patrick-ittrich
+                - cell "4" [ref=e322]
+                - cell "15(3.75)" [ref=e323]:
+                  - text: "15"
+                  - generic [ref=e324]: (3.75)
+                - cell "0(0.00)" [ref=e325]:
+                  - text: "0"
+                  - generic [ref=e326]: (0.00)
+                - cell "3.8(Lenient)" [ref=e327]:
+                  - text: "3.8"
+                  - generic [ref=e328]: (Lenient)
+              - row "24 T. Welz 3 7(2.33) 0(0.00) 2.3(Lenient)" [ref=e329]:
+                - cell "24" [ref=e330]
+                - cell "T. Welz" [ref=e331]:
+                  - link "T. Welz" [ref=e332] [cursor=pointer]:
+                    - /url: /referees/t-welz
+                - cell "3" [ref=e333]
+                - cell "7(2.33)" [ref=e334]:
+                  - text: "7"
+                  - generic [ref=e335]: (2.33)
+                - cell "0(0.00)" [ref=e336]:
+                  - text: "0"
+                  - generic [ref=e337]: (0.00)
+                - cell "2.3(Lenient)" [ref=e338]:
+                  - text: "2.3"
+                  - generic [ref=e339]: (Lenient)
+              - row "25 B. Brand 3 10(3.33) 2(0.67) 5.3(Average)" [ref=e340]:
+                - cell "25" [ref=e341]
+                - cell "B. Brand" [ref=e342]:
+                  - link "B. Brand" [ref=e343] [cursor=pointer]:
+                    - /url: /referees/b-brand
+                - cell "3" [ref=e344]
+                - cell "10(3.33)" [ref=e345]:
+                  - text: "10"
+                  - generic [ref=e346]: (3.33)
+                - cell "2(0.67)" [ref=e347]:
+                  - text: "2"
+                  - generic [ref=e348]: (0.67)
+                - cell "5.3(Average)" [ref=e349]:
+                  - text: "5.3"
+                  - generic [ref=e350]: (Average)
+              - row "26 F. Zwayer 3 12(4.00) 0(0.00) 4.0(Average)" [ref=e351]:
+                - cell "26" [ref=e352]
+                - cell "F. Zwayer" [ref=e353]:
+                  - link "F. Zwayer" [ref=e354] [cursor=pointer]:
+                    - /url: /referees/f-zwayer
+                - cell "3" [ref=e355]
+                - cell "12(4.00)" [ref=e356]:
+                  - text: "12"
+                  - generic [ref=e357]: (4.00)
+                - cell "0(0.00)" [ref=e358]:
+                  - text: "0"
+                  - generic [ref=e359]: (0.00)
+                - cell "4.0(Average)" [ref=e360]:
+                  - text: "4.0"
+                  - generic [ref=e361]: (Average)
+              - row "27 D. Siebert 3 11(3.67) 0(0.00) 3.7(Lenient)" [ref=e362]:
+                - cell "27" [ref=e363]
+                - cell "D. Siebert" [ref=e364]:
+                  - link "D. Siebert" [ref=e365] [cursor=pointer]:
+                    - /url: /referees/d-siebert
+                - cell "3" [ref=e366]
+                - cell "11(3.67)" [ref=e367]:
+                  - text: "11"
+                  - generic [ref=e368]: (3.67)
+                - cell "0(0.00)" [ref=e369]:
+                  - text: "0"
+                  - generic [ref=e370]: (0.00)
+                - cell "3.7(Lenient)" [ref=e371]:
+                  - text: "3.7"
+                  - generic [ref=e372]: (Lenient)
+              - row "28 S. Jablonski 3 17(5.67) 1(0.33) 6.7(Strict)" [ref=e373]:
+                - cell "28" [ref=e374]
+                - cell "S. Jablonski" [ref=e375]:
+                  - link "S. Jablonski" [ref=e376] [cursor=pointer]:
+                    - /url: /referees/s-jablonski
+                - cell "3" [ref=e377]
+                - cell "17(5.67)" [ref=e378]:
+                  - text: "17"
+                  - generic [ref=e379]: (5.67)
+                - cell "1(0.33)" [ref=e380]:
+                  - text: "1"
+                  - generic [ref=e381]: (0.33)
+                - cell "6.7(Strict)" [ref=e382]:
+                  - text: "6.7"
+                  - generic [ref=e383]: (Strict)
+              - row "29 R. Hartmann 3 16(5.33) 1(0.33) 6.3(Strict)" [ref=e384]:
+                - cell "29" [ref=e385]
+                - cell "R. Hartmann" [ref=e386]:
+                  - link "R. Hartmann" [ref=e387] [cursor=pointer]:
+                    - /url: /referees/r-hartmann
+                - cell "3" [ref=e388]
+                - cell "16(5.33)" [ref=e389]:
+                  - text: "16"
+                  - generic [ref=e390]: (5.33)
+                - cell "1(0.33)" [ref=e391]:
+                  - text: "1"
+                  - generic [ref=e392]: (0.33)
+                - cell "6.3(Strict)" [ref=e393]:
+                  - text: "6.3"
+                  - generic [ref=e394]: (Strict)
+              - row "30 F. Badstübner 3 13(4.33) 0(0.00) 4.3(Average)" [ref=e395]:
+                - cell "30" [ref=e396]
+                - cell "F. Badstübner" [ref=e397]:
+                  - link "F. Badstübner" [ref=e398] [cursor=pointer]:
+                    - /url: /referees/f-badstubner
+                - cell "3" [ref=e399]
+                - cell "13(4.33)" [ref=e400]:
+                  - text: "13"
+                  - generic [ref=e401]: (4.33)
+                - cell "0(0.00)" [ref=e402]:
+                  - text: "0"
+                  - generic [ref=e403]: (0.00)
+                - cell "4.3(Average)" [ref=e404]:
+                  - text: "4.3"
+                  - generic [ref=e405]: (Average)
+              - row "31 T. Reichel 3 15(5.00) 1(0.33) 6.0(Strict)" [ref=e406]:
+                - cell "31" [ref=e407]
+                - cell "T. Reichel" [ref=e408]:
+                  - link "T. Reichel" [ref=e409] [cursor=pointer]:
+                    - /url: /referees/t-reichel
+                - cell "3" [ref=e410]
+                - cell "15(5.00)" [ref=e411]:
+                  - text: "15"
+                  - generic [ref=e412]: (5.00)
+                - cell "1(0.33)" [ref=e413]:
+                  - text: "1"
+                  - generic [ref=e414]: (0.33)
+                - cell "6.0(Strict)" [ref=e415]:
+                  - text: "6.0"
+                  - generic [ref=e416]: (Strict)
+              - row "32 D. Aytekin 3 7(2.33) 0(0.00) 2.3(Lenient)" [ref=e417]:
+                - cell "32" [ref=e418]
+                - cell "D. Aytekin" [ref=e419]:
+                  - link "D. Aytekin" [ref=e420] [cursor=pointer]:
+                    - /url: /referees/d-aytekin
+                - cell "3" [ref=e421]
+                - cell "7(2.33)" [ref=e422]:
+                  - text: "7"
+                  - generic [ref=e423]: (2.33)
+                - cell "0(0.00)" [ref=e424]:
+                  - text: "0"
+                  - generic [ref=e425]: (0.00)
+                - cell "2.3(Lenient)" [ref=e426]:
+                  - text: "2.3"
+                  - generic [ref=e427]: (Lenient)
+              - row "33 R. Schröder 2 5(2.50) 0(0.00) 2.5(Lenient)" [ref=e428]:
+                - cell "33" [ref=e429]
+                - cell "R. Schröder" [ref=e430]:
+                  - link "R. Schröder" [ref=e431] [cursor=pointer]:
+                    - /url: /referees/r-schroder
+                - cell "2" [ref=e432]
+                - cell "5(2.50)" [ref=e433]:
+                  - text: "5"
+                  - generic [ref=e434]: (2.50)
+                - cell "0(0.00)" [ref=e435]:
+                  - text: "0"
+                  - generic [ref=e436]: (0.00)
+                - cell "2.5(Lenient)" [ref=e437]:
+                  - text: "2.5"
+                  - generic [ref=e438]: (Lenient)
+              - row "34 H. Osmers 2 7(3.50) 0(0.00) 3.5(Lenient)" [ref=e439]:
+                - cell "34" [ref=e440]
+                - cell "H. Osmers" [ref=e441]:
+                  - link "H. Osmers" [ref=e442] [cursor=pointer]:
+                    - /url: /referees/h-osmers
+                - cell "2" [ref=e443]
+                - cell "7(3.50)" [ref=e444]:
+                  - text: "7"
+                  - generic [ref=e445]: (3.50)
+                - cell "0(0.00)" [ref=e446]:
+                  - text: "0"
+                  - generic [ref=e447]: (0.00)
+                - cell "3.5(Lenient)" [ref=e448]:
+                  - text: "3.5"
+                  - generic [ref=e449]: (Lenient)
+              - row "35 T. Stieler 2 9(4.50) 1(0.50) 6.0(Strict)" [ref=e450]:
+                - cell "35" [ref=e451]
+                - cell "T. Stieler" [ref=e452]:
+                  - link "T. Stieler" [ref=e453] [cursor=pointer]:
+                    - /url: /referees/t-stieler
+                - cell "2" [ref=e454]
+                - cell "9(4.50)" [ref=e455]:
+                  - text: "9"
+                  - generic [ref=e456]: (4.50)
+                - cell "1(0.50)" [ref=e457]:
+                  - text: "1"
+                  - generic [ref=e458]: (0.50)
+                - cell "6.0(Strict)" [ref=e459]:
+                  - text: "6.0"
+                  - generic [ref=e460]: (Strict)
+              - row "36 S. Stegemann 2 13(6.50) 1(0.50) 8.0(Very Strict)" [ref=e461]:
+                - cell "36" [ref=e462]
+                - cell "S. Stegemann" [ref=e463]:
+                  - link "S. Stegemann" [ref=e464] [cursor=pointer]:
+                    - /url: /referees/s-stegemann
+                - cell "2" [ref=e465]
+                - cell "13(6.50)" [ref=e466]:
+                  - text: "13"
+                  - generic [ref=e467]: (6.50)
+                - cell "1(0.50)" [ref=e468]:
+                  - text: "1"
+                  - generic [ref=e469]: (0.50)
+                - cell "8.0(Very Strict)" [ref=e470]:
+                  - text: "8.0"
+                  - generic [ref=e471]: (Very Strict)
+              - row "37 B. Dankert 2 7(3.50) 0(0.00) 3.5(Lenient)" [ref=e472]:
+                - cell "37" [ref=e473]
+                - cell "B. Dankert" [ref=e474]:
+                  - link "B. Dankert" [ref=e475] [cursor=pointer]:
+                    - /url: /referees/b-dankert
+                - cell "2" [ref=e476]
+                - cell "7(3.50)" [ref=e477]:
+                  - text: "7"
+                  - generic [ref=e478]: (3.50)
+                - cell "0(0.00)" [ref=e479]:
+                  - text: "0"
+                  - generic [ref=e480]: (0.00)
+                - cell "3.5(Lenient)" [ref=e481]:
+                  - text: "3.5"
+                  - generic [ref=e482]: (Lenient)
+              - row "38 T. Gerach 2 12(6.00) 0(0.00) 6.0(Strict)" [ref=e483]:
+                - cell "38" [ref=e484]
+                - cell "T. Gerach" [ref=e485]:
+                  - link "T. Gerach" [ref=e486] [cursor=pointer]:
+                    - /url: /referees/t-gerach
+                - cell "2" [ref=e487]
+                - cell "12(6.00)" [ref=e488]:
+                  - text: "12"
+                  - generic [ref=e489]: (6.00)
+                - cell "0(0.00)" [ref=e490]:
+                  - text: "0"
+                  - generic [ref=e491]: (0.00)
+                - cell "6.0(Strict)" [ref=e492]:
+                  - text: "6.0"
+                  - generic [ref=e493]: (Strict)
+              - row "39 S. Storks 2 9(4.50) 2(1.00) 7.5(Strict)" [ref=e494]:
+                - cell "39" [ref=e495]
+                - cell "S. Storks" [ref=e496]:
+                  - link "S. Storks" [ref=e497] [cursor=pointer]:
+                    - /url: /referees/s-storks
+                - cell "2" [ref=e498]
+                - cell "9(4.50)" [ref=e499]:
+                  - text: "9"
+                  - generic [ref=e500]: (4.50)
+                - cell "2(1.00)" [ref=e501]:
+                  - text: "2"
+                  - generic [ref=e502]: (1.00)
+                - cell "7.5(Strict)" [ref=e503]:
+                  - text: "7.5"
+                  - generic [ref=e504]: (Strict)
+              - row "40 F. Exner 2 19(9.50) 2(1.00) 12.5(Very Strict)" [ref=e505]:
+                - cell "40" [ref=e506]
+                - cell "F. Exner" [ref=e507]:
+                  - link "F. Exner" [ref=e508] [cursor=pointer]:
+                    - /url: /referees/f-exner
+                - cell "2" [ref=e509]
+                - cell "19(9.50)" [ref=e510]:
+                  - text: "19"
+                  - generic [ref=e511]: (9.50)
+                - cell "2(1.00)" [ref=e512]:
+                  - text: "2"
+                  - generic [ref=e513]: (1.00)
+                - cell "12.5(Very Strict)" [ref=e514]:
+                  - text: "12.5"
+                  - generic [ref=e515]: (Very Strict)
+              - row "41 M. Jöllenbeck 2 10(5.00) 0(0.00) 5.0(Average)" [ref=e516]:
+                - cell "41" [ref=e517]
+                - cell "M. Jöllenbeck" [ref=e518]:
+                  - link "M. Jöllenbeck" [ref=e519] [cursor=pointer]:
+                    - /url: /referees/m-jollenbeck
+                - cell "2" [ref=e520]
+                - cell "10(5.00)" [ref=e521]:
+                  - text: "10"
+                  - generic [ref=e522]: (5.00)
+                - cell "0(0.00)" [ref=e523]:
+                  - text: "0"
+                  - generic [ref=e524]: (0.00)
+                - cell "5.0(Average)" [ref=e525]:
+                  - text: "5.0"
+                  - generic [ref=e526]: (Average)
+              - row "42 M. Petersen 2 10(5.00) 0(0.00) 5.0(Average)" [ref=e527]:
+                - cell "42" [ref=e528]
+                - cell "M. Petersen" [ref=e529]:
+                  - link "M. Petersen" [ref=e530] [cursor=pointer]:
+                    - /url: /referees/m-petersen
+                - cell "2" [ref=e531]
+                - cell "10(5.00)" [ref=e532]:
+                  - text: "10"
+                  - generic [ref=e533]: (5.00)
+                - cell "0(0.00)" [ref=e534]:
+                  - text: "0"
+                  - generic [ref=e535]: (0.00)
+                - cell "5.0(Average)" [ref=e536]:
+                  - text: "5.0"
+                  - generic [ref=e537]: (Average)
+              - row "43 F. Brych 2 6(3.00) 0(0.00) 3.0(Lenient)" [ref=e538]:
+                - cell "43" [ref=e539]
+                - cell "F. Brych" [ref=e540]:
+                  - link "F. Brych" [ref=e541] [cursor=pointer]:
+                    - /url: /referees/f-brych
+                - cell "2" [ref=e542]
+                - cell "6(3.00)" [ref=e543]:
+                  - text: "6"
+                  - generic [ref=e544]: (3.00)
+                - cell "0(0.00)" [ref=e545]:
+                  - text: "0"
+                  - generic [ref=e546]: (0.00)
+                - cell "3.0(Lenient)" [ref=e547]:
+                  - text: "3.0"
+                  - generic [ref=e548]: (Lenient)
+              - row "44 D. Schlager 2 8(4.00) 0(0.00) 4.0(Average)" [ref=e549]:
+                - cell "44" [ref=e550]
+                - cell "D. Schlager" [ref=e551]:
+                  - link "D. Schlager" [ref=e552] [cursor=pointer]:
+                    - /url: /referees/d-schlager
+                - cell "2" [ref=e553]
+                - cell "8(4.00)" [ref=e554]:
+                  - text: "8"
+                  - generic [ref=e555]: (4.00)
+                - cell "0(0.00)" [ref=e556]:
+                  - text: "0"
+                  - generic [ref=e557]: (0.00)
+                - cell "4.0(Average)" [ref=e558]:
+                  - text: "4.0"
+                  - generic [ref=e559]: (Average)
+              - row "45 F. Willenborg 2 9(4.50) 1(0.50) 6.0(Strict)" [ref=e560]:
+                - cell "45" [ref=e561]
+                - cell "F. Willenborg" [ref=e562]:
+                  - link "F. Willenborg" [ref=e563] [cursor=pointer]:
+                    - /url: /referees/f-willenborg
+                - cell "2" [ref=e564]
+                - cell "9(4.50)" [ref=e565]:
+                  - text: "9"
+                  - generic [ref=e566]: (4.50)
+                - cell "1(0.50)" [ref=e567]:
+                  - text: "1"
+                  - generic [ref=e568]: (0.50)
+                - cell "6.0(Strict)" [ref=e569]:
+                  - text: "6.0"
+                  - generic [ref=e570]: (Strict)
+              - row "46 P. Ittrich 2 6(3.00) 1(0.50) 4.5(Average)" [ref=e571]:
+                - cell "46" [ref=e572]
+                - cell "P. Ittrich" [ref=e573]:
+                  - link "P. Ittrich" [ref=e574] [cursor=pointer]:
+                    - /url: /referees/p-ittrich
+                - cell "2" [ref=e575]
+                - cell "6(3.00)" [ref=e576]:
+                  - text: "6"
+                  - generic [ref=e577]: (3.00)
+                - cell "1(0.50)" [ref=e578]:
+                  - text: "1"
+                  - generic [ref=e579]: (0.50)
+                - cell "4.5(Average)" [ref=e580]:
+                  - text: "4.5"
+                  - generic [ref=e581]: (Average)
+              - row "47 Robert Schröder 1 5(5.00) 0(0.00) 5.0(Average)" [ref=e582]:
+                - cell "47" [ref=e583]
+                - cell "Robert Schröder" [ref=e584]:
+                  - link "Robert Schröder" [ref=e585] [cursor=pointer]:
+                    - /url: /referees/robert-schroder
+                - cell "1" [ref=e586]
+                - cell "5(5.00)" [ref=e587]:
+                  - text: "5"
+                  - generic [ref=e588]: (5.00)
+                - cell "0(0.00)" [ref=e589]:
+                  - text: "0"
+                  - generic [ref=e590]: (0.00)
+                - cell "5.0(Average)" [ref=e591]:
+                  - text: "5.0"
+                  - generic [ref=e592]: (Average)
+              - row "48 C. Dingert 1 1(1.00) 0(0.00) 1.0(Very Lenient)" [ref=e593]:
+                - cell "48" [ref=e594]
+                - cell "C. Dingert" [ref=e595]:
+                  - link "C. Dingert" [ref=e596] [cursor=pointer]:
+                    - /url: /referees/c-dingert
+                - cell "1" [ref=e597]
+                - cell "1(1.00)" [ref=e598]:
+                  - text: "1"
+                  - generic [ref=e599]: (1.00)
+                - cell "0(0.00)" [ref=e600]:
+                  - text: "0"
+                  - generic [ref=e601]: (0.00)
+                - cell "1.0(Very Lenient)" [ref=e602]:
+                  - text: "1.0"
+                  - generic [ref=e603]: (Very Lenient)
+              - row "49 M. Burda 1 3(3.00) 0(0.00) 3.0(Lenient)" [ref=e604]:
+                - cell "49" [ref=e605]
+                - cell "M. Burda" [ref=e606]:
+                  - link "M. Burda" [ref=e607] [cursor=pointer]:
+                    - /url: /referees/m-burda
+                - cell "1" [ref=e608]
+                - cell "3(3.00)" [ref=e609]:
+                  - text: "3"
+                  - generic [ref=e610]: (3.00)
+                - cell "0(0.00)" [ref=e611]:
+                  - text: "0"
+                  - generic [ref=e612]: (0.00)
+                - cell "3.0(Lenient)" [ref=e613]:
+                  - text: "3.0"
+                  - generic [ref=e614]: (Lenient)
+              - row "50 M. Fritz 1 5(5.00) 1(1.00) 8.0(Very Strict)" [ref=e615]:
+                - cell "50" [ref=e616]
+                - cell "M. Fritz" [ref=e617]:
+                  - link "M. Fritz" [ref=e618] [cursor=pointer]:
+                    - /url: /referees/m-fritz
+                - cell "1" [ref=e619]
+                - cell "5(5.00)" [ref=e620]:
+                  - text: "5"
+                  - generic [ref=e621]: (5.00)
+                - cell "1(1.00)" [ref=e622]:
+                  - text: "1"
+                  - generic [ref=e623]: (1.00)
+                - cell "8.0(Very Strict)" [ref=e624]:
+                  - text: "8.0"
+                  - generic [ref=e625]: (Very Strict)
+      - generic [ref=e627]:
+        - generic [ref=e629]: Upcoming Fixtures
+        - generic [ref=e631]:
+          - generic [ref=e633]:
+            - generic [ref=e634]:
+              - generic [ref=e635]: Apr 11
+              - generic [ref=e636]: 04:30 PM
+            - generic [ref=e637]:
+              - img "VfL Wolfsburg" [ref=e638]
+              - generic [ref=e639]: VfL Wolfsburg
+              - generic [ref=e640]: vs
+              - generic [ref=e641]: Eintracht Frankfurt
+              - img "Eintracht Frankfurt" [ref=e642]
+          - generic [ref=e644]:
+            - generic [ref=e645]:
+              - generic [ref=e646]: Apr 11
+              - generic [ref=e647]: 04:30 PM
+            - generic [ref=e648]:
+              - img "FSV Mainz 05" [ref=e649]
+              - generic [ref=e650]: FSV Mainz 05
+              - generic [ref=e651]: vs
+              - generic [ref=e652]: SC Freiburg
+              - img "SC Freiburg" [ref=e653]
+          - generic [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]: Apr 11
+              - generic [ref=e658]: 04:30 PM
+            - generic [ref=e659]:
+              - img "Borussia Dortmund" [ref=e660]
+              - generic [ref=e661]: Borussia Dortmund
+              - generic [ref=e662]: vs
+              - generic [ref=e663]: Bayer Leverkusen
+              - img "Bayer Leverkusen" [ref=e664]
+          - generic [ref=e666]:
+            - generic [ref=e667]:
+              - generic [ref=e668]: Apr 11
+              - generic [ref=e669]: 04:30 PM
+            - generic [ref=e670]:
+              - img "FC Augsburg" [ref=e671]
+              - generic [ref=e672]: FC Augsburg
+              - generic [ref=e673]: vs
+              - generic [ref=e674]: 1899 Hoffenheim
+              - img "1899 Hoffenheim" [ref=e675]
+          - generic [ref=e677]:
+            - generic [ref=e678]:
+              - generic [ref=e679]: Apr 11
+              - generic [ref=e680]: 04:30 PM
+            - generic [ref=e681]:
+              - img "VfB Stuttgart" [ref=e682]
+              - generic [ref=e683]: VfB Stuttgart
+              - generic [ref=e684]: vs
+              - generic [ref=e685]: Hamburger SV
+              - img "Hamburger SV" [ref=e686]
+          - generic [ref=e688]:
+            - generic [ref=e689]:
+              - generic [ref=e690]: Apr 18
+              - generic [ref=e691]: 04:30 PM
+            - generic [ref=e692]:
+              - img "Bayern München" [ref=e693]
+              - generic [ref=e694]: Bayern München
+              - generic [ref=e695]: vs
+              - generic [ref=e696]: VfB Stuttgart
+              - img "VfB Stuttgart" [ref=e697]
+          - generic [ref=e699]:
+            - generic [ref=e700]:
+              - generic [ref=e701]: Apr 18
+              - generic [ref=e702]: 04:30 PM
+            - generic [ref=e703]:
+              - img "SC Freiburg" [ref=e704]
+              - generic [ref=e705]: SC Freiburg
+              - generic [ref=e706]: vs
+              - generic [ref=e707]: 1. FC Heidenheim
+              - img "1. FC Heidenheim" [ref=e708]
+          - generic [ref=e710]:
+            - generic [ref=e711]:
+              - generic [ref=e712]: Apr 18
+              - generic [ref=e713]: 04:30 PM
+            - generic [ref=e714]:
+              - img "Werder Bremen" [ref=e715]
+              - generic [ref=e716]: Werder Bremen
+              - generic [ref=e717]: vs
+              - generic [ref=e718]: Hamburger SV
+              - img "Hamburger SV" [ref=e719]
+          - generic [ref=e721]:
+            - generic [ref=e722]:
+              - generic [ref=e723]: Apr 18
+              - generic [ref=e724]: 04:30 PM
+            - generic [ref=e725]:
+              - img "Borussia Mönchengladbach" [ref=e726]
+              - generic [ref=e727]: Borussia Mönchengladbach
+              - generic [ref=e728]: vs
+              - generic [ref=e729]: FSV Mainz 05
+              - img "FSV Mainz 05" [ref=e730]
+          - generic [ref=e732]:
+            - generic [ref=e733]:
+              - generic [ref=e734]: Apr 18
+              - generic [ref=e735]: 04:30 PM
+            - generic [ref=e736]:
+              - img "1899 Hoffenheim" [ref=e737]
+              - generic [ref=e738]: 1899 Hoffenheim
+              - generic [ref=e739]: vs
+              - generic [ref=e740]: Borussia Dortmund
+              - img "Borussia Dortmund" [ref=e741]
+      - generic [ref=e743]:
+        - generic [ref=e745]: Recent Results
+        - paragraph [ref=e747]: No match results available yet.
+      - link "← Back to Leagues" [ref=e749] [cursor=pointer]:
+        - /url: /leagues
+  - contentinfo "Site footer" [ref=e750]:
+    - generic [ref=e751]:
+      - generic [ref=e752]:
+        - generic [ref=e753]:
+          - heading "Leagues" [level=3] [ref=e754]
+          - list [ref=e755]:
+            - listitem [ref=e756]:
+              - link "Premier League" [ref=e757] [cursor=pointer]:
+                - /url: /leagues/39
+            - listitem [ref=e758]:
+              - link "La Liga" [ref=e759] [cursor=pointer]:
+                - /url: /leagues/140
+            - listitem [ref=e760]:
+              - link "Serie A" [ref=e761] [cursor=pointer]:
+                - /url: /leagues/135
+            - listitem [ref=e762]:
+              - link "Bundesliga" [ref=e763] [cursor=pointer]:
+                - /url: /leagues/78
+            - listitem [ref=e764]:
+              - link "Ligue 1" [ref=e765] [cursor=pointer]:
+                - /url: /leagues/61
+            - listitem [ref=e766]:
+              - link "Eredivisie" [ref=e767] [cursor=pointer]:
+                - /url: /leagues/88
+            - listitem [ref=e768]:
+              - link "Liga Portugal" [ref=e769] [cursor=pointer]:
+                - /url: /leagues/94
+            - listitem [ref=e770]:
+              - link "Super Lig" [ref=e771] [cursor=pointer]:
+                - /url: /leagues/203
+        - generic [ref=e772]:
+          - heading "Tools" [level=3] [ref=e773]
+          - list [ref=e774]:
+            - listitem [ref=e775]:
+              - link "Referee Lookup" [ref=e776] [cursor=pointer]:
+                - /url: /referees
+            - listitem [ref=e777]:
+              - link "Compare Refs" [ref=e778] [cursor=pointer]:
+                - /url: /tools/referee-comparison
+            - listitem [ref=e779]:
+              - link "Trend Analyzer" [ref=e780] [cursor=pointer]:
+                - /url: /tools/seasonal-trends
+            - listitem [ref=e781]:
+              - link "Match Predictor" [ref=e782] [cursor=pointer]:
+                - /url: /tools/match-analyzer
+            - listitem [ref=e783]:
+              - link "Penalty Stats" [ref=e784] [cursor=pointer]:
+                - /url: /tools/penalty-stats
+            - listitem [ref=e785]:
+              - link "Card Calculator" [ref=e786] [cursor=pointer]:
+                - /url: /tools/card-calculator
+        - generic [ref=e787]:
+          - heading "Resources" [level=3] [ref=e788]
+          - list [ref=e789]:
+            - listitem [ref=e790]:
+              - link "Methodology" [ref=e791] [cursor=pointer]:
+                - /url: /methodology
+            - listitem [ref=e792]:
+              - link "FAQ" [ref=e793] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e794]:
+              - link "Glossary" [ref=e795] [cursor=pointer]:
+                - /url: /glossary
+            - listitem [ref=e796]:
+              - link "About Us" [ref=e797] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e798]:
+              - link "Blog" [ref=e799] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e800]:
+              - link "Contact" [ref=e801] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e802]:
+          - heading "Company" [level=3] [ref=e803]
+          - list [ref=e804]:
+            - listitem [ref=e805]:
+              - link "Press Kit" [ref=e806] [cursor=pointer]:
+                - /url: /press-kit
+            - listitem [ref=e807]:
+              - link "Careers" [ref=e808] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e809]:
+              - link "Advertise" [ref=e810] [cursor=pointer]:
+                - /url: /advertise
+            - listitem [ref=e811]:
+              - link "Partners" [ref=e812] [cursor=pointer]:
+                - /url: /partners
+      - generic [ref=e813]:
+        - heading "Get Weekly Referee Insights" [level=3] [ref=e814]
+        - paragraph [ref=e815]: Get weekly referee insights and betting edges delivered to your inbox.
+        - generic [ref=e816]:
+          - textbox "Email address for newsletter" [ref=e817]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=e818] [cursor=pointer]
+        - generic [ref=e819] [cursor=pointer]:
+          - checkbox "Agree to receive marketing emails" [ref=e820]
+          - generic [ref=e821]: I agree to receive marketing emails. Unsubscribe anytime.
+      - generic [ref=e822]:
+        - generic [ref=e823]:
+          - paragraph [ref=e824]: © 2026 RefTrends. All rights reserved.
+          - navigation "Legal links" [ref=e825]:
+            - generic [ref=e826]:
+              - link "Privacy Policy" [ref=e827] [cursor=pointer]:
+                - /url: /privacy-policy
+              - text: "|"
+            - generic [ref=e828]:
+              - link "Terms of Service" [ref=e829] [cursor=pointer]:
+                - /url: /terms-of-service
+              - text: "|"
+            - generic [ref=e830]:
+              - link "Disclaimer" [ref=e831] [cursor=pointer]:
+                - /url: /disclaimer
+              - text: "|"
+            - link "Cookie Policy" [ref=e833] [cursor=pointer]:
+              - /url: /cookies
+        - generic [ref=e834]:
+          - paragraph [ref=e835]: Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
+          - paragraph [ref=e836]:
+            - text: If you have a gambling problem, visit
+            - link "BeGambleAware.org" [ref=e837] [cursor=pointer]:
+              - /url: https://www.begambleaware.org
+          - paragraph [ref=e838]: 18+ - Gambling can be addictive. Play responsibly.
+```

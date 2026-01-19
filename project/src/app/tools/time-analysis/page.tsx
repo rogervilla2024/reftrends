@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Time Analysis',
   description: 'Analyze when cards are shown during matches. First half, second half, injury time patterns by referee.',
   openGraph: {
-    title: 'Time Analysis - RefStats',
+    title: 'Time Analysis - RefTrends',
     description: 'Card timing analysis by referee.',
-    url: 'https://refstats.com/tools/time-analysis',
+    url: 'https://reftrends.com/tools/time-analysis',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/time-analysis',
+    canonical: 'https://reftrends.com/tools/time-analysis',
   },
 };
 

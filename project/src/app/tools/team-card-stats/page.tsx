@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Team Card Statistics',
   description: 'Analyze which teams receive the most cards and their disciplinary records with specific referees.',
   openGraph: {
-    title: 'Team Card Statistics - RefStats',
+    title: 'Team Card Statistics - RefTrends',
     description: 'Discover team disciplinary patterns with different referees.',
-    url: 'https://refstats.com/tools/team-card-stats',
+    url: 'https://reftrends.com/tools/team-card-stats',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/team-card-stats',
+    canonical: 'https://reftrends.com/tools/team-card-stats',
   },
 };
 

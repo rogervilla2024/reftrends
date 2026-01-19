@@ -1,0 +1,416 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "RefTrends - Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RefTrends
+      - menubar [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Referees" [ref=e10] [cursor=pointer]:
+          - /url: /referees
+        - link "Leagues" [ref=e11] [cursor=pointer]:
+          - /url: /leagues
+        - button "Tools menu" [ref=e13] [cursor=pointer]:
+          - text: Tools
+          - img [ref=e14]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - heading "Betting Tools" [level=1] [ref=e19]
+        - paragraph [ref=e20]: Professional tools for referee-based betting analysis
+      - generic [ref=e21]:
+        - generic [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]: NEW
+          - link "🎯 Betting Tips Data-driven betting insights based on referee tendencies and team discipline patterns. AI Predictions Confidence Scores +EV Finder Daily Updates" [ref=e24]:
+            - /url: /tools/betting-tips
+            - generic [ref=e26]:
+              - generic [ref=e27]: 🎯
+              - generic [ref=e28]:
+                - generic [ref=e29]: Betting Tips
+                - generic [ref=e30]: Data-driven betting insights based on referee tendencies and team discipline patterns.
+            - generic [ref=e32]:
+              - generic [ref=e33]: AI Predictions
+              - generic [ref=e34]: Confidence Scores
+              - generic [ref=e35]: +EV Finder
+              - generic [ref=e36]: Daily Updates
+        - generic [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: NEW
+          - link "🔥 Sure Cards Finder Find high-probability card betting opportunities. Analyze referee-team combinations. Win Rate % O/U Rates Combo Analysis Filters" [ref=e39]:
+            - /url: /tools/sure-cards
+            - generic [ref=e41]:
+              - generic [ref=e42]: 🔥
+              - generic [ref=e43]:
+                - generic [ref=e44]: Sure Cards Finder
+                - generic [ref=e45]: Find high-probability card betting opportunities. Analyze referee-team combinations.
+            - generic [ref=e47]:
+              - generic [ref=e48]: Win Rate %
+              - generic [ref=e49]: O/U Rates
+              - generic [ref=e50]: Combo Analysis
+              - generic [ref=e51]: Filters
+        - link "📊 Match Analyzer Analyze upcoming matches with referee impact predictions, card probabilities, and team head-to-head stats. Referee Impact Analysis Card Predictions Over/Under Probabilities Team H2H" [ref=e53] [cursor=pointer]:
+          - /url: /tools/match-analyzer
+          - generic [ref=e55]:
+            - generic [ref=e56]: 📊
+            - generic [ref=e57]:
+              - generic [ref=e58]: Match Analyzer
+              - generic [ref=e59]: Analyze upcoming matches with referee impact predictions, card probabilities, and team head-to-head stats.
+          - generic [ref=e61]:
+            - generic [ref=e62]: Referee Impact Analysis
+            - generic [ref=e63]: Card Predictions
+            - generic [ref=e64]: Over/Under Probabilities
+            - generic [ref=e65]: Team H2H
+        - link "⚖️ Referee Comparison Compare two or more referees side-by-side with statistical charts and export functionality. Side-by-side Stats Visual Charts Export Data" [ref=e67] [cursor=pointer]:
+          - /url: /tools/referee-comparison
+          - generic [ref=e69]:
+            - generic [ref=e70]: ⚖️
+            - generic [ref=e71]:
+              - generic [ref=e72]: Referee Comparison
+              - generic [ref=e73]: Compare two or more referees side-by-side with statistical charts and export functionality.
+          - generic [ref=e75]:
+            - generic [ref=e76]: Side-by-side Stats
+            - generic [ref=e77]: Visual Charts
+            - generic [ref=e78]: Export Data
+        - link "🃏 Card Calculator Calculate expected cards for any fixture based on historical referee and team data. Expected Yellow Cards Expected Red Cards Over/Under Probabilities" [ref=e80] [cursor=pointer]:
+          - /url: /tools/card-calculator
+          - generic [ref=e82]:
+            - generic [ref=e83]: 🃏
+            - generic [ref=e84]:
+              - generic [ref=e85]: Card Calculator
+              - generic [ref=e86]: Calculate expected cards for any fixture based on historical referee and team data.
+          - generic [ref=e88]:
+            - generic [ref=e89]: Expected Yellow Cards
+            - generic [ref=e90]: Expected Red Cards
+            - generic [ref=e91]: Over/Under Probabilities
+        - link "🏟️ Team vs Referee History Analyze how teams perform with specific referees - cards, wins, and match history. Team-Referee Stats Win/Loss Record Recent Matches" [ref=e93] [cursor=pointer]:
+          - /url: /tools/team-referee-history
+          - generic [ref=e95]:
+            - generic [ref=e96]: 🏟️
+            - generic [ref=e97]:
+              - generic [ref=e98]: Team vs Referee History
+              - generic [ref=e99]: Analyze how teams perform with specific referees - cards, wins, and match history.
+          - generic [ref=e101]:
+            - generic [ref=e102]: Team-Referee Stats
+            - generic [ref=e103]: Win/Loss Record
+            - generic [ref=e104]: Recent Matches
+        - link "💰 Value Finder Find value bets by comparing our predictions with bookmaker odds for card markets. Odds Comparison EV Calculator +Value Alerts" [ref=e106] [cursor=pointer]:
+          - /url: /tools/value-finder
+          - generic [ref=e108]:
+            - generic [ref=e109]: 💰
+            - generic [ref=e110]:
+              - generic [ref=e111]: Value Finder
+              - generic [ref=e112]: Find value bets by comparing our predictions with bookmaker odds for card markets.
+          - generic [ref=e114]:
+            - generic [ref=e115]: Odds Comparison
+            - generic [ref=e116]: EV Calculator
+            - generic [ref=e117]: +Value Alerts
+        - generic [ref=e118] [cursor=pointer]:
+          - generic [ref=e119]: NEW
+          - link "📊 Betting History Track your bets, win rate, ROI, and performance over time. Export and analyze your betting patterns. Win Rate ROI Tracker Streak Analysis Export/Import" [ref=e120]:
+            - /url: /tools/betting-history
+            - generic [ref=e122]:
+              - generic [ref=e123]: 📊
+              - generic [ref=e124]:
+                - generic [ref=e125]: Betting History
+                - generic [ref=e126]: Track your bets, win rate, ROI, and performance over time. Export and analyze your betting patterns.
+            - generic [ref=e128]:
+              - generic [ref=e129]: Win Rate
+              - generic [ref=e130]: ROI Tracker
+              - generic [ref=e131]: Streak Analysis
+              - generic [ref=e132]: Export/Import
+        - generic [ref=e133] [cursor=pointer]:
+          - generic [ref=e134]: NEW
+          - link "🏦 Bookmaker Comparison Compare card market odds across major bookmakers. Find best odds, lowest margins, and arbitrage opportunities. Odds Compare Margin Analysis Best Value Arbitrage Finder" [ref=e135]:
+            - /url: /tools/bookmaker-comparison
+            - generic [ref=e137]:
+              - generic [ref=e138]: 🏦
+              - generic [ref=e139]:
+                - generic [ref=e140]: Bookmaker Comparison
+                - generic [ref=e141]: Compare card market odds across major bookmakers. Find best odds, lowest margins, and arbitrage opportunities.
+            - generic [ref=e143]:
+              - generic [ref=e144]: Odds Compare
+              - generic [ref=e145]: Margin Analysis
+              - generic [ref=e146]: Best Value
+              - generic [ref=e147]: Arbitrage Finder
+        - generic [ref=e148] [cursor=pointer]:
+          - generic [ref=e149]: NEW
+          - link "📈 Odds Movement Track card market odds movement over time. Spot steam moves, analyze trends, and understand market sentiment. Line Charts Steam Alerts Trend Analysis Volatility" [ref=e150]:
+            - /url: /tools/odds-movement
+            - generic [ref=e152]:
+              - generic [ref=e153]: 📈
+              - generic [ref=e154]:
+                - generic [ref=e155]: Odds Movement
+                - generic [ref=e156]: Track card market odds movement over time. Spot steam moves, analyze trends, and understand market sentiment.
+            - generic [ref=e158]:
+              - generic [ref=e159]: Line Charts
+              - generic [ref=e160]: Steam Alerts
+              - generic [ref=e161]: Trend Analysis
+              - generic [ref=e162]: Volatility
+        - link "🏠 Home/Away Bias Analyze referee tendencies for home vs away team cards. Discover which referees favor home or away teams. Bias Score Home vs Away Stats Visual Comparison" [ref=e164] [cursor=pointer]:
+          - /url: /tools/home-away-bias
+          - generic [ref=e166]:
+            - generic [ref=e167]: 🏠
+            - generic [ref=e168]:
+              - generic [ref=e169]: Home/Away Bias
+              - generic [ref=e170]: Analyze referee tendencies for home vs away team cards. Discover which referees favor home or away teams.
+          - generic [ref=e172]:
+            - generic [ref=e173]: Bias Score
+            - generic [ref=e174]: Home vs Away Stats
+            - generic [ref=e175]: Visual Comparison
+        - link "📋 Team Card Stats Analyze team disciplinary records and their history with specific referees. Team Rankings Referee Breakdown Toughest/Easiest Refs" [ref=e177] [cursor=pointer]:
+          - /url: /tools/team-card-stats
+          - generic [ref=e179]:
+            - generic [ref=e180]: 📋
+            - generic [ref=e181]:
+              - generic [ref=e182]: Team Card Stats
+              - generic [ref=e183]: Analyze team disciplinary records and their history with specific referees.
+          - generic [ref=e185]:
+            - generic [ref=e186]: Team Rankings
+            - generic [ref=e187]: Referee Breakdown
+            - generic [ref=e188]: Toughest/Easiest Refs
+        - link "🌍 League Comparison Compare referee strictness across Europe's top 5 leagues with detailed statistics. 5 League Analysis Strictness Rankings Top Referees" [ref=e190] [cursor=pointer]:
+          - /url: /tools/league-comparison
+          - generic [ref=e192]:
+            - generic [ref=e193]: 🌍
+            - generic [ref=e194]:
+              - generic [ref=e195]: League Comparison
+              - generic [ref=e196]: Compare referee strictness across Europe's top 5 leagues with detailed statistics.
+          - generic [ref=e198]:
+            - generic [ref=e199]: 5 League Analysis
+            - generic [ref=e200]: Strictness Rankings
+            - generic [ref=e201]: Top Referees
+        - link "📈 Seasonal Trends Analyze how referee behavior changes throughout the season with trend analysis. Monthly Trends Behavior Changes Season Insights" [ref=e203] [cursor=pointer]:
+          - /url: /tools/seasonal-trends
+          - generic [ref=e205]:
+            - generic [ref=e206]: 📈
+            - generic [ref=e207]:
+              - generic [ref=e208]: Seasonal Trends
+              - generic [ref=e209]: Analyze how referee behavior changes throughout the season with trend analysis.
+          - generic [ref=e211]:
+            - generic [ref=e212]: Monthly Trends
+            - generic [ref=e213]: Behavior Changes
+            - generic [ref=e214]: Season Insights
+        - link "⚽ Penalty Statistics Deep dive into penalty patterns by referee. Find who awards the most penalties. Penalty Rate Home/Away Bias League Comparison" [ref=e216] [cursor=pointer]:
+          - /url: /tools/penalty-stats
+          - generic [ref=e218]:
+            - generic [ref=e219]: ⚽
+            - generic [ref=e220]:
+              - generic [ref=e221]: Penalty Statistics
+              - generic [ref=e222]: Deep dive into penalty patterns by referee. Find who awards the most penalties.
+          - generic [ref=e224]:
+            - generic [ref=e225]: Penalty Rate
+            - generic [ref=e226]: Home/Away Bias
+            - generic [ref=e227]: League Comparison
+        - link "🔥 Derby Analyzer Analyze referee behavior in high-stakes derby and rivalry matches. Derby Stats Card Comparison Famous Derbies" [ref=e229] [cursor=pointer]:
+          - /url: /tools/derby-analyzer
+          - generic [ref=e231]:
+            - generic [ref=e232]: 🔥
+            - generic [ref=e233]:
+              - generic [ref=e234]: Derby Analyzer
+              - generic [ref=e235]: Analyze referee behavior in high-stakes derby and rivalry matches.
+          - generic [ref=e237]:
+            - generic [ref=e238]: Derby Stats
+            - generic [ref=e239]: Card Comparison
+            - generic [ref=e240]: Famous Derbies
+        - link "😴 Referee Fatigue How rest time between matches affects referee card decisions. Fatigue Impact Rest Analysis Performance Trends" [ref=e242] [cursor=pointer]:
+          - /url: /tools/referee-fatigue
+          - generic [ref=e244]:
+            - generic [ref=e245]: 😴
+            - generic [ref=e246]:
+              - generic [ref=e247]: Referee Fatigue
+              - generic [ref=e248]: How rest time between matches affects referee card decisions.
+          - generic [ref=e250]:
+            - generic [ref=e251]: Fatigue Impact
+            - generic [ref=e252]: Rest Analysis
+            - generic [ref=e253]: Performance Trends
+        - link "🦵 Foul Analysis Detailed foul statistics and leniency patterns. Find which referees allow more physical play. Foul Stats Leniency Score Fouls per Card" [ref=e255] [cursor=pointer]:
+          - /url: /tools/foul-analysis
+          - generic [ref=e257]:
+            - generic [ref=e258]: 🦵
+            - generic [ref=e259]:
+              - generic [ref=e260]: Foul Analysis
+              - generic [ref=e261]: Detailed foul statistics and leniency patterns. Find which referees allow more physical play.
+          - generic [ref=e263]:
+            - generic [ref=e264]: Foul Stats
+            - generic [ref=e265]: Leniency Score
+            - generic [ref=e266]: Fouls per Card
+        - link "🤝 Head-to-Head Detailed referee vs team comparison. See how specific teams perform with different referees. Team vs Referee Card Comparison Win Rate Analysis" [ref=e268] [cursor=pointer]:
+          - /url: /tools/head-to-head
+          - generic [ref=e270]:
+            - generic [ref=e271]: 🤝
+            - generic [ref=e272]:
+              - generic [ref=e273]: Head-to-Head
+              - generic [ref=e274]: Detailed referee vs team comparison. See how specific teams perform with different referees.
+          - generic [ref=e276]:
+            - generic [ref=e277]: Team vs Referee
+            - generic [ref=e278]: Card Comparison
+            - generic [ref=e279]: Win Rate Analysis
+        - link "⏱️ Time Analysis Analyze when cards are shown during matches - first half, second half, injury time. Card Timing Half Analysis Minute Patterns" [ref=e281] [cursor=pointer]:
+          - /url: /tools/time-analysis
+          - generic [ref=e283]:
+            - generic [ref=e284]: ⏱️
+            - generic [ref=e285]:
+              - generic [ref=e286]: Time Analysis
+              - generic [ref=e287]: Analyze when cards are shown during matches - first half, second half, injury time.
+          - generic [ref=e289]:
+            - generic [ref=e290]: Card Timing
+            - generic [ref=e291]: Half Analysis
+            - generic [ref=e292]: Minute Patterns
+        - link "📅 Historical Seasons Compare referee performance across multiple seasons. Season Comparison Trend Analysis Historical Data" [ref=e294] [cursor=pointer]:
+          - /url: /tools/historical-seasons
+          - generic [ref=e296]:
+            - generic [ref=e297]: 📅
+            - generic [ref=e298]:
+              - generic [ref=e299]: Historical Seasons
+              - generic [ref=e300]: Compare referee performance across multiple seasons.
+          - generic [ref=e302]:
+            - generic [ref=e303]: Season Comparison
+            - generic [ref=e304]: Trend Analysis
+            - generic [ref=e305]: Historical Data
+      - generic [ref=e306]:
+        - heading "How Our Analysis Works" [level=2] [ref=e307]
+        - generic [ref=e308]:
+          - generic [ref=e310]:
+            - generic [ref=e311]: 📈
+            - heading "Historical Data" [level=3] [ref=e312]
+            - paragraph [ref=e313]: We analyze thousands of matches across 5 major leagues to build comprehensive referee profiles.
+          - generic [ref=e315]:
+            - generic [ref=e316]: 🧮
+            - heading "Statistical Models" [level=3] [ref=e317]
+            - paragraph [ref=e318]: Our algorithms calculate expected cards based on referee tendencies, team discipline, and match context.
+          - generic [ref=e320]:
+            - generic [ref=e321]: 🎯
+            - heading "Actionable Insights" [level=3] [ref=e322]
+            - paragraph [ref=e323]: Get clear predictions with confidence levels to inform your betting decisions on card markets.
+      - paragraph [ref=e327]:
+        - strong [ref=e328]: "Disclaimer:"
+        - text: Our tools provide statistical analysis for informational purposes only. Past performance does not guarantee future results. Always gamble responsibly and within your means.
+  - contentinfo "Site footer" [ref=e329]:
+    - generic [ref=e330]:
+      - generic [ref=e331]:
+        - generic [ref=e332]:
+          - heading "Leagues" [level=3] [ref=e333]
+          - list [ref=e334]:
+            - listitem [ref=e335]:
+              - link "Premier League" [ref=e336] [cursor=pointer]:
+                - /url: /leagues/39
+            - listitem [ref=e337]:
+              - link "La Liga" [ref=e338] [cursor=pointer]:
+                - /url: /leagues/140
+            - listitem [ref=e339]:
+              - link "Serie A" [ref=e340] [cursor=pointer]:
+                - /url: /leagues/135
+            - listitem [ref=e341]:
+              - link "Bundesliga" [ref=e342] [cursor=pointer]:
+                - /url: /leagues/78
+            - listitem [ref=e343]:
+              - link "Ligue 1" [ref=e344] [cursor=pointer]:
+                - /url: /leagues/61
+            - listitem [ref=e345]:
+              - link "Eredivisie" [ref=e346] [cursor=pointer]:
+                - /url: /leagues/88
+            - listitem [ref=e347]:
+              - link "Liga Portugal" [ref=e348] [cursor=pointer]:
+                - /url: /leagues/94
+            - listitem [ref=e349]:
+              - link "Super Lig" [ref=e350] [cursor=pointer]:
+                - /url: /leagues/203
+        - generic [ref=e351]:
+          - heading "Tools" [level=3] [ref=e352]
+          - list [ref=e353]:
+            - listitem [ref=e354]:
+              - link "Referee Lookup" [ref=e355] [cursor=pointer]:
+                - /url: /referees
+            - listitem [ref=e356]:
+              - link "Compare Refs" [ref=e357] [cursor=pointer]:
+                - /url: /tools/referee-comparison
+            - listitem [ref=e358]:
+              - link "Trend Analyzer" [ref=e359] [cursor=pointer]:
+                - /url: /tools/seasonal-trends
+            - listitem [ref=e360]:
+              - link "Match Predictor" [ref=e361] [cursor=pointer]:
+                - /url: /tools/match-analyzer
+            - listitem [ref=e362]:
+              - link "Penalty Stats" [ref=e363] [cursor=pointer]:
+                - /url: /tools/penalty-stats
+            - listitem [ref=e364]:
+              - link "Card Calculator" [ref=e365] [cursor=pointer]:
+                - /url: /tools/card-calculator
+        - generic [ref=e366]:
+          - heading "Resources" [level=3] [ref=e367]
+          - list [ref=e368]:
+            - listitem [ref=e369]:
+              - link "Methodology" [ref=e370] [cursor=pointer]:
+                - /url: /methodology
+            - listitem [ref=e371]:
+              - link "FAQ" [ref=e372] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e373]:
+              - link "Glossary" [ref=e374] [cursor=pointer]:
+                - /url: /glossary
+            - listitem [ref=e375]:
+              - link "About Us" [ref=e376] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e377]:
+              - link "Blog" [ref=e378] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e379]:
+              - link "Contact" [ref=e380] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e381]:
+          - heading "Company" [level=3] [ref=e382]
+          - list [ref=e383]:
+            - listitem [ref=e384]:
+              - link "Press Kit" [ref=e385] [cursor=pointer]:
+                - /url: /press-kit
+            - listitem [ref=e386]:
+              - link "Careers" [ref=e387] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e388]:
+              - link "Advertise" [ref=e389] [cursor=pointer]:
+                - /url: /advertise
+            - listitem [ref=e390]:
+              - link "Partners" [ref=e391] [cursor=pointer]:
+                - /url: /partners
+      - generic [ref=e392]:
+        - heading "Get Weekly Referee Insights" [level=3] [ref=e393]
+        - paragraph [ref=e394]: Get weekly referee insights and betting edges delivered to your inbox.
+        - generic [ref=e395]:
+          - textbox "Email address for newsletter" [ref=e396]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=e397] [cursor=pointer]
+        - generic [ref=e398] [cursor=pointer]:
+          - checkbox "Agree to receive marketing emails" [ref=e399]
+          - generic [ref=e400]: I agree to receive marketing emails. Unsubscribe anytime.
+      - generic [ref=e401]:
+        - generic [ref=e402]:
+          - paragraph [ref=e403]: © 2026 RefTrends. All rights reserved.
+          - navigation "Legal links" [ref=e404]:
+            - generic [ref=e405]:
+              - link "Privacy Policy" [ref=e406] [cursor=pointer]:
+                - /url: /privacy-policy
+              - text: "|"
+            - generic [ref=e407]:
+              - link "Terms of Service" [ref=e408] [cursor=pointer]:
+                - /url: /terms-of-service
+              - text: "|"
+            - generic [ref=e409]:
+              - link "Disclaimer" [ref=e410] [cursor=pointer]:
+                - /url: /disclaimer
+              - text: "|"
+            - link "Cookie Policy" [ref=e412] [cursor=pointer]:
+              - /url: /cookies
+        - generic [ref=e413]:
+          - paragraph [ref=e414]: Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
+          - paragraph [ref=e415]:
+            - text: If you have a gambling problem, visit
+            - link "BeGambleAware.org" [ref=e416] [cursor=pointer]:
+              - /url: https://www.begambleaware.org
+          - paragraph [ref=e417]: 18+ - Gambling can be addictive. Play responsibly.
+  - alert [ref=e418]
+```

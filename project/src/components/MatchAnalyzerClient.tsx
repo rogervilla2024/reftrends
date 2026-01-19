@@ -542,7 +542,7 @@ export default function MatchAnalyzerClient({
         ) : (
           <Card>
             <CardContent className="py-12 text-center">
-              <div className="text-4xl mb-4">👈</div>
+              <div className="text-4xl mb-4 text-muted-foreground font-bold">&lt;-</div>
               <h3 className="text-xl font-bold mb-2">Select a Fixture</h3>
               <p className="text-muted-foreground">
                 Choose a match from the list to see detailed referee analysis,

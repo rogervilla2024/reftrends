@@ -294,6 +294,7 @@ async function syncRecentFixtures(leagueApiId: number, season: number): Promise<
         let yellowCards = 0, redCards = 0;
         let homeYellow = 0, awayYellow = 0;
         let homeRed = 0, awayRed = 0;
+        let penalties = 0, homePenalties = 0, awayPenalties = 0;
 
         for (const event of eventsData.response) {
           if (event.type === 'Card') {
@@ -307,9 +308,15 @@ async function syncRecentFixtures(leagueApiId: number, season: number): Promise<
               else awayRed++;
             }
           }
+          // Count penalties (scored and missed)
+          if (event.detail === 'Penalty' || event.detail === 'Missed Penalty') {
+            penalties++;
+            if (event.team.id === fixture.teams.home.id) homePenalties++;
+            else awayPenalties++;
+          }
         }
 
-        stats = { yellowCards, redCards, homeYellow, awayYellow, homeRed, awayRed };
+        stats = { yellowCards, redCards, homeYellow, awayYellow, homeRed, awayRed, penalties, homePenalties, awayPenalties };
       } catch (error) {
         console.error(`Error fetching events for fixture ${fixture.fixture.id}:`, error);
       }
@@ -352,6 +359,9 @@ async function syncRecentFixtures(leagueApiId: number, season: number): Promise<
           awayYellowCards: stats.awayYellow,
           homeRedCards: stats.homeRed,
           awayRedCards: stats.awayRed,
+          penalties: stats.penalties,
+          homePenalties: stats.homePenalties,
+          awayPenalties: stats.awayPenalties,
         },
         create: {
           matchId: match.id,
@@ -361,6 +371,9 @@ async function syncRecentFixtures(leagueApiId: number, season: number): Promise<
           awayYellowCards: stats.awayYellow,
           homeRedCards: stats.homeRed,
           awayRedCards: stats.awayRed,
+          penalties: stats.penalties,
+          homePenalties: stats.homePenalties,
+          awayPenalties: stats.awayPenalties,
         },
       });
     }
@@ -402,12 +415,14 @@ async function calculateRefereeStats(): Promise<void> {
       const matchesWithStats = seasonMatches.filter(m => m.stats);
       const totalYellow = matchesWithStats.reduce((sum, m) => sum + (m.stats?.yellowCards || 0), 0);
       const totalRed = matchesWithStats.reduce((sum, m) => sum + (m.stats?.redCards || 0), 0);
+      const totalPenalties = matchesWithStats.reduce((sum, m) => sum + (m.stats?.penalties || 0), 0);
 
       const matchCount = seasonMatches.length;
       const avgYellow = matchCount > 0 ? totalYellow / matchCount : 0;
       const avgRed = matchCount > 0 ? totalRed / matchCount : 0;
+      const avgPenalties = matchCount > 0 ? totalPenalties / matchCount : 0;
 
-      const strictnessIndex = avgYellow * 1.0 + avgRed * 3.0;
+      const strictnessIndex = avgYellow * 1.0 + avgRed * 3.0 + avgPenalties * 0.5;
 
       const homeYellow = matchesWithStats.reduce((sum, m) => sum + (m.stats?.homeYellowCards || 0), 0);
       const awayYellow = matchesWithStats.reduce((sum, m) => sum + (m.stats?.awayYellowCards || 0), 0);
@@ -427,6 +442,8 @@ async function calculateRefereeStats(): Promise<void> {
           totalRedCards: totalRed,
           avgYellowCards: avgYellow,
           avgRedCards: avgRed,
+          totalPenalties,
+          avgPenalties,
           strictnessIndex,
           homeBiasScore,
         },
@@ -439,6 +456,8 @@ async function calculateRefereeStats(): Promise<void> {
           totalRedCards: totalRed,
           avgYellowCards: avgYellow,
           avgRedCards: avgRed,
+          totalPenalties,
+          avgPenalties,
           strictnessIndex,
           homeBiasScore,
         },

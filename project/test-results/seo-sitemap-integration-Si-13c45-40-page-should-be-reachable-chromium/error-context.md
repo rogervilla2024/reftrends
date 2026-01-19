@@ -1,0 +1,977 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "RefTrends - Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RefTrends
+      - menubar [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Referees" [ref=e10] [cursor=pointer]:
+          - /url: /referees
+        - link "Leagues" [ref=e11] [cursor=pointer]:
+          - /url: /leagues
+        - button "Tools menu" [ref=e13] [cursor=pointer]:
+          - text: Tools
+          - img [ref=e14]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - img "La Liga" [ref=e20]
+        - generic [ref=e21]:
+          - heading "La Liga" [level=1] [ref=e22]
+          - paragraph [ref=e23]: Spain
+          - paragraph [ref=e24]: Season 2025/26
+      - generic [ref=e25]:
+        - heading "Season Overview" [level=2] [ref=e26]
+        - generic [ref=e27]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: "260"
+            - generic [ref=e31]: Matches
+          - generic [ref=e33]:
+            - generic [ref=e34]: "45"
+            - generic [ref=e35]: Referees
+          - generic [ref=e37]:
+            - generic [ref=e38]: "4.42"
+            - generic [ref=e39]: Avg Yellow/Match
+          - generic [ref=e41]:
+            - generic [ref=e42]: "0.27"
+            - generic [ref=e43]: Avg Red/Match
+          - generic [ref=e45]:
+            - generic [ref=e46]: "2.59"
+            - generic [ref=e47]: Avg Goals/Match
+      - generic [ref=e49]:
+        - generic [ref=e51]: Referee Rankings
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - img [ref=e55]
+            - searchbox "Search referees..." [ref=e57]
+          - paragraph [ref=e58]: Showing 45 of 45 referees
+          - table [ref=e60]:
+            - rowgroup [ref=e61]:
+              - row "# Referee Matches v Yellow Cards Red Cards Strictness" [ref=e62]:
+                - columnheader "#" [ref=e63]
+                - columnheader "Referee" [ref=e64]:
+                  - button "Referee" [ref=e65] [cursor=pointer]: Referee
+                - columnheader "Matches v" [ref=e66]:
+                  - button "Matches v" [ref=e67] [cursor=pointer]:
+                    - text: Matches
+                    - generic [ref=e68]: v
+                - columnheader "Yellow Cards" [ref=e69]:
+                  - button "Yellow Cards" [ref=e70] [cursor=pointer]: Yellow Cards
+                - columnheader "Red Cards" [ref=e71]:
+                  - button "Red Cards" [ref=e72] [cursor=pointer]: Red Cards
+                - columnheader "Strictness" [ref=e73]:
+                  - button "Strictness" [ref=e74] [cursor=pointer]: Strictness
+            - rowgroup [ref=e75]:
+              - row "1 Alejandro Hernandez 11 43(3.91) 1(0.09) 4.2(Average)" [ref=e76]:
+                - cell "1" [ref=e77]
+                - cell "Alejandro Hernandez" [ref=e78]:
+                  - link "Alejandro Hernandez" [ref=e79] [cursor=pointer]:
+                    - /url: /referees/alejandro-hernandez
+                - cell "11" [ref=e80]
+                - cell "43(3.91)" [ref=e81]:
+                  - text: "43"
+                  - generic [ref=e82]: (3.91)
+                - cell "1(0.09)" [ref=e83]:
+                  - text: "1"
+                  - generic [ref=e84]: (0.09)
+                - cell "4.2(Average)" [ref=e85]:
+                  - text: "4.2"
+                  - generic [ref=e86]: (Average)
+              - row "2 Jesus Gil Manzano 10 40(4.00) 3(0.30) 4.9(Average)" [ref=e87]:
+                - cell "2" [ref=e88]
+                - cell "Jesus Gil Manzano" [ref=e89]:
+                  - link "Jesus Gil Manzano" [ref=e90] [cursor=pointer]:
+                    - /url: /referees/jesus-gil-manzano
+                - cell "10" [ref=e91]
+                - cell "40(4.00)" [ref=e92]:
+                  - text: "40"
+                  - generic [ref=e93]: (4.00)
+                - cell "3(0.30)" [ref=e94]:
+                  - text: "3"
+                  - generic [ref=e95]: (0.30)
+                - cell "4.9(Average)" [ref=e96]:
+                  - text: "4.9"
+                  - generic [ref=e97]: (Average)
+              - row "3 Adrian Cordero Vega 10 36(3.60) 1(0.10) 3.9(Lenient)" [ref=e98]:
+                - cell "3" [ref=e99]
+                - cell "Adrian Cordero Vega" [ref=e100]:
+                  - link "Adrian Cordero Vega" [ref=e101] [cursor=pointer]:
+                    - /url: /referees/adrian-cordero-vega
+                - cell "10" [ref=e102]
+                - cell "36(3.60)" [ref=e103]:
+                  - text: "36"
+                  - generic [ref=e104]: (3.60)
+                - cell "1(0.10)" [ref=e105]:
+                  - text: "1"
+                  - generic [ref=e106]: (0.10)
+                - cell "3.9(Lenient)" [ref=e107]:
+                  - text: "3.9"
+                  - generic [ref=e108]: (Lenient)
+              - row "4 Alejandro Quintero Gonzalez 10 51(5.10) 9(0.90) 7.8(Strict)" [ref=e109]:
+                - cell "4" [ref=e110]
+                - cell "Alejandro Quintero Gonzalez" [ref=e111]:
+                  - link "Alejandro Quintero Gonzalez" [ref=e112] [cursor=pointer]:
+                    - /url: /referees/alejandro-quintero-gonzalez
+                - cell "10" [ref=e113]
+                - cell "51(5.10)" [ref=e114]:
+                  - text: "51"
+                  - generic [ref=e115]: (5.10)
+                - cell "9(0.90)" [ref=e116]:
+                  - text: "9"
+                  - generic [ref=e117]: (0.90)
+                - cell "7.8(Strict)" [ref=e118]:
+                  - text: "7.8"
+                  - generic [ref=e119]: (Strict)
+              - row "5 Javier Alberola Rojas 9 42(4.67) 3(0.33) 5.7(Average)" [ref=e120]:
+                - cell "5" [ref=e121]
+                - cell "Javier Alberola Rojas" [ref=e122]:
+                  - link "Javier Alberola Rojas" [ref=e123] [cursor=pointer]:
+                    - /url: /referees/javier-alberola-rojas
+                - cell "9" [ref=e124]
+                - cell "42(4.67)" [ref=e125]:
+                  - text: "42"
+                  - generic [ref=e126]: (4.67)
+                - cell "3(0.33)" [ref=e127]:
+                  - text: "3"
+                  - generic [ref=e128]: (0.33)
+                - cell "5.7(Average)" [ref=e129]:
+                  - text: "5.7"
+                  - generic [ref=e130]: (Average)
+              - row "6 Miguel Sesma Espinosa 9 23(2.56) 0(0.00) 2.6(Lenient)" [ref=e131]:
+                - cell "6" [ref=e132]
+                - cell "Miguel Sesma Espinosa" [ref=e133]:
+                  - link "Miguel Sesma Espinosa" [ref=e134] [cursor=pointer]:
+                    - /url: /referees/miguel-sesma-espinosa
+                - cell "9" [ref=e135]
+                - cell "23(2.56)" [ref=e136]:
+                  - text: "23"
+                  - generic [ref=e137]: (2.56)
+                - cell "0(0.00)" [ref=e138]:
+                  - text: "0"
+                  - generic [ref=e139]: (0.00)
+                - cell "2.6(Lenient)" [ref=e140]:
+                  - text: "2.6"
+                  - generic [ref=e141]: (Lenient)
+              - row "7 Iosu Galech Apezteguia 9 43(4.78) 3(0.33) 5.8(Average)" [ref=e142]:
+                - cell "7" [ref=e143]
+                - cell "Iosu Galech Apezteguia" [ref=e144]:
+                  - link "Iosu Galech Apezteguia" [ref=e145] [cursor=pointer]:
+                    - /url: /referees/iosu-galech-apezteguia
+                - cell "9" [ref=e146]
+                - cell "43(4.78)" [ref=e147]:
+                  - text: "43"
+                  - generic [ref=e148]: (4.78)
+                - cell "3(0.33)" [ref=e149]:
+                  - text: "3"
+                  - generic [ref=e150]: (0.33)
+                - cell "5.8(Average)" [ref=e151]:
+                  - text: "5.8"
+                  - generic [ref=e152]: (Average)
+              - row "8 Mateo Busquets Ferrer 9 50(5.56) 2(0.22) 6.2(Strict)" [ref=e153]:
+                - cell "8" [ref=e154]
+                - cell "Mateo Busquets Ferrer" [ref=e155]:
+                  - link "Mateo Busquets Ferrer" [ref=e156] [cursor=pointer]:
+                    - /url: /referees/mateo-busquets-ferrer
+                - cell "9" [ref=e157]
+                - cell "50(5.56)" [ref=e158]:
+                  - text: "50"
+                  - generic [ref=e159]: (5.56)
+                - cell "2(0.22)" [ref=e160]:
+                  - text: "2"
+                  - generic [ref=e161]: (0.22)
+                - cell "6.2(Strict)" [ref=e162]:
+                  - text: "6.2"
+                  - generic [ref=e163]: (Strict)
+              - row "9 Victor Garcia Verdura 9 29(3.22) 0(0.00) 3.2(Lenient)" [ref=e164]:
+                - cell "9" [ref=e165]
+                - cell "Victor Garcia Verdura" [ref=e166]:
+                  - link "Victor Garcia Verdura" [ref=e167] [cursor=pointer]:
+                    - /url: /referees/victor-garcia-verdura
+                - cell "9" [ref=e168]
+                - cell "29(3.22)" [ref=e169]:
+                  - text: "29"
+                  - generic [ref=e170]: (3.22)
+                - cell "0(0.00)" [ref=e171]:
+                  - text: "0"
+                  - generic [ref=e172]: (0.00)
+                - cell "3.2(Lenient)" [ref=e173]:
+                  - text: "3.2"
+                  - generic [ref=e174]: (Lenient)
+              - row "10 Miguel Angel Ortiz Arias 9 34(3.78) 2(0.22) 4.4(Average)" [ref=e175]:
+                - cell "10" [ref=e176]
+                - cell "Miguel Angel Ortiz Arias" [ref=e177]:
+                  - link "Miguel Angel Ortiz Arias" [ref=e178] [cursor=pointer]:
+                    - /url: /referees/miguel-angel-ortiz-arias
+                - cell "9" [ref=e179]
+                - cell "34(3.78)" [ref=e180]:
+                  - text: "34"
+                  - generic [ref=e181]: (3.78)
+                - cell "2(0.22)" [ref=e182]:
+                  - text: "2"
+                  - generic [ref=e183]: (0.22)
+                - cell "4.4(Average)" [ref=e184]:
+                  - text: "4.4"
+                  - generic [ref=e185]: (Average)
+              - row "11 Jose Luis Guzman Mansilla 9 40(4.44) 1(0.11) 4.8(Average)" [ref=e186]:
+                - cell "11" [ref=e187]
+                - cell "Jose Luis Guzman Mansilla" [ref=e188]:
+                  - link "Jose Luis Guzman Mansilla" [ref=e189] [cursor=pointer]:
+                    - /url: /referees/jose-luis-guzman-mansilla
+                - cell "9" [ref=e190]
+                - cell "40(4.44)" [ref=e191]:
+                  - text: "40"
+                  - generic [ref=e192]: (4.44)
+                - cell "1(0.11)" [ref=e193]:
+                  - text: "1"
+                  - generic [ref=e194]: (0.11)
+                - cell "4.8(Average)" [ref=e195]:
+                  - text: "4.8"
+                  - generic [ref=e196]: (Average)
+              - row "12 César Soto Grado 9 49(5.44) 3(0.33) 6.4(Strict)" [ref=e197]:
+                - cell "12" [ref=e198]
+                - cell "César Soto Grado" [ref=e199]:
+                  - link "César Soto Grado" [ref=e200] [cursor=pointer]:
+                    - /url: /referees/cesar-soto-grado
+                - cell "9" [ref=e201]
+                - cell "49(5.44)" [ref=e202]:
+                  - text: "49"
+                  - generic [ref=e203]: (5.44)
+                - cell "3(0.33)" [ref=e204]:
+                  - text: "3"
+                  - generic [ref=e205]: (0.33)
+                - cell "6.4(Strict)" [ref=e206]:
+                  - text: "6.4"
+                  - generic [ref=e207]: (Strict)
+              - row "13 Ricardo De Burgos Bengoetxea 9 36(4.00) 1(0.11) 4.3(Average)" [ref=e208]:
+                - cell "13" [ref=e209]
+                - cell "Ricardo De Burgos Bengoetxea" [ref=e210]:
+                  - link "Ricardo De Burgos Bengoetxea" [ref=e211] [cursor=pointer]:
+                    - /url: /referees/ricardo-de-burgos-bengoetxea
+                - cell "9" [ref=e212]
+                - cell "36(4.00)" [ref=e213]:
+                  - text: "36"
+                  - generic [ref=e214]: (4.00)
+                - cell "1(0.11)" [ref=e215]:
+                  - text: "1"
+                  - generic [ref=e216]: (0.11)
+                - cell "4.3(Average)" [ref=e217]:
+                  - text: "4.3"
+                  - generic [ref=e218]: (Average)
+              - row "14 Isidro Diaz de Mera Escuderos 9 36(4.00) 6(0.67) 6.0(Strict)" [ref=e219]:
+                - cell "14" [ref=e220]
+                - cell "Isidro Diaz de Mera Escuderos" [ref=e221]:
+                  - link "Isidro Diaz de Mera Escuderos" [ref=e222] [cursor=pointer]:
+                    - /url: /referees/isidro-diaz-de-mera-escuderos
+                - cell "9" [ref=e223]
+                - cell "36(4.00)" [ref=e224]:
+                  - text: "36"
+                  - generic [ref=e225]: (4.00)
+                - cell "6(0.67)" [ref=e226]:
+                  - text: "6"
+                  - generic [ref=e227]: (0.67)
+                - cell "6.0(Strict)" [ref=e228]:
+                  - text: "6.0"
+                  - generic [ref=e229]: (Strict)
+              - row "15 José Luis Munuera Montero 8 35(4.38) 5(0.63) 6.3(Strict)" [ref=e230]:
+                - cell "15" [ref=e231]
+                - cell "José Luis Munuera Montero" [ref=e232]:
+                  - link "José Luis Munuera Montero" [ref=e233] [cursor=pointer]:
+                    - /url: /referees/jose-luis-munuera-montero
+                - cell "8" [ref=e234]
+                - cell "35(4.38)" [ref=e235]:
+                  - text: "35"
+                  - generic [ref=e236]: (4.38)
+                - cell "5(0.63)" [ref=e237]:
+                  - text: "5"
+                  - generic [ref=e238]: (0.63)
+                - cell "6.3(Strict)" [ref=e239]:
+                  - text: "6.3"
+                  - generic [ref=e240]: (Strict)
+              - row "16 Alejandro Muñiz Ruiz 7 48(6.86) 2(0.29) 7.7(Strict)" [ref=e241]:
+                - cell "16" [ref=e242]
+                - cell "Alejandro Muñiz Ruiz" [ref=e243]:
+                  - link "Alejandro Muñiz Ruiz" [ref=e244] [cursor=pointer]:
+                    - /url: /referees/alejandro-muniz-ruiz
+                - cell "7" [ref=e245]
+                - cell "48(6.86)" [ref=e246]:
+                  - text: "48"
+                  - generic [ref=e247]: (6.86)
+                - cell "2(0.29)" [ref=e248]:
+                  - text: "2"
+                  - generic [ref=e249]: (0.29)
+                - cell "7.7(Strict)" [ref=e250]:
+                  - text: "7.7"
+                  - generic [ref=e251]: (Strict)
+              - row "17 Guillermo Cuadra Fernandez 7 41(5.86) 2(0.29) 6.7(Strict)" [ref=e252]:
+                - cell "17" [ref=e253]
+                - cell "Guillermo Cuadra Fernandez" [ref=e254]:
+                  - link "Guillermo Cuadra Fernandez" [ref=e255] [cursor=pointer]:
+                    - /url: /referees/guillermo-cuadra-fernandez
+                - cell "7" [ref=e256]
+                - cell "41(5.86)" [ref=e257]:
+                  - text: "41"
+                  - generic [ref=e258]: (5.86)
+                - cell "2(0.29)" [ref=e259]:
+                  - text: "2"
+                  - generic [ref=e260]: (0.29)
+                - cell "6.7(Strict)" [ref=e261]:
+                  - text: "6.7"
+                  - generic [ref=e262]: (Strict)
+              - row "18 José María Sánchez Martínez 6 29(4.83) 3(0.50) 6.3(Strict)" [ref=e263]:
+                - cell "18" [ref=e264]
+                - cell "José María Sánchez Martínez" [ref=e265]:
+                  - link "José María Sánchez Martínez" [ref=e266] [cursor=pointer]:
+                    - /url: /referees/jose-maria-sanchez-martinez
+                - cell "6" [ref=e267]
+                - cell "29(4.83)" [ref=e268]:
+                  - text: "29"
+                  - generic [ref=e269]: (4.83)
+                - cell "3(0.50)" [ref=e270]:
+                  - text: "3"
+                  - generic [ref=e271]: (0.50)
+                - cell "6.3(Strict)" [ref=e272]:
+                  - text: "6.3"
+                  - generic [ref=e273]: (Strict)
+              - row "19 Francisco Hernandez Maeso 6 17(2.83) 2(0.33) 3.8(Lenient)" [ref=e274]:
+                - cell "19" [ref=e275]
+                - cell "Francisco Hernandez Maeso" [ref=e276]:
+                  - link "Francisco Hernandez Maeso" [ref=e277] [cursor=pointer]:
+                    - /url: /referees/francisco-hernandez-maeso
+                - cell "6" [ref=e278]
+                - cell "17(2.83)" [ref=e279]:
+                  - text: "17"
+                  - generic [ref=e280]: (2.83)
+                - cell "2(0.33)" [ref=e281]:
+                  - text: "2"
+                  - generic [ref=e282]: (0.33)
+                - cell "3.8(Lenient)" [ref=e283]:
+                  - text: "3.8"
+                  - generic [ref=e284]: (Lenient)
+              - row "20 Juan Martinez Munuera 6 25(4.17) 1(0.17) 4.7(Average)" [ref=e285]:
+                - cell "20" [ref=e286]
+                - cell "Juan Martinez Munuera" [ref=e287]:
+                  - link "Juan Martinez Munuera" [ref=e288] [cursor=pointer]:
+                    - /url: /referees/juan-martinez-munuera
+                - cell "6" [ref=e289]
+                - cell "25(4.17)" [ref=e290]:
+                  - text: "25"
+                  - generic [ref=e291]: (4.17)
+                - cell "1(0.17)" [ref=e292]:
+                  - text: "1"
+                  - generic [ref=e293]: (0.17)
+                - cell "4.7(Average)" [ref=e294]:
+                  - text: "4.7"
+                  - generic [ref=e295]: (Average)
+              - row "21 Alejandro Muñiz 3 11(3.67) 2(0.67) 5.7(Average)" [ref=e296]:
+                - cell "21" [ref=e297]
+                - cell "Alejandro Muñiz" [ref=e298]:
+                  - link "Alejandro Muñiz" [ref=e299] [cursor=pointer]:
+                    - /url: /referees/alejandro-muniz
+                - cell "3" [ref=e300]
+                - cell "11(3.67)" [ref=e301]:
+                  - text: "11"
+                  - generic [ref=e302]: (3.67)
+                - cell "2(0.67)" [ref=e303]:
+                  - text: "2"
+                  - generic [ref=e304]: (0.67)
+                - cell "5.7(Average)" [ref=e305]:
+                  - text: "5.7"
+                  - generic [ref=e306]: (Average)
+              - row "22 Miguel Ortiz 3 12(4.00) 1(0.33) 5.0(Average)" [ref=e307]:
+                - cell "22" [ref=e308]
+                - cell "Miguel Ortiz" [ref=e309]:
+                  - link "Miguel Ortiz" [ref=e310] [cursor=pointer]:
+                    - /url: /referees/miguel-ortiz
+                - cell "3" [ref=e311]
+                - cell "12(4.00)" [ref=e312]:
+                  - text: "12"
+                  - generic [ref=e313]: (4.00)
+                - cell "1(0.33)" [ref=e314]:
+                  - text: "1"
+                  - generic [ref=e315]: (0.33)
+                - cell "5.0(Average)" [ref=e316]:
+                  - text: "5.0"
+                  - generic [ref=e317]: (Average)
+              - row "23 Alejandro Quintero 3 15(5.00) 0(0.00) 5.0(Average)" [ref=e318]:
+                - cell "23" [ref=e319]
+                - cell "Alejandro Quintero" [ref=e320]:
+                  - link "Alejandro Quintero" [ref=e321] [cursor=pointer]:
+                    - /url: /referees/alejandro-quintero
+                - cell "3" [ref=e322]
+                - cell "15(5.00)" [ref=e323]:
+                  - text: "15"
+                  - generic [ref=e324]: (5.00)
+                - cell "0(0.00)" [ref=e325]:
+                  - text: "0"
+                  - generic [ref=e326]: (0.00)
+                - cell "5.0(Average)" [ref=e327]:
+                  - text: "5.0"
+                  - generic [ref=e328]: (Average)
+              - row "24 Francisco Hernández 3 12(4.00) 1(0.33) 5.0(Average)" [ref=e329]:
+                - cell "24" [ref=e330]
+                - cell "Francisco Hernández" [ref=e331]:
+                  - link "Francisco Hernández" [ref=e332] [cursor=pointer]:
+                    - /url: /referees/francisco-hernandez
+                - cell "3" [ref=e333]
+                - cell "12(4.00)" [ref=e334]:
+                  - text: "12"
+                  - generic [ref=e335]: (4.00)
+                - cell "1(0.33)" [ref=e336]:
+                  - text: "1"
+                  - generic [ref=e337]: (0.33)
+                - cell "5.0(Average)" [ref=e338]:
+                  - text: "5.0"
+                  - generic [ref=e339]: (Average)
+              - row "25 José Sánchez 3 18(6.00) 1(0.33) 7.0(Strict)" [ref=e340]:
+                - cell "25" [ref=e341]
+                - cell "José Sánchez" [ref=e342]:
+                  - link "José Sánchez" [ref=e343] [cursor=pointer]:
+                    - /url: /referees/jose-sanchez
+                - cell "3" [ref=e344]
+                - cell "18(6.00)" [ref=e345]:
+                  - text: "18"
+                  - generic [ref=e346]: (6.00)
+                - cell "1(0.33)" [ref=e347]:
+                  - text: "1"
+                  - generic [ref=e348]: (0.33)
+                - cell "7.0(Strict)" [ref=e349]:
+                  - text: "7.0"
+                  - generic [ref=e350]: (Strict)
+              - row "26 César Soto 3 8(2.67) 1(0.33) 3.7(Lenient)" [ref=e351]:
+                - cell "26" [ref=e352]
+                - cell "César Soto" [ref=e353]:
+                  - link "César Soto" [ref=e354] [cursor=pointer]:
+                    - /url: /referees/cesar-soto
+                - cell "3" [ref=e355]
+                - cell "8(2.67)" [ref=e356]:
+                  - text: "8"
+                  - generic [ref=e357]: (2.67)
+                - cell "1(0.33)" [ref=e358]:
+                  - text: "1"
+                  - generic [ref=e359]: (0.33)
+                - cell "3.7(Lenient)" [ref=e360]:
+                  - text: "3.7"
+                  - generic [ref=e361]: (Lenient)
+              - row "27 Pablo González 3 11(3.67) 0(0.00) 3.7(Lenient)" [ref=e362]:
+                - cell "27" [ref=e363]
+                - cell "Pablo González" [ref=e364]:
+                  - link "Pablo González" [ref=e365] [cursor=pointer]:
+                    - /url: /referees/pablo-gonzalez
+                - cell "3" [ref=e366]
+                - cell "11(3.67)" [ref=e367]:
+                  - text: "11"
+                  - generic [ref=e368]: (3.67)
+                - cell "0(0.00)" [ref=e369]:
+                  - text: "0"
+                  - generic [ref=e370]: (0.00)
+                - cell "3.7(Lenient)" [ref=e371]:
+                  - text: "3.7"
+                  - generic [ref=e372]: (Lenient)
+              - row "28 Adrián Cordero 3 10(3.33) 0(0.00) 3.3(Lenient)" [ref=e373]:
+                - cell "28" [ref=e374]
+                - cell "Adrián Cordero" [ref=e375]:
+                  - link "Adrián Cordero" [ref=e376] [cursor=pointer]:
+                    - /url: /referees/adrian-cordero
+                - cell "3" [ref=e377]
+                - cell "10(3.33)" [ref=e378]:
+                  - text: "10"
+                  - generic [ref=e379]: (3.33)
+                - cell "0(0.00)" [ref=e380]:
+                  - text: "0"
+                  - generic [ref=e381]: (0.00)
+                - cell "3.3(Lenient)" [ref=e382]:
+                  - text: "3.3"
+                  - generic [ref=e383]: (Lenient)
+              - row "29 Ricardo De Burgos 3 10(3.33) 1(0.33) 4.3(Average)" [ref=e384]:
+                - cell "29" [ref=e385]
+                - cell "Ricardo De Burgos" [ref=e386]:
+                  - link "Ricardo De Burgos" [ref=e387] [cursor=pointer]:
+                    - /url: /referees/ricardo-de-burgos
+                - cell "3" [ref=e388]
+                - cell "10(3.33)" [ref=e389]:
+                  - text: "10"
+                  - generic [ref=e390]: (3.33)
+                - cell "1(0.33)" [ref=e391]:
+                  - text: "1"
+                  - generic [ref=e392]: (0.33)
+                - cell "4.3(Average)" [ref=e393]:
+                  - text: "4.3"
+                  - generic [ref=e394]: (Average)
+              - row "30 Mateo Busquets 3 14(4.67) 2(0.67) 6.7(Strict)" [ref=e395]:
+                - cell "30" [ref=e396]
+                - cell "Mateo Busquets" [ref=e397]:
+                  - link "Mateo Busquets" [ref=e398] [cursor=pointer]:
+                    - /url: /referees/mateo-busquets
+                - cell "3" [ref=e399]
+                - cell "14(4.67)" [ref=e400]:
+                  - text: "14"
+                  - generic [ref=e401]: (4.67)
+                - cell "2(0.67)" [ref=e402]:
+                  - text: "2"
+                  - generic [ref=e403]: (0.67)
+                - cell "6.7(Strict)" [ref=e404]:
+                  - text: "6.7"
+                  - generic [ref=e405]: (Strict)
+              - row "31 Juan Martínez 3 11(3.67) 1(0.33) 4.7(Average)" [ref=e406]:
+                - cell "31" [ref=e407]
+                - cell "Juan Martínez" [ref=e408]:
+                  - link "Juan Martínez" [ref=e409] [cursor=pointer]:
+                    - /url: /referees/juan-martinez
+                - cell "3" [ref=e410]
+                - cell "11(3.67)" [ref=e411]:
+                  - text: "11"
+                  - generic [ref=e412]: (3.67)
+                - cell "1(0.33)" [ref=e413]:
+                  - text: "1"
+                  - generic [ref=e414]: (0.33)
+                - cell "4.7(Average)" [ref=e415]:
+                  - text: "4.7"
+                  - generic [ref=e416]: (Average)
+              - row "32 Pablo Gonzales Fuertes 3 11(3.67) 1(0.33) 4.7(Average)" [ref=e417]:
+                - cell "32" [ref=e418]
+                - cell "Pablo Gonzales Fuertes" [ref=e419]:
+                  - link "Pablo Gonzales Fuertes" [ref=e420] [cursor=pointer]:
+                    - /url: /referees/pablo-gonzales-fuertes
+                - cell "3" [ref=e421]
+                - cell "11(3.67)" [ref=e422]:
+                  - text: "11"
+                  - generic [ref=e423]: (3.67)
+                - cell "1(0.33)" [ref=e424]:
+                  - text: "1"
+                  - generic [ref=e425]: (0.33)
+                - cell "4.7(Average)" [ref=e426]:
+                  - text: "4.7"
+                  - generic [ref=e427]: (Average)
+              - row "33 Juan Luis Pulido Santana 3 20(6.67) 1(0.33) 7.7(Strict)" [ref=e428]:
+                - cell "33" [ref=e429]
+                - cell "Juan Luis Pulido Santana" [ref=e430]:
+                  - link "Juan Luis Pulido Santana" [ref=e431] [cursor=pointer]:
+                    - /url: /referees/juan-luis-pulido-santana
+                - cell "3" [ref=e432]
+                - cell "20(6.67)" [ref=e433]:
+                  - text: "20"
+                  - generic [ref=e434]: (6.67)
+                - cell "1(0.33)" [ref=e435]:
+                  - text: "1"
+                  - generic [ref=e436]: (0.33)
+                - cell "7.7(Strict)" [ref=e437]:
+                  - text: "7.7"
+                  - generic [ref=e438]: (Strict)
+              - row "34 Juan Pulido 2 10(5.00) 0(0.00) 5.0(Average)" [ref=e439]:
+                - cell "34" [ref=e440]
+                - cell "Juan Pulido" [ref=e441]:
+                  - link "Juan Pulido" [ref=e442] [cursor=pointer]:
+                    - /url: /referees/juan-pulido
+                - cell "2" [ref=e443]
+                - cell "10(5.00)" [ref=e444]:
+                  - text: "10"
+                  - generic [ref=e445]: (5.00)
+                - cell "0(0.00)" [ref=e446]:
+                  - text: "0"
+                  - generic [ref=e447]: (0.00)
+                - cell "5.0(Average)" [ref=e448]:
+                  - text: "5.0"
+                  - generic [ref=e449]: (Average)
+              - row "35 José Munuera 2 5(2.50) 0(0.00) 2.5(Lenient)" [ref=e450]:
+                - cell "35" [ref=e451]
+                - cell "José Munuera" [ref=e452]:
+                  - link "José Munuera" [ref=e453] [cursor=pointer]:
+                    - /url: /referees/jose-munuera
+                - cell "2" [ref=e454]
+                - cell "5(2.50)" [ref=e455]:
+                  - text: "5"
+                  - generic [ref=e456]: (2.50)
+                - cell "0(0.00)" [ref=e457]:
+                  - text: "0"
+                  - generic [ref=e458]: (0.00)
+                - cell "2.5(Lenient)" [ref=e459]:
+                  - text: "2.5"
+                  - generic [ref=e460]: (Lenient)
+              - row "36 Isidro Díaz de Mera 2 11(5.50) 0(0.00) 5.5(Average)" [ref=e461]:
+                - cell "36" [ref=e462]
+                - cell "Isidro Díaz de Mera" [ref=e463]:
+                  - link "Isidro Díaz de Mera" [ref=e464] [cursor=pointer]:
+                    - /url: /referees/isidro-diaz-de-mera
+                - cell "2" [ref=e465]
+                - cell "11(5.50)" [ref=e466]:
+                  - text: "11"
+                  - generic [ref=e467]: (5.50)
+                - cell "0(0.00)" [ref=e468]:
+                  - text: "0"
+                  - generic [ref=e469]: (0.00)
+                - cell "5.5(Average)" [ref=e470]:
+                  - text: "5.5"
+                  - generic [ref=e471]: (Average)
+              - row "37 Gil Manzano 2 17(8.50) 1(0.50) 10.0(Very Strict)" [ref=e472]:
+                - cell "37" [ref=e473]
+                - cell "Gil Manzano" [ref=e474]:
+                  - link "Gil Manzano" [ref=e475] [cursor=pointer]:
+                    - /url: /referees/gil-manzano
+                - cell "2" [ref=e476]
+                - cell "17(8.50)" [ref=e477]:
+                  - text: "17"
+                  - generic [ref=e478]: (8.50)
+                - cell "1(0.50)" [ref=e479]:
+                  - text: "1"
+                  - generic [ref=e480]: (0.50)
+                - cell "10.0(Very Strict)" [ref=e481]:
+                  - text: "10.0"
+                  - generic [ref=e482]: (Very Strict)
+              - row "38 Mario Melero 2 8(4.00) 0(0.00) 4.0(Average)" [ref=e483]:
+                - cell "38" [ref=e484]
+                - cell "Mario Melero" [ref=e485]:
+                  - link "Mario Melero" [ref=e486] [cursor=pointer]:
+                    - /url: /referees/mario-melero
+                - cell "2" [ref=e487]
+                - cell "8(4.00)" [ref=e488]:
+                  - text: "8"
+                  - generic [ref=e489]: (4.00)
+                - cell "0(0.00)" [ref=e490]:
+                  - text: "0"
+                  - generic [ref=e491]: (0.00)
+                - cell "4.0(Average)" [ref=e492]:
+                  - text: "4.0"
+                  - generic [ref=e493]: (Average)
+              - row "39 Javier Alberola 2 5(2.50) 0(0.00) 2.5(Lenient)" [ref=e494]:
+                - cell "39" [ref=e495]
+                - cell "Javier Alberola" [ref=e496]:
+                  - link "Javier Alberola" [ref=e497] [cursor=pointer]:
+                    - /url: /referees/javier-alberola
+                - cell "2" [ref=e498]
+                - cell "5(2.50)" [ref=e499]:
+                  - text: "5"
+                  - generic [ref=e500]: (2.50)
+                - cell "0(0.00)" [ref=e501]:
+                  - text: "0"
+                  - generic [ref=e502]: (0.00)
+                - cell "2.5(Lenient)" [ref=e503]:
+                  - text: "2.5"
+                  - generic [ref=e504]: (Lenient)
+              - row "40 Víctor García 2 5(2.50) 0(0.00) 2.5(Lenient)" [ref=e505]:
+                - cell "40" [ref=e506]
+                - cell "Víctor García" [ref=e507]:
+                  - link "Víctor García" [ref=e508] [cursor=pointer]:
+                    - /url: /referees/victor-garcia
+                - cell "2" [ref=e509]
+                - cell "5(2.50)" [ref=e510]:
+                  - text: "5"
+                  - generic [ref=e511]: (2.50)
+                - cell "0(0.00)" [ref=e512]:
+                  - text: "0"
+                  - generic [ref=e513]: (0.00)
+                - cell "2.5(Lenient)" [ref=e514]:
+                  - text: "2.5"
+                  - generic [ref=e515]: (Lenient)
+              - row "41 Javier Iglesias Villanueva 2 6(3.00) 0(0.00) 3.0(Lenient)" [ref=e516]:
+                - cell "41" [ref=e517]
+                - cell "Javier Iglesias Villanueva" [ref=e518]:
+                  - link "Javier Iglesias Villanueva" [ref=e519] [cursor=pointer]:
+                    - /url: /referees/javier-iglesias-villanueva
+                - cell "2" [ref=e520]
+                - cell "6(3.00)" [ref=e521]:
+                  - text: "6"
+                  - generic [ref=e522]: (3.00)
+                - cell "0(0.00)" [ref=e523]:
+                  - text: "0"
+                  - generic [ref=e524]: (0.00)
+                - cell "3.0(Lenient)" [ref=e525]:
+                  - text: "3.0"
+                  - generic [ref=e526]: (Lenient)
+              - row "42 Jorge Figueroa Vazquez 2 8(4.00) 0(0.00) 4.0(Average)" [ref=e527]:
+                - cell "42" [ref=e528]
+                - cell "Jorge Figueroa Vazquez" [ref=e529]:
+                  - link "Jorge Figueroa Vazquez" [ref=e530] [cursor=pointer]:
+                    - /url: /referees/jorge-figueroa-vazquez
+                - cell "2" [ref=e531]
+                - cell "8(4.00)" [ref=e532]:
+                  - text: "8"
+                  - generic [ref=e533]: (4.00)
+                - cell "0(0.00)" [ref=e534]:
+                  - text: "0"
+                  - generic [ref=e535]: (0.00)
+                - cell "4.0(Average)" [ref=e536]:
+                  - text: "4.0"
+                  - generic [ref=e537]: (Average)
+              - row "43 Guillermo Cuadra 1 4(4.00) 0(0.00) 4.0(Average)" [ref=e538]:
+                - cell "43" [ref=e539]
+                - cell "Guillermo Cuadra" [ref=e540]:
+                  - link "Guillermo Cuadra" [ref=e541] [cursor=pointer]:
+                    - /url: /referees/guillermo-cuadra
+                - cell "1" [ref=e542]
+                - cell "4(4.00)" [ref=e543]:
+                  - text: "4"
+                  - generic [ref=e544]: (4.00)
+                - cell "0(0.00)" [ref=e545]:
+                  - text: "0"
+                  - generic [ref=e546]: (0.00)
+                - cell "4.0(Average)" [ref=e547]:
+                  - text: "4.0"
+                  - generic [ref=e548]: (Average)
+              - row "44 Antonio Alberola Rojas 1 4(4.00) 0(0.00) 4.0(Average)" [ref=e549]:
+                - cell "44" [ref=e550]
+                - cell "Antonio Alberola Rojas" [ref=e551]:
+                  - link "Antonio Alberola Rojas" [ref=e552] [cursor=pointer]:
+                    - /url: /referees/antonio-alberola-rojas
+                - cell "1" [ref=e553]
+                - cell "4(4.00)" [ref=e554]:
+                  - text: "4"
+                  - generic [ref=e555]: (4.00)
+                - cell "0(0.00)" [ref=e556]:
+                  - text: "0"
+                  - generic [ref=e557]: (0.00)
+                - cell "4.0(Average)" [ref=e558]:
+                  - text: "4.0"
+                  - generic [ref=e559]: (Average)
+              - row "45 Mario Melero Lopez 1 8(8.00) 0(0.00) 8.0(Very Strict)" [ref=e560]:
+                - cell "45" [ref=e561]
+                - cell "Mario Melero Lopez" [ref=e562]:
+                  - link "Mario Melero Lopez" [ref=e563] [cursor=pointer]:
+                    - /url: /referees/mario-melero-lopez
+                - cell "1" [ref=e564]
+                - cell "8(8.00)" [ref=e565]:
+                  - text: "8"
+                  - generic [ref=e566]: (8.00)
+                - cell "0(0.00)" [ref=e567]:
+                  - text: "0"
+                  - generic [ref=e568]: (0.00)
+                - cell "8.0(Very Strict)" [ref=e569]:
+                  - text: "8.0"
+                  - generic [ref=e570]: (Very Strict)
+      - generic [ref=e572]:
+        - generic [ref=e574]: Upcoming Fixtures
+        - generic [ref=e576]:
+          - generic [ref=e578]:
+            - generic [ref=e579]:
+              - generic [ref=e580]: May 3
+              - generic [ref=e581]: 07:00 PM
+            - generic [ref=e582]:
+              - img "Valencia" [ref=e583]
+              - generic [ref=e584]: Valencia
+              - generic [ref=e585]: vs
+              - generic [ref=e586]: Atletico Madrid
+              - img "Atletico Madrid" [ref=e587]
+          - generic [ref=e589]:
+            - generic [ref=e590]:
+              - generic [ref=e591]: May 3
+              - generic [ref=e592]: 07:00 PM
+            - generic [ref=e593]:
+              - img "Villarreal" [ref=e594]
+              - generic [ref=e595]: Villarreal
+              - generic [ref=e596]: vs
+              - generic [ref=e597]: Levante
+              - img "Levante" [ref=e598]
+          - generic [ref=e600]:
+            - generic [ref=e601]:
+              - generic [ref=e602]: May 3
+              - generic [ref=e603]: 07:00 PM
+            - generic [ref=e604]:
+              - img "Sevilla" [ref=e605]
+              - generic [ref=e606]: Sevilla
+              - generic [ref=e607]: vs
+              - generic [ref=e608]: Real Sociedad
+              - img "Real Sociedad" [ref=e609]
+          - generic [ref=e611]:
+            - generic [ref=e612]:
+              - generic [ref=e613]: May 3
+              - generic [ref=e614]: 07:00 PM
+            - generic [ref=e615]:
+              - img "Celta Vigo" [ref=e616]
+              - generic [ref=e617]: Celta Vigo
+              - generic [ref=e618]: vs
+              - generic [ref=e619]: Elche
+              - img "Elche" [ref=e620]
+          - generic [ref=e622]:
+            - generic [ref=e623]:
+              - generic [ref=e624]: May 3
+              - generic [ref=e625]: 07:00 PM
+            - generic [ref=e626]:
+              - img "Espanyol" [ref=e627]
+              - generic [ref=e628]: Espanyol
+              - generic [ref=e629]: vs
+              - generic [ref=e630]: Real Madrid
+              - img "Real Madrid" [ref=e631]
+          - generic [ref=e633]:
+            - generic [ref=e634]:
+              - generic [ref=e635]: May 3
+              - generic [ref=e636]: 07:00 PM
+            - generic [ref=e637]:
+              - img "Alaves" [ref=e638]
+              - generic [ref=e639]: Alaves
+              - generic [ref=e640]: vs
+              - generic [ref=e641]: Athletic Club
+              - img "Athletic Club" [ref=e642]
+          - generic [ref=e644]:
+            - generic [ref=e645]:
+              - generic [ref=e646]: May 3
+              - generic [ref=e647]: 07:00 PM
+            - generic [ref=e648]:
+              - img "Real Betis" [ref=e649]
+              - generic [ref=e650]: Real Betis
+              - generic [ref=e651]: vs
+              - generic [ref=e652]: Oviedo
+              - img "Oviedo" [ref=e653]
+          - generic [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]: May 3
+              - generic [ref=e658]: 07:00 PM
+            - generic [ref=e659]:
+              - img "Getafe" [ref=e660]
+              - generic [ref=e661]: Getafe
+              - generic [ref=e662]: vs
+              - generic [ref=e663]: Rayo Vallecano
+              - img "Rayo Vallecano" [ref=e664]
+          - generic [ref=e666]:
+            - generic [ref=e667]:
+              - generic [ref=e668]: May 3
+              - generic [ref=e669]: 07:00 PM
+            - generic [ref=e670]:
+              - img "Girona" [ref=e671]
+              - generic [ref=e672]: Girona
+              - generic [ref=e673]: vs
+              - generic [ref=e674]: Mallorca
+              - img "Mallorca" [ref=e675]
+          - generic [ref=e677]:
+            - generic [ref=e678]:
+              - generic [ref=e679]: May 3
+              - generic [ref=e680]: 07:00 PM
+            - generic [ref=e681]:
+              - img "Osasuna" [ref=e682]
+              - generic [ref=e683]: Osasuna
+              - generic [ref=e684]: vs
+              - generic [ref=e685]: Barcelona
+              - img "Barcelona" [ref=e686]
+      - generic [ref=e688]:
+        - generic [ref=e690]: Recent Results
+        - paragraph [ref=e692]: No match results available yet.
+      - link "← Back to Leagues" [ref=e694] [cursor=pointer]:
+        - /url: /leagues
+  - contentinfo "Site footer" [ref=e695]:
+    - generic [ref=e696]:
+      - generic [ref=e697]:
+        - generic [ref=e698]:
+          - heading "Leagues" [level=3] [ref=e699]
+          - list [ref=e700]:
+            - listitem [ref=e701]:
+              - link "Premier League" [ref=e702] [cursor=pointer]:
+                - /url: /leagues/39
+            - listitem [ref=e703]:
+              - link "La Liga" [ref=e704] [cursor=pointer]:
+                - /url: /leagues/140
+            - listitem [ref=e705]:
+              - link "Serie A" [ref=e706] [cursor=pointer]:
+                - /url: /leagues/135
+            - listitem [ref=e707]:
+              - link "Bundesliga" [ref=e708] [cursor=pointer]:
+                - /url: /leagues/78
+            - listitem [ref=e709]:
+              - link "Ligue 1" [ref=e710] [cursor=pointer]:
+                - /url: /leagues/61
+            - listitem [ref=e711]:
+              - link "Eredivisie" [ref=e712] [cursor=pointer]:
+                - /url: /leagues/88
+            - listitem [ref=e713]:
+              - link "Liga Portugal" [ref=e714] [cursor=pointer]:
+                - /url: /leagues/94
+            - listitem [ref=e715]:
+              - link "Super Lig" [ref=e716] [cursor=pointer]:
+                - /url: /leagues/203
+        - generic [ref=e717]:
+          - heading "Tools" [level=3] [ref=e718]
+          - list [ref=e719]:
+            - listitem [ref=e720]:
+              - link "Referee Lookup" [ref=e721] [cursor=pointer]:
+                - /url: /referees
+            - listitem [ref=e722]:
+              - link "Compare Refs" [ref=e723] [cursor=pointer]:
+                - /url: /tools/referee-comparison
+            - listitem [ref=e724]:
+              - link "Trend Analyzer" [ref=e725] [cursor=pointer]:
+                - /url: /tools/seasonal-trends
+            - listitem [ref=e726]:
+              - link "Match Predictor" [ref=e727] [cursor=pointer]:
+                - /url: /tools/match-analyzer
+            - listitem [ref=e728]:
+              - link "Penalty Stats" [ref=e729] [cursor=pointer]:
+                - /url: /tools/penalty-stats
+            - listitem [ref=e730]:
+              - link "Card Calculator" [ref=e731] [cursor=pointer]:
+                - /url: /tools/card-calculator
+        - generic [ref=e732]:
+          - heading "Resources" [level=3] [ref=e733]
+          - list [ref=e734]:
+            - listitem [ref=e735]:
+              - link "Methodology" [ref=e736] [cursor=pointer]:
+                - /url: /methodology
+            - listitem [ref=e737]:
+              - link "FAQ" [ref=e738] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e739]:
+              - link "Glossary" [ref=e740] [cursor=pointer]:
+                - /url: /glossary
+            - listitem [ref=e741]:
+              - link "About Us" [ref=e742] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e743]:
+              - link "Blog" [ref=e744] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e745]:
+              - link "Contact" [ref=e746] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e747]:
+          - heading "Company" [level=3] [ref=e748]
+          - list [ref=e749]:
+            - listitem [ref=e750]:
+              - link "Press Kit" [ref=e751] [cursor=pointer]:
+                - /url: /press-kit
+            - listitem [ref=e752]:
+              - link "Careers" [ref=e753] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e754]:
+              - link "Advertise" [ref=e755] [cursor=pointer]:
+                - /url: /advertise
+            - listitem [ref=e756]:
+              - link "Partners" [ref=e757] [cursor=pointer]:
+                - /url: /partners
+      - generic [ref=e758]:
+        - heading "Get Weekly Referee Insights" [level=3] [ref=e759]
+        - paragraph [ref=e760]: Get weekly referee insights and betting edges delivered to your inbox.
+        - generic [ref=e761]:
+          - textbox "Email address for newsletter" [ref=e762]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=e763] [cursor=pointer]
+        - generic [ref=e764] [cursor=pointer]:
+          - checkbox "Agree to receive marketing emails" [ref=e765]
+          - generic [ref=e766]: I agree to receive marketing emails. Unsubscribe anytime.
+      - generic [ref=e767]:
+        - generic [ref=e768]:
+          - paragraph [ref=e769]: © 2026 RefTrends. All rights reserved.
+          - navigation "Legal links" [ref=e770]:
+            - generic [ref=e771]:
+              - link "Privacy Policy" [ref=e772] [cursor=pointer]:
+                - /url: /privacy-policy
+              - text: "|"
+            - generic [ref=e773]:
+              - link "Terms of Service" [ref=e774] [cursor=pointer]:
+                - /url: /terms-of-service
+              - text: "|"
+            - generic [ref=e775]:
+              - link "Disclaimer" [ref=e776] [cursor=pointer]:
+                - /url: /disclaimer
+              - text: "|"
+            - link "Cookie Policy" [ref=e778] [cursor=pointer]:
+              - /url: /cookies
+        - generic [ref=e779]:
+          - paragraph [ref=e780]: Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
+          - paragraph [ref=e781]:
+            - text: If you have a gambling problem, visit
+            - link "BeGambleAware.org" [ref=e782] [cursor=pointer]:
+              - /url: https://www.begambleaware.org
+          - paragraph [ref=e783]: 18+ - Gambling can be addictive. Play responsibly.
+```

@@ -92,7 +92,7 @@ export function LeagueRefereeTable({ referees }: LeagueRefereeTableProps) {
     >
       {children}
       <span className="ml-1 text-muted-foreground">
-        {sortField === field ? (sortOrder === 'asc' ? '↑' : '↓') : ''}
+        {sortField === field ? (sortOrder === 'asc' ? '^' : 'v') : ''}
       </span>
     </Button>
   );

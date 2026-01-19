@@ -218,7 +218,7 @@ export default function TeamCardStatsClient({ teams }: TeamCardStatsClientProps)
                     <p className="text-xs text-muted-foreground">Red/match</p>
                   </div>
                   <div className="text-muted-foreground">
-                    {expandedTeam === team.id ? '▲' : '▼'}
+                    {expandedTeam === team.id ? 'v' : '>'}
                   </div>
                 </div>
               </div>

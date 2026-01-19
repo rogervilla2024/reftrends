@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Historical Seasons',
   description: 'Compare referee performance across multiple seasons. Analyze how referees have changed their card behavior over time.',
   openGraph: {
-    title: 'Historical Seasons - RefStats',
+    title: 'Historical Seasons - RefTrends',
     description: 'Referee performance trends across seasons.',
-    url: 'https://refstats.com/tools/historical-seasons',
+    url: 'https://reftrends.com/tools/historical-seasons',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/historical-seasons',
+    canonical: 'https://reftrends.com/tools/historical-seasons',
   },
 };
 

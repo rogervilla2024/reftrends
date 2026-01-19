@@ -57,9 +57,9 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
   const [selectedReferee, setSelectedReferee] = useState<number | null>(null);
 
   const getTrendIcon = (trend: string) => {
-    if (trend === 'increasing') return '📈';
-    if (trend === 'decreasing') return '📉';
-    return '➡️';
+    if (trend === 'increasing') return '^';
+    if (trend === 'decreasing') return 'v';
+    return '-';
   };
 
   const getTrendColor = (trend: string) => {
@@ -106,7 +106,7 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
         </CardHeader>
         <CardContent>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis dataKey="name" className="text-xs" />
@@ -122,16 +122,16 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
                   type="monotone"
                   dataKey="Yellow Cards"
                   stackId="1"
-                  stroke="#eab308"
-                  fill="#eab308"
+                  stroke="hsl(var(--yellow-card))"
+                  fill="hsl(var(--yellow-card))"
                   fillOpacity={0.6}
                 />
                 <Area
                   type="monotone"
                   dataKey="Red Cards"
                   stackId="1"
-                  stroke="#ef4444"
-                  fill="#ef4444"
+                  stroke="hsl(var(--red-card))"
+                  fill="hsl(var(--red-card))"
                   fillOpacity={0.6}
                 />
               </AreaChart>
@@ -186,7 +186,7 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
                       </div>
                     </div>
                     <span className="text-muted-foreground">
-                      {selectedReferee === referee.id ? '▲' : '▼'}
+                      {selectedReferee === referee.id ? 'v' : '>'}
                     </span>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
                 {selectedReferee === referee.id && referee.monthlyData.length > 0 && (
                   <div className="p-4 pt-0 border-t bg-muted/20">
                     <div className="h-48">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                         <LineChart data={referee.monthlyData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                           <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                           <XAxis dataKey="month" className="text-xs" />
@@ -233,7 +233,7 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
         <Card className="bg-red-500/10">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">📈</span>
+              <span className="text-3xl font-bold text-red-500">^</span>
               <div>
                 <p className="font-bold text-lg">
                   {data.topReferees.filter(r => r.trend === 'increasing').length}
@@ -246,7 +246,7 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
         <Card className="bg-green-500/10">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">📉</span>
+              <span className="text-3xl font-bold text-green-500">v</span>
               <div>
                 <p className="font-bold text-lg">
                   {data.topReferees.filter(r => r.trend === 'decreasing').length}
@@ -259,7 +259,7 @@ export default function SeasonalTrendsClient({ data }: SeasonalTrendsClientProps
         <Card className="bg-gray-500/10">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">➡️</span>
+              <span className="text-3xl font-bold text-gray-500">-</span>
               <div>
                 <p className="font-bold text-lg">
                   {data.topReferees.filter(r => r.trend === 'stable').length}

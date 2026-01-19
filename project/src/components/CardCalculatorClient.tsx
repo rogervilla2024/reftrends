@@ -166,15 +166,15 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden relative">
                     {selectedReferee.photo ? (
-                      <Image src={selectedReferee.photo} alt="" fill className="object-cover" />
-                    ) : <div className="w-full h-full flex items-center justify-center">👤</div>}
+                      <Image src={selectedReferee.photo} alt={selectedReferee.name} fill className="object-cover" />
+                    ) : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-xs">REF</div>}
                   </div>
                   <div>
                     <p className="font-medium">{selectedReferee.name}</p>
                     <p className="text-xs text-muted-foreground">{selectedReferee.avgYellow.toFixed(1)} yellow/match</p>
                   </div>
                 </div>
-                <Button size="sm" variant="ghost" onClick={() => setSelectedReferee(null)}>✕</Button>
+                <Button size="sm" variant="ghost" onClick={() => setSelectedReferee(null)}>X</Button>
               </div>
             ) : (
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -185,11 +185,11 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
                     className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-secondary text-left"
                   >
                     <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden relative">
-                      {ref.photo ? <Image src={ref.photo} alt="" fill className="object-cover" /> : <div className="w-full h-full flex items-center justify-center text-xs">👤</div>}
+                      {ref.photo ? <Image src={ref.photo} alt={ref.name} fill className="object-cover" /> : <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">REF</div>}
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">{ref.name}</p>
-                      <p className="text-xs text-muted-foreground">{ref.avgYellow.toFixed(1)}🟨 {ref.matches} matches</p>
+                      <p className="text-xs text-muted-foreground">{ref.avgYellow.toFixed(1)} Y/m | {ref.matches} matches</p>
                     </div>
                   </button>
                 ))}
@@ -213,13 +213,13 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
             {selectedHomeTeam ? (
               <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg">
                 <div className="flex items-center gap-3">
-                  {selectedHomeTeam.logo && <Image src={selectedHomeTeam.logo} alt="" width={32} height={32} />}
+                  {selectedHomeTeam.logo && <Image src={selectedHomeTeam.logo} alt={selectedHomeTeam.name} width={32} height={32} />}
                   <div>
                     <p className="font-medium">{selectedHomeTeam.name}</p>
                     <p className="text-xs text-muted-foreground">{selectedHomeTeam.avgHomeYellow.toFixed(1)} yellow/home match</p>
                   </div>
                 </div>
-                <Button size="sm" variant="ghost" onClick={() => setSelectedHomeTeam(null)}>✕</Button>
+                <Button size="sm" variant="ghost" onClick={() => setSelectedHomeTeam(null)}>X</Button>
               </div>
             ) : (
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -229,7 +229,7 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
                     onClick={() => { setSelectedHomeTeam(team); setHomeSearch(''); }}
                     className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-secondary text-left"
                   >
-                    {team.logo && <Image src={team.logo} alt="" width={24} height={24} />}
+                    {team.logo && <Image src={team.logo} alt={team.name} width={24} height={24} />}
                     <div className="flex-1">
                       <p className="text-sm font-medium">{team.name}</p>
                       <p className="text-xs text-muted-foreground">{team.league}</p>
@@ -256,13 +256,13 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
             {selectedAwayTeam ? (
               <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg">
                 <div className="flex items-center gap-3">
-                  {selectedAwayTeam.logo && <Image src={selectedAwayTeam.logo} alt="" width={32} height={32} />}
+                  {selectedAwayTeam.logo && <Image src={selectedAwayTeam.logo} alt={selectedAwayTeam.name} width={32} height={32} />}
                   <div>
                     <p className="font-medium">{selectedAwayTeam.name}</p>
                     <p className="text-xs text-muted-foreground">{selectedAwayTeam.avgAwayYellow.toFixed(1)} yellow/away match</p>
                   </div>
                 </div>
-                <Button size="sm" variant="ghost" onClick={() => setSelectedAwayTeam(null)}>✕</Button>
+                <Button size="sm" variant="ghost" onClick={() => setSelectedAwayTeam(null)}>X</Button>
               </div>
             ) : (
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -272,7 +272,7 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
                     onClick={() => { setSelectedAwayTeam(team); setAwaySearch(''); }}
                     className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-secondary text-left"
                   >
-                    {team.logo && <Image src={team.logo} alt="" width={24} height={24} />}
+                    {team.logo && <Image src={team.logo} alt={team.name} width={24} height={24} />}
                     <div className="flex-1">
                       <p className="text-sm font-medium">{team.name}</p>
                       <p className="text-xs text-muted-foreground">{team.league}</p>
@@ -396,7 +396,7 @@ export default function CardCalculatorClient({ referees, teams }: Props) {
       {!predictions && (
         <Card>
           <CardContent className="py-12 text-center">
-            <div className="text-4xl mb-4">🃏</div>
+            <div className="text-4xl mb-4 text-muted-foreground font-bold">[C]</div>
             <h3 className="text-xl font-bold mb-2">Select Match Details</h3>
             <p className="text-muted-foreground">
               Choose a referee and both teams above to calculate expected cards

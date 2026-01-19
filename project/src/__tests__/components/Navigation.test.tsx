@@ -5,21 +5,19 @@ import { Navigation } from '@/components/Navigation';
 describe('Navigation', () => {
   it('renders the logo', () => {
     render(<Navigation />);
-    expect(screen.getByText('RefStats')).toBeInTheDocument();
+    expect(screen.getByText('RefTrends')).toBeInTheDocument();
   });
 
-  it('renders all navigation links', () => {
+  it('renders navigation links', () => {
     render(<Navigation />);
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Referees' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Leagues' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Tools' })).toBeInTheDocument();
   });
 
-  it('renders sign in button', () => {
+  it('renders Tools dropdown button', () => {
     render(<Navigation />);
-    const signInButtons = screen.getAllByRole('button', { name: /sign in/i });
-    expect(signInButtons.length).toBeGreaterThan(0);
+    expect(screen.getByRole('button', { name: 'Tools menu' })).toBeInTheDocument();
   });
 
   it('toggles mobile menu on button click', () => {
@@ -30,7 +28,7 @@ describe('Navigation', () => {
     expect(mobileLinks.length).toBe(1); // Only desktop link
 
     // Click mobile menu button
-    const menuButton = screen.getByRole('button', { name: '' });
+    const menuButton = screen.getByRole('button', { name: 'Open menu' });
     fireEvent.click(menuButton);
 
     // Now should have both desktop and mobile links
@@ -42,7 +40,7 @@ describe('Navigation', () => {
     render(<Navigation />);
 
     // Open mobile menu
-    const menuButton = screen.getByRole('button', { name: '' });
+    const menuButton = screen.getByRole('button', { name: 'Open menu' });
     fireEvent.click(menuButton);
 
     // Get mobile links (second set)
@@ -59,9 +57,20 @@ describe('Navigation', () => {
   it('has correct link hrefs', () => {
     render(<Navigation />);
 
-    expect(screen.getByRole('link', { name: 'RefStats' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /RefTrends/i })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Referees' })).toHaveAttribute('href', '/referees');
     expect(screen.getByRole('link', { name: 'Leagues' })).toHaveAttribute('href', '/leagues');
-    expect(screen.getByRole('link', { name: 'Tools' })).toHaveAttribute('href', '/tools');
+  });
+
+  it('opens Tools dropdown when clicked', () => {
+    render(<Navigation />);
+    
+    const toolsButton = screen.getByRole('button', { name: 'Tools menu' });
+    fireEvent.click(toolsButton);
+    
+    // Check that dropdown items are visible
+    expect(screen.getByRole('link', { name: 'Compare Referees' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Card Calculator' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'All Tools' })).toBeInTheDocument();
   });
 });

@@ -398,23 +398,23 @@ export default function RefereeComparisonClient({
                 <CardTitle>Average Stats Per Match</CardTitle>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={300} minWidth={0}>
                   <BarChart data={barChartData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                    <XAxis dataKey="name" stroke="#9ca3af" />
-                    <YAxis stroke="#9ca3af" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                    <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
+                    <YAxis stroke="hsl(var(--muted-foreground))" />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: '#1e293b',
-                        border: '1px solid #374151',
+                        backgroundColor: 'hsl(var(--background))',
+                        border: '1px solid hsl(var(--border))',
                         borderRadius: '8px',
                       }}
-                      labelStyle={{ color: '#f3f4f6' }}
+                      labelStyle={{ color: 'hsl(var(--foreground))' }}
                     />
                     <Legend />
-                    <Bar dataKey="yellowCards" name="Yellow Cards" fill="#eab308" />
-                    <Bar dataKey="redCards" name="Red Cards" fill="#ef4444" />
-                    <Bar dataKey="penalties" name="Penalties" fill="#3b82f6" />
+                    <Bar dataKey="yellowCards" name="Yellow Cards" fill="hsl(var(--yellow-card))" />
+                    <Bar dataKey="redCards" name="Red Cards" fill="hsl(var(--red-card))" />
+                    <Bar dataKey="penalties" name="Penalties" fill="hsl(var(--chart-1))" />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -426,11 +426,11 @@ export default function RefereeComparisonClient({
                 <CardTitle>Referee Profile Comparison</CardTitle>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={400}>
+                <ResponsiveContainer width="100%" height={400} minWidth={0}>
                   <RadarChart data={radarChartData}>
-                    <PolarGrid stroke="#374151" />
-                    <PolarAngleAxis dataKey="stat" stroke="#9ca3af" />
-                    <PolarRadiusAxis stroke="#9ca3af" />
+                    <PolarGrid stroke="hsl(var(--border))" />
+                    <PolarAngleAxis dataKey="stat" stroke="hsl(var(--muted-foreground))" />
+                    <PolarRadiusAxis stroke="hsl(var(--muted-foreground))" />
                     {selectedRefereesData.map((ref, index) => (
                       <Radar
                         key={ref.id}
@@ -456,11 +456,162 @@ export default function RefereeComparisonClient({
                 </p>
               </CardContent>
             </Card>
+
+            {/* Betting Insights */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  Betting Insights
+                  <span className="text-xs px-2 py-0.5 rounded bg-green-500/20 text-green-400">
+                    +EV
+                  </span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Over/Under Recommendations */}
+                  <div className="space-y-4">
+                    <h4 className="font-medium text-sm text-muted-foreground">Card Market Recommendations</h4>
+                    {selectedRefereesData.map((ref, index) => {
+                      const totalCards = ref.careerStats.avgYellowCards + ref.careerStats.avgRedCards;
+                      const isHighCards = totalCards > 4;
+                      const isLowCards = totalCards < 3.5;
+                      return (
+                        <div
+                          key={ref.id}
+                          className="p-3 rounded-lg bg-secondary/30"
+                          style={{ borderLeft: `3px solid ${radarColors[index]}` }}
+                        >
+                          <div className="font-medium mb-2">{ref.name}</div>
+                          <div className="flex flex-wrap gap-2">
+                            {isHighCards && (
+                              <span className="px-2 py-1 rounded text-xs bg-green-500/20 text-green-400">
+                                Over 3.5 Cards
+                              </span>
+                            )}
+                            {isLowCards && (
+                              <span className="px-2 py-1 rounded text-xs bg-blue-500/20 text-blue-400">
+                                Under 4.5 Cards
+                              </span>
+                            )}
+                            {!isHighCards && !isLowCards && (
+                              <span className="px-2 py-1 rounded text-xs bg-yellow-500/20 text-yellow-400">
+                                Average - Context Dependent
+                              </span>
+                            )}
+                            {ref.careerStats.avgRedCards > 0.15 && (
+                              <span className="px-2 py-1 rounded text-xs bg-red-500/20 text-red-400">
+                                Red Card Prone
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-2">
+                            Expected: {totalCards.toFixed(1)} cards/match
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Head-to-Head Winners */}
+                  <div className="space-y-4">
+                    <h4 className="font-medium text-sm text-muted-foreground">Head-to-Head Comparison</h4>
+                    <div className="space-y-3">
+                      {/* Most Cards */}
+                      <div className="p-3 rounded-lg bg-yellow-500/10">
+                        <div className="text-xs text-muted-foreground mb-1">Most Cards Per Match</div>
+                        <div className="font-bold text-yellow-500">
+                          {selectedRefereesData.reduce((max, ref) =>
+                            ref.careerStats.avgYellowCards > max.careerStats.avgYellowCards ? ref : max
+                          ).name}
+                        </div>
+                        <div className="text-sm">
+                          {Math.max(...selectedRefereesData.map(r => r.careerStats.avgYellowCards)).toFixed(2)} yellow/match
+                        </div>
+                      </div>
+
+                      {/* Strictest */}
+                      <div className="p-3 rounded-lg bg-red-500/10">
+                        <div className="text-xs text-muted-foreground mb-1">Strictest Referee</div>
+                        <div className="font-bold text-red-500">
+                          {selectedRefereesData.reduce((max, ref) =>
+                            ref.careerStats.avgStrictness > max.careerStats.avgStrictness ? ref : max
+                          ).name}
+                        </div>
+                        <div className="text-sm">
+                          Strictness: {Math.max(...selectedRefereesData.map(r => r.careerStats.avgStrictness)).toFixed(1)}
+                        </div>
+                      </div>
+
+                      {/* Most Lenient */}
+                      <div className="p-3 rounded-lg bg-green-500/10">
+                        <div className="text-xs text-muted-foreground mb-1">Most Lenient</div>
+                        <div className="font-bold text-green-500">
+                          {selectedRefereesData.reduce((min, ref) =>
+                            ref.careerStats.avgStrictness < min.careerStats.avgStrictness ? ref : min
+                          ).name}
+                        </div>
+                        <div className="text-sm">
+                          Strictness: {Math.min(...selectedRefereesData.map(r => r.careerStats.avgStrictness)).toFixed(1)}
+                        </div>
+                      </div>
+
+                      {/* Most Experienced */}
+                      <div className="p-3 rounded-lg bg-primary/10">
+                        <div className="text-xs text-muted-foreground mb-1">Most Experienced</div>
+                        <div className="font-bold text-primary">
+                          {selectedRefereesData.reduce((max, ref) =>
+                            ref.careerStats.totalMatches > max.careerStats.totalMatches ? ref : max
+                          ).name}
+                        </div>
+                        <div className="text-sm">
+                          {Math.max(...selectedRefereesData.map(r => r.careerStats.totalMatches))} matches
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Tips */}
+                <div className="mt-6 p-4 rounded-lg bg-secondary/20 border border-border">
+                  <h4 className="font-medium mb-3">Quick Betting Tips</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {(() => {
+                      const strictest = selectedRefereesData.reduce((max, ref) =>
+                        ref.careerStats.avgStrictness > max.careerStats.avgStrictness ? ref : max
+                      );
+                      const lenient = selectedRefereesData.reduce((min, ref) =>
+                        ref.careerStats.avgStrictness < min.careerStats.avgStrictness ? ref : min
+                      );
+                      const diff = strictest.careerStats.avgYellowCards - lenient.careerStats.avgYellowCards;
+
+                      return (
+                        <>
+                          <li>
+                            <span className="text-yellow-500">•</span> {strictest.name} averages{' '}
+                            <span className="text-yellow-500 font-medium">{diff.toFixed(2)} more yellow cards</span>{' '}
+                            per match than {lenient.name}
+                          </li>
+                          <li>
+                            <span className="text-green-500">•</span> For <span className="text-green-500 font-medium">Under bets</span>,{' '}
+                            prefer matches with {lenient.name}
+                          </li>
+                          <li>
+                            <span className="text-red-500">•</span> For <span className="text-red-500 font-medium">Over bets</span>,{' '}
+                            prefer matches with {strictest.name}
+                          </li>
+                        </>
+                      );
+                    })()}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
           </>
         ) : (
           <Card>
             <CardContent className="py-12 text-center">
-              <div className="text-4xl mb-4">⚖️</div>
+              <div className="text-4xl mb-4 text-muted-foreground font-bold">[vs]</div>
               <h3 className="text-xl font-bold mb-2">Select Referees to Compare</h3>
               <p className="text-muted-foreground">
                 Choose at least 2 referees from the list to see a detailed

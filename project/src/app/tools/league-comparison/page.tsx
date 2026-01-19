@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'League Comparison',
   description: 'Compare referee strictness and card statistics across the top 5 European leagues. Premier League, La Liga, Serie A, Bundesliga, and Ligue 1.',
   openGraph: {
-    title: 'League Comparison - RefStats',
+    title: 'League Comparison - RefTrends',
     description: 'Compare referee strictness across Europe\'s top 5 leagues.',
-    url: 'https://refstats.com/tools/league-comparison',
+    url: 'https://reftrends.com/tools/league-comparison',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/league-comparison',
+    canonical: 'https://reftrends.com/tools/league-comparison',
   },
 };
 

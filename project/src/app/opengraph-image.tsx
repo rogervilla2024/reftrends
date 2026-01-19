@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'RefStats - Referee Statistics for Smart Bettors';
+export const alt = 'RefTrends - Referee Statistics & Betting Analytics';
 export const size = {
   width: 1200,
   height: 630,
@@ -54,7 +54,7 @@ export default async function Image() {
               color: '#22c55e',
             }}
           >
-            RefStats
+            RefTrends
           </span>
         </div>
         <div
@@ -65,7 +65,7 @@ export default async function Image() {
             maxWidth: '800px',
           }}
         >
-          Referee Statistics for Smart Bettors
+          Referee Statistics & Betting Analytics
         </div>
         <div
           style={{
@@ -97,7 +97,7 @@ export default async function Image() {
               borderRadius: '12px',
             }}
           >
-            <span style={{ fontSize: '32px', color: '#22c55e', fontWeight: 'bold' }}>5</span>
+            <span style={{ fontSize: '32px', color: '#22c55e', fontWeight: 'bold' }}>8</span>
             <span style={{ fontSize: '18px', color: '#71717a' }}>Leagues</span>
           </div>
           <div

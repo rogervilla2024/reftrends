@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Seasonal Trends',
   description: 'Analyze how referee behavior changes throughout the football season. Monthly card trends, strictness patterns, and seasonal insights.',
   openGraph: {
-    title: 'Seasonal Trends - RefStats',
+    title: 'Seasonal Trends - RefTrends',
     description: 'Discover how referee strictness changes throughout the season.',
-    url: 'https://refstats.com/tools/seasonal-trends',
+    url: 'https://reftrends.com/tools/seasonal-trends',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/seasonal-trends',
+    canonical: 'https://reftrends.com/tools/seasonal-trends',
   },
 };
 

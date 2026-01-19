@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Head-to-Head Analysis',
   description: 'Detailed referee vs team analysis. Compare how specific teams perform with different referees.',
   openGraph: {
-    title: 'Head-to-Head Analysis - RefStats',
+    title: 'Head-to-Head Analysis - RefTrends',
     description: 'Referee vs Team detailed comparison.',
-    url: 'https://refstats.com/tools/head-to-head',
+    url: 'https://reftrends.com/tools/head-to-head',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/head-to-head',
+    canonical: 'https://reftrends.com/tools/head-to-head',
   },
 };
 

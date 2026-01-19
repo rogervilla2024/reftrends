@@ -1,5 +1,5 @@
 /**
- * Daily Update Script for RefStats
+ * Daily Update Script for RefTrends
  *
  * This script fetches only today's and recent fixtures (last 3 days)
  * to update the database with new match results and statistics.

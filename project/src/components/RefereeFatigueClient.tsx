@@ -149,7 +149,7 @@ export default function RefereeFatigueClient({ data }: RefereeFatigueClientProps
         </CardHeader>
         <CardContent>
           <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis dataKey="name" className="text-xs" />
@@ -161,8 +161,8 @@ export default function RefereeFatigueClient({ data }: RefereeFatigueClientProps
                   }}
                 />
                 <Legend />
-                <Bar dataKey="Yellow Cards" fill="#eab308" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Red Cards" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Yellow Cards" fill="hsl(var(--yellow-card))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Red Cards" fill="hsl(var(--red-card))" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -318,7 +318,7 @@ export default function RefereeFatigueClient({ data }: RefereeFatigueClientProps
                     <p className="text-xs text-muted-foreground">Impact</p>
                   </div>
                   <span className="text-muted-foreground">
-                    {expandedReferee === referee.id ? '▲' : '▼'}
+                    {expandedReferee === referee.id ? 'v' : '>'}
                   </span>
                 </div>
               </div>
@@ -328,7 +328,7 @@ export default function RefereeFatigueClient({ data }: RefereeFatigueClientProps
             {expandedReferee === referee.id && (
               <div className="px-4 pb-4 pt-0 border-t bg-muted/20">
                 <div className="h-48 mt-4">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                     <LineChart
                       data={referee.restData.filter(d => d.matches > 0)}
                       margin={{ top: 10, right: 10, left: 0, bottom: 0 }}

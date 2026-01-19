@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Home/Away Bias Analysis',
   description: 'Analyze referee tendencies for home vs away team cards. Discover which referees favor home or away teams with statistical evidence.',
   openGraph: {
-    title: 'Home/Away Bias Analysis - RefStats',
+    title: 'Home/Away Bias Analysis - RefTrends',
     description: 'Discover referee home/away card bias patterns.',
-    url: 'https://refstats.com/tools/home-away-bias',
+    url: 'https://reftrends.com/tools/home-away-bias',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/home-away-bias',
+    canonical: 'https://reftrends.com/tools/home-away-bias',
   },
 };
 

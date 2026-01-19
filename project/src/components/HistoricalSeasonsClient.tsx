@@ -59,7 +59,7 @@ export default function HistoricalSeasonsClient({ data }: HistoricalSeasonsClien
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <div className="text-6xl mb-4">📅</div>
+          <div className="text-6xl mb-4 font-bold text-muted-foreground">--</div>
           <h2 className="text-xl font-bold mb-2">Building Historical Data...</h2>
           <p className="text-muted-foreground">
             We are currently collecting historical season data from the API.
@@ -111,7 +111,7 @@ export default function HistoricalSeasonsClient({ data }: HistoricalSeasonsClien
         </CardHeader>
         <CardContent>
           <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis dataKey="season" className="text-xs" />
@@ -123,8 +123,8 @@ export default function HistoricalSeasonsClient({ data }: HistoricalSeasonsClien
                   }}
                 />
                 <Legend />
-                <Bar dataKey="avgYellow" fill="#eab308" name="Avg Yellow" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="avgRed" fill="#ef4444" name="Avg Red" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="avgYellow" fill="hsl(var(--yellow-card))" name="Avg Yellow" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="avgRed" fill="hsl(var(--red-card))" name="Avg Red" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -139,7 +139,7 @@ export default function HistoricalSeasonsClient({ data }: HistoricalSeasonsClien
           </CardHeader>
           <CardContent>
             <div className="h-72">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                 <LineChart
                   data={chartData.map(d => {
                     const leagueData: Record<string, number> = { season: d.seasonNum };
@@ -219,9 +219,9 @@ export default function HistoricalSeasonsClient({ data }: HistoricalSeasonsClien
                             : 'bg-gray-500/20 text-gray-500'
                         }`}
                       >
-                        {referee.trend === 'stricter' && '↑ Stricter'}
-                        {referee.trend === 'lenient' && '↓ More Lenient'}
-                        {referee.trend === 'stable' && '→ Stable'}
+                        {referee.trend === 'stricter' && '^ Stricter'}
+                        {referee.trend === 'lenient' && 'v More Lenient'}
+                        {referee.trend === 'stable' && '- Stable'}
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {referee.changePercent > 0 ? '+' : ''}

@@ -113,7 +113,7 @@ export default function TeamRefereeHistoryClient({ teams, referees, history }: P
                   }`}
                 >
                   {team.logo && (
-                    <Image src={team.logo} alt="" width={24} height={24} className="w-6 h-6" />
+                    <Image src={team.logo} alt={team.name} width={24} height={24} className="w-6 h-6" />
                   )}
                   <div>
                     <p className="font-medium text-sm">{team.name}</p>
@@ -152,9 +152,9 @@ export default function TeamRefereeHistoryClient({ teams, referees, history }: P
                 >
                   <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden relative shrink-0">
                     {referee.photo ? (
-                      <Image src={referee.photo} alt="" fill className="object-cover" />
+                      <Image src={referee.photo} alt={referee.name} fill className="object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-xs">👤</div>
+                      <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">REF</div>
                     )}
                   </div>
                   <p className="font-medium text-sm">{referee.name}</p>
@@ -241,8 +241,8 @@ export default function TeamRefereeHistoryClient({ teams, referees, history }: P
                       <div className="text-right">
                         <p className="font-bold">{match.result}</p>
                         <p className="text-xs">
-                          <span className="text-yellow-500">{match.yellowCards}🟨</span>
-                          {match.redCards > 0 && <span className="text-red-500 ml-1">{match.redCards}🟥</span>}
+                          <span className="text-yellow-500">{match.yellowCards}Y</span>
+                          {match.redCards > 0 && <span className="text-red-500 ml-1">{match.redCards}R</span>}
                         </p>
                       </div>
                     </div>
@@ -271,7 +271,7 @@ export default function TeamRefereeHistoryClient({ teams, referees, history }: P
                   </div>
                   <div className="flex items-center gap-4 text-sm">
                     <span>{record.matches} matches</span>
-                    <span className="text-yellow-500">{record.yellowCards}🟨</span>
+                    <span className="text-yellow-500">{record.yellowCards}Y</span>
                     <span className="text-green-500">{record.wins}W</span>
                     <Button size="sm" variant="outline" onClick={() => setSelectedReferee(record.refereeId)}>
                       Details
@@ -297,7 +297,7 @@ export default function TeamRefereeHistoryClient({ teams, referees, history }: P
                   <div className="font-medium">{record.teamName}</div>
                   <div className="flex items-center gap-4 text-sm">
                     <span>{record.matches} matches</span>
-                    <span className="text-yellow-500">{record.yellowCards}🟨</span>
+                    <span className="text-yellow-500">{record.yellowCards}Y</span>
                     <span className="text-green-500">{record.wins}W</span>
                     <Button size="sm" variant="outline" onClick={() => setSelectedTeam(record.teamId)}>
                       Details
@@ -314,7 +314,7 @@ export default function TeamRefereeHistoryClient({ teams, referees, history }: P
       {!selectedTeam && !selectedReferee && (
         <Card>
           <CardContent className="py-12 text-center">
-            <div className="text-4xl mb-4">🔍</div>
+            <div className="text-4xl mb-4 font-bold text-muted-foreground">?</div>
             <h3 className="text-xl font-bold mb-2">Select a Team or Referee</h3>
             <p className="text-muted-foreground">
               Choose a team and/or referee above to see their historical statistics together

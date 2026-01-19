@@ -164,7 +164,7 @@ async function fetchLeagueData(leagueApiId: number, season: number): Promise<voi
 
   const teams = new Map<number, { name: string; logo: string }>();
   const referees = new Map<string, { name: string }>();
-  const fixtureStats = new Map<number, { yellowCards: number; redCards: number; fouls: number; penalties: number; homeYellow: number; awayYellow: number; homeRed: number; awayRed: number }>();
+  const fixtureStats = new Map<number, { yellowCards: number; redCards: number; fouls: number; penalties: number; homePenalties: number; awayPenalties: number; homeYellow: number; awayYellow: number; homeRed: number; awayRed: number }>();
 
   // Process fixtures
   for (const fixture of fixturesData.response) {
@@ -235,6 +235,9 @@ async function fetchLeagueData(leagueApiId: number, season: number): Promise<voi
       let awayYellow = 0;
       let homeRed = 0;
       let awayRed = 0;
+      let penalties = 0;
+      let homePenalties = 0;
+      let awayPenalties = 0;
 
       for (const event of eventsData.response) {
         if (event.type === 'Card') {
@@ -248,13 +251,21 @@ async function fetchLeagueData(leagueApiId: number, season: number): Promise<voi
             else awayRed++;
           }
         }
+        // Count penalties (both scored and missed)
+        if (event.detail === 'Penalty' || event.detail === 'Missed Penalty') {
+          penalties++;
+          if (event.team.id === fixture.teams.home.id) homePenalties++;
+          else awayPenalties++;
+        }
       }
 
       fixtureStats.set(fixture.fixture.id, {
         yellowCards,
         redCards,
         fouls: 0, // Would need separate stats API call
-        penalties: 0,
+        penalties,
+        homePenalties,
+        awayPenalties,
         homeYellow,
         awayYellow,
         homeRed,
@@ -323,6 +334,9 @@ async function fetchLeagueData(leagueApiId: number, season: number): Promise<voi
             awayYellowCards: stats.awayYellow,
             homeRedCards: stats.homeRed,
             awayRedCards: stats.awayRed,
+            penalties: stats.penalties,
+            homePenalties: stats.homePenalties,
+            awayPenalties: stats.awayPenalties,
           },
           create: {
             matchId: match.id,
@@ -332,6 +346,9 @@ async function fetchLeagueData(leagueApiId: number, season: number): Promise<voi
             awayYellowCards: stats.awayYellow,
             homeRedCards: stats.homeRed,
             awayRedCards: stats.awayRed,
+            penalties: stats.penalties,
+            homePenalties: stats.homePenalties,
+            awayPenalties: stats.awayPenalties,
           },
         });
       }

@@ -42,7 +42,7 @@ const MatchCard = memo(function MatchCard({ assignment }: MatchCardProps) {
           {assignment.fixture.homeLogo && (
             <Image
               src={assignment.fixture.homeLogo}
-              alt=""
+              alt={assignment.fixture.homeTeam}
               width={24}
               height={24}
               className="w-6 h-6 object-contain shrink-0"
@@ -56,7 +56,7 @@ const MatchCard = memo(function MatchCard({ assignment }: MatchCardProps) {
           {assignment.fixture.awayLogo && (
             <Image
               src={assignment.fixture.awayLogo}
-              alt=""
+              alt={assignment.fixture.awayTeam}
               width={24}
               height={24}
               className="w-6 h-6 object-contain shrink-0"

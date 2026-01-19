@@ -1,0 +1,275 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "RefTrends - Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RefTrends
+      - menubar [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Referees" [ref=e10] [cursor=pointer]:
+          - /url: /referees
+        - link "Leagues" [ref=e11] [cursor=pointer]:
+          - /url: /leagues
+        - button "Tools menu" [ref=e13] [cursor=pointer]:
+          - text: Tools
+          - img [ref=e14]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - heading "Frequently Asked Questions" [level=1] [ref=e19]
+        - paragraph [ref=e20]: Find answers to common questions about RefTrends, our data, and how to use our platform.
+      - generic [ref=e21]:
+        - region "General" [ref=e22]:
+          - heading "General" [level=2] [ref=e23]
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - button "What is RefTrends?" [ref=e27] [cursor=pointer]:
+                - generic [ref=e28]: What is RefTrends?
+                - img [ref=e29]
+              - generic [ref=e31]: RefTrends is a football referee statistics and analysis platform designed to help bettors, analysts, and fans understand referee tendencies and trends.
+            - generic [ref=e32]:
+              - button "Is RefTrends free?" [ref=e33] [cursor=pointer]:
+                - generic [ref=e34]: Is RefTrends free?
+                - img [ref=e35]
+              - generic [ref=e37]: Yes, basic access to RefTrends is completely free. We may offer premium features in the future.
+            - generic [ref=e38]:
+              - button "Which leagues do you cover?" [ref=e39] [cursor=pointer]:
+                - generic [ref=e40]: Which leagues do you cover?
+                - img [ref=e41]
+              - generic [ref=e43]: We cover major European leagues including Premier League, La Liga, Serie A, Bundesliga, Ligue 1, Eredivisie, Liga Portugal, Turkish Super Lig, and more.
+            - generic [ref=e44]:
+              - button "How often is data updated?" [ref=e45] [cursor=pointer]:
+                - generic [ref=e46]: How often is data updated?
+                - img [ref=e47]
+              - generic [ref=e49]: Statistics are typically updated within 24 hours of match completion.
+        - region "Data & Statistics" [ref=e50]:
+          - heading "Data & Statistics" [level=2] [ref=e51]
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - button "Where does your data come from?" [ref=e55] [cursor=pointer]:
+                - generic [ref=e56]: Where does your data come from?
+                - img [ref=e57]
+              - generic [ref=e59]: We compile data from official league sources, verified match reports, and reputable data providers. See our Methodology page for details.
+            - generic [ref=e60]:
+              - button "How accurate is your data?" [ref=e61] [cursor=pointer]:
+                - generic [ref=e62]: How accurate is your data?
+                - img [ref=e63]
+              - generic [ref=e65]: We strive for maximum accuracy but errors can occur. Statistics should be used as a guide, not absolute truth. Always verify critical information.
+            - generic [ref=e66]:
+              - button "What does \"Strictness Score\" mean?" [ref=e67] [cursor=pointer]:
+                - generic [ref=e68]: What does "Strictness Score" mean?
+                - img [ref=e69]
+              - generic [ref=e71]: Our proprietary 1-10 scale measuring how likely a referee is to issue cards. Higher scores indicate stricter referees.
+            - generic [ref=e72]:
+              - button "Can I download data?" [ref=e73] [cursor=pointer]:
+                - generic [ref=e74]: Can I download data?
+                - img [ref=e75]
+              - generic [ref=e77]:
+                - text: API access for data download will be available soon. Contact
+                - link "api@reftrends.com" [ref=e78] [cursor=pointer]:
+                  - /url: mailto:api@reftrends.com
+                - text: for enterprise inquiries.
+        - region "Betting" [ref=e79]:
+          - heading "Betting" [level=2] [ref=e80]
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - button "Do you provide betting tips?" [ref=e84] [cursor=pointer]:
+                - generic [ref=e85]: Do you provide betting tips?
+                - img [ref=e86]
+              - generic [ref=e88]: No. RefTrends provides statistics and analysis only. We do not recommend specific bets or guarantee outcomes.
+            - generic [ref=e89]:
+              - button "Should I bet based on referee statistics?" [ref=e90] [cursor=pointer]:
+                - generic [ref=e91]: Should I bet based on referee statistics?
+                - img [ref=e92]
+              - generic [ref=e94]: Referee statistics are one factor among many. Never bet more than you can afford to lose, and always gamble responsibly.
+            - generic [ref=e95]:
+              - button "Are referee statistics reliable predictors?" [ref=e96] [cursor=pointer]:
+                - generic [ref=e97]: Are referee statistics reliable predictors?
+                - img [ref=e98]
+              - generic [ref=e100]: Referee tendencies can be informative but are not guarantees. Past performance does not predict future results.
+        - region "Technical" [ref=e101]:
+          - heading "Technical" [level=2] [ref=e102]
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - button "The site isn't loading properly. What should I do?" [ref=e106] [cursor=pointer]:
+                - generic [ref=e107]: The site isn't loading properly. What should I do?
+                - img [ref=e108]
+              - generic [ref=e110]:
+                - text: Try clearing your browser cache, disabling ad blockers, or using a different browser. Contact
+                - link "support@reftrends.com" [ref=e111] [cursor=pointer]:
+                  - /url: mailto:support@reftrends.com
+                - text: if issues persist.
+            - generic [ref=e112]:
+              - button "Can I suggest a feature?" [ref=e113] [cursor=pointer]:
+                - generic [ref=e114]: Can I suggest a feature?
+                - img [ref=e115]
+              - generic [ref=e117]:
+                - text: Yes! We love feedback. Email
+                - link "suggestions@reftrends.com" [ref=e118] [cursor=pointer]:
+                  - /url: mailto:suggestions@reftrends.com
+                - text: with your ideas.
+            - generic [ref=e119]:
+              - button "Do you have an API?" [ref=e120] [cursor=pointer]:
+                - generic [ref=e121]: Do you have an API?
+                - img [ref=e122]
+              - generic [ref=e124]:
+                - text: API access is in development. Register interest at
+                - link "api@reftrends.com" [ref=e125] [cursor=pointer]:
+                  - /url: mailto:api@reftrends.com
+                - text: .
+        - region "Legal" [ref=e126]:
+          - heading "Legal" [level=2] [ref=e127]
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - button "Is RefTrends legal?" [ref=e131] [cursor=pointer]:
+                - generic [ref=e132]: Is RefTrends legal?
+                - img [ref=e133]
+              - generic [ref=e135]: Yes. We provide publicly available statistics and analysis. We do not facilitate gambling.
+            - generic [ref=e136]:
+              - button "What age do I need to be to use RefTrends?" [ref=e137] [cursor=pointer]:
+                - generic [ref=e138]: What age do I need to be to use RefTrends?
+                - img [ref=e139]
+              - generic [ref=e141]: Users must be 18+ or the legal age in their jurisdiction.
+      - generic [ref=e144]:
+        - heading "Still have questions?" [level=2] [ref=e145]
+        - paragraph [ref=e146]: We're here to help. Get in touch with our support team.
+        - generic [ref=e147]:
+          - link "Contact Support" [ref=e148] [cursor=pointer]:
+            - /url: mailto:support@reftrends.com
+          - link "Suggest a Feature" [ref=e149] [cursor=pointer]:
+            - /url: mailto:suggestions@reftrends.com
+      - paragraph [ref=e153]:
+        - strong [ref=e154]: "Responsible Gambling:"
+        - text: RefTrends provides statistical analysis for informational purposes only. We do not encourage betting. If you choose to bet, always gamble responsibly, set limits, and seek help if gambling becomes a problem. Visit
+        - link "BeGambleAware.org" [ref=e155] [cursor=pointer]:
+          - /url: https://www.begambleaware.org
+        - text: for support.
+  - contentinfo "Site footer" [ref=e156]:
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]:
+          - heading "Leagues" [level=3] [ref=e160]
+          - list [ref=e161]:
+            - listitem [ref=e162]:
+              - link "Premier League" [ref=e163] [cursor=pointer]:
+                - /url: /leagues/39
+            - listitem [ref=e164]:
+              - link "La Liga" [ref=e165] [cursor=pointer]:
+                - /url: /leagues/140
+            - listitem [ref=e166]:
+              - link "Serie A" [ref=e167] [cursor=pointer]:
+                - /url: /leagues/135
+            - listitem [ref=e168]:
+              - link "Bundesliga" [ref=e169] [cursor=pointer]:
+                - /url: /leagues/78
+            - listitem [ref=e170]:
+              - link "Ligue 1" [ref=e171] [cursor=pointer]:
+                - /url: /leagues/61
+            - listitem [ref=e172]:
+              - link "Eredivisie" [ref=e173] [cursor=pointer]:
+                - /url: /leagues/88
+            - listitem [ref=e174]:
+              - link "Liga Portugal" [ref=e175] [cursor=pointer]:
+                - /url: /leagues/94
+            - listitem [ref=e176]:
+              - link "Super Lig" [ref=e177] [cursor=pointer]:
+                - /url: /leagues/203
+        - generic [ref=e178]:
+          - heading "Tools" [level=3] [ref=e179]
+          - list [ref=e180]:
+            - listitem [ref=e181]:
+              - link "Referee Lookup" [ref=e182] [cursor=pointer]:
+                - /url: /referees
+            - listitem [ref=e183]:
+              - link "Compare Refs" [ref=e184] [cursor=pointer]:
+                - /url: /tools/referee-comparison
+            - listitem [ref=e185]:
+              - link "Trend Analyzer" [ref=e186] [cursor=pointer]:
+                - /url: /tools/seasonal-trends
+            - listitem [ref=e187]:
+              - link "Match Predictor" [ref=e188] [cursor=pointer]:
+                - /url: /tools/match-analyzer
+            - listitem [ref=e189]:
+              - link "Penalty Stats" [ref=e190] [cursor=pointer]:
+                - /url: /tools/penalty-stats
+            - listitem [ref=e191]:
+              - link "Card Calculator" [ref=e192] [cursor=pointer]:
+                - /url: /tools/card-calculator
+        - generic [ref=e193]:
+          - heading "Resources" [level=3] [ref=e194]
+          - list [ref=e195]:
+            - listitem [ref=e196]:
+              - link "Methodology" [ref=e197] [cursor=pointer]:
+                - /url: /methodology
+            - listitem [ref=e198]:
+              - link "FAQ" [ref=e199] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e200]:
+              - link "Glossary" [ref=e201] [cursor=pointer]:
+                - /url: /glossary
+            - listitem [ref=e202]:
+              - link "About Us" [ref=e203] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e204]:
+              - link "Blog" [ref=e205] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e206]:
+              - link "Contact" [ref=e207] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e208]:
+          - heading "Company" [level=3] [ref=e209]
+          - list [ref=e210]:
+            - listitem [ref=e211]:
+              - link "Press Kit" [ref=e212] [cursor=pointer]:
+                - /url: /press-kit
+            - listitem [ref=e213]:
+              - link "Careers" [ref=e214] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e215]:
+              - link "Advertise" [ref=e216] [cursor=pointer]:
+                - /url: /advertise
+            - listitem [ref=e217]:
+              - link "Partners" [ref=e218] [cursor=pointer]:
+                - /url: /partners
+      - generic [ref=e219]:
+        - heading "Get Weekly Referee Insights" [level=3] [ref=e220]
+        - paragraph [ref=e221]: Get weekly referee insights and betting edges delivered to your inbox.
+        - generic [ref=e222]:
+          - textbox "Email address for newsletter" [ref=e223]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=e224] [cursor=pointer]
+        - generic [ref=e225] [cursor=pointer]:
+          - checkbox "Agree to receive marketing emails" [ref=e226]
+          - generic [ref=e227]: I agree to receive marketing emails. Unsubscribe anytime.
+      - generic [ref=e228]:
+        - generic [ref=e229]:
+          - paragraph [ref=e230]: © 2026 RefTrends. All rights reserved.
+          - navigation "Legal links" [ref=e231]:
+            - generic [ref=e232]:
+              - link "Privacy Policy" [ref=e233] [cursor=pointer]:
+                - /url: /privacy-policy
+              - text: "|"
+            - generic [ref=e234]:
+              - link "Terms of Service" [ref=e235] [cursor=pointer]:
+                - /url: /terms-of-service
+              - text: "|"
+            - generic [ref=e236]:
+              - link "Disclaimer" [ref=e237] [cursor=pointer]:
+                - /url: /disclaimer
+              - text: "|"
+            - link "Cookie Policy" [ref=e239] [cursor=pointer]:
+              - /url: /cookies
+        - generic [ref=e240]:
+          - paragraph [ref=e241]: Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
+          - paragraph [ref=e242]:
+            - text: If you have a gambling problem, visit
+            - link "BeGambleAware.org" [ref=e243] [cursor=pointer]:
+              - /url: https://www.begambleaware.org
+          - paragraph [ref=e244]: 18+ - Gambling can be addictive. Play responsibly.
+```

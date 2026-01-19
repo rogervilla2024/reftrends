@@ -1,9 +1,9 @@
-# RefStats Robots.txt
+# RefTrends Robots.txt
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://refstats.com/sitemap.xml
+Sitemap: https://reftrends.com/sitemap.xml
 
 # Disallow API routes
 Disallow: /api/

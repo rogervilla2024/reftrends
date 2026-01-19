@@ -93,7 +93,7 @@ export default function LeagueComparisonClient({ leagues }: LeagueComparisonClie
         </CardHeader>
         <CardContent>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis dataKey="name" className="text-xs" />
@@ -105,8 +105,8 @@ export default function LeagueComparisonClient({ leagues }: LeagueComparisonClie
                   }}
                 />
                 <Legend />
-                <Bar dataKey="Yellow Cards" fill="#eab308" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Red Cards" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Yellow Cards" fill="hsl(var(--yellow-card))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Red Cards" fill="hsl(var(--red-card))" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

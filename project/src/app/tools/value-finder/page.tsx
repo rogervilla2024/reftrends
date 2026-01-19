@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Value Finder',
   description: 'Find value bets by comparing our card predictions with bookmaker odds. Calculate expected value and identify profitable betting opportunities.',
   openGraph: {
-    title: 'Value Finder - RefStats',
+    title: 'Value Finder - RefTrends',
     description: 'Find value bets by comparing predictions with bookmaker odds.',
-    url: 'https://refstats.com/tools/value-finder',
+    url: 'https://reftrends.com/tools/value-finder',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/value-finder',
+    canonical: 'https://reftrends.com/tools/value-finder',
   },
 };
 

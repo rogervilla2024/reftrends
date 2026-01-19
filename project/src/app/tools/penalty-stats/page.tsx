@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Penalty Statistics',
   description: 'Deep dive into penalty statistics by referee. Analyze which referees award the most penalties and their penalty patterns.',
   openGraph: {
-    title: 'Penalty Statistics - RefStats',
+    title: 'Penalty Statistics - RefTrends',
     description: 'Detailed penalty analysis by referee.',
-    url: 'https://refstats.com/tools/penalty-stats',
+    url: 'https://reftrends.com/tools/penalty-stats',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/penalty-stats',
+    canonical: 'https://reftrends.com/tools/penalty-stats',
   },
 };
 

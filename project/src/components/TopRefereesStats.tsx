@@ -86,15 +86,15 @@ export default function TopRefereesStats() {
 
   const categories = [
     {
-      title: '🟨 Most Cards Shown',
+      title: 'Most Cards Shown',
       subtitle: 'Total Yellow + Red Cards',
       referees: data.mostCards,
       statLabel: 'Cards',
       getStat: (r: RefereeWithStats) => r.totalYellowCards + r.totalRedCards,
-      getSubStat: (r: RefereeWithStats) => `${r.totalYellowCards}🟨 ${r.totalRedCards}🟥`,
+      getSubStat: (r: RefereeWithStats) => `${r.totalYellowCards}Y ${r.totalRedCards}R`,
     },
     {
-      title: '⚡ Strictest Referees',
+      title: 'Strictest Referees',
       subtitle: 'Strictness Index',
       referees: data.strictest,
       statLabel: 'Index',
@@ -102,7 +102,7 @@ export default function TopRefereesStats() {
       getSubStat: (r: RefereeWithStats) => `${r.avgYellowCards.toFixed(1)} yellow/match`,
     },
     {
-      title: '🏟️ Most Experienced',
+      title: 'Most Experienced',
       subtitle: 'Matches This Season',
       referees: data.mostMatches,
       statLabel: 'Matches',

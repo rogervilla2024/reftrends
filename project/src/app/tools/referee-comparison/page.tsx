@@ -8,16 +8,16 @@ export const metadata: Metadata = {
   title: 'Referee Comparison',
   description: 'Compare football referees side-by-side with statistical charts, career stats, and export functionality. Analyze strictness, card averages, and home bias.',
   openGraph: {
-    title: 'Referee Comparison - RefStats',
+    title: 'Referee Comparison - RefTrends',
     description: 'Compare referees side-by-side with statistical charts and career analysis.',
-    url: 'https://refstats.com/tools/referee-comparison',
+    url: 'https://reftrends.com/tools/referee-comparison',
   },
   twitter: {
-    title: 'Referee Comparison - RefStats',
+    title: 'Referee Comparison - RefTrends',
     description: 'Compare referees side-by-side with statistical charts and career analysis.',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/referee-comparison',
+    canonical: 'https://reftrends.com/tools/referee-comparison',
   },
 };
 

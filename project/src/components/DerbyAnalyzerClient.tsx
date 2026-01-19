@@ -131,7 +131,7 @@ export default function DerbyAnalyzerClient({ data }: DerbyAnalyzerClientProps) 
         </CardHeader>
         <CardContent>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
               <BarChart data={comparisonData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                 <XAxis dataKey="type" className="text-xs" />
@@ -143,8 +143,8 @@ export default function DerbyAnalyzerClient({ data }: DerbyAnalyzerClientProps) 
                   }}
                 />
                 <Legend />
-                <Bar dataKey="Yellow Cards" fill="#eab308" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Red Cards" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Yellow Cards" fill="hsl(var(--yellow-card))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Red Cards" fill="hsl(var(--red-card))" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -250,7 +250,7 @@ export default function DerbyAnalyzerClient({ data }: DerbyAnalyzerClientProps) 
                         <p className="text-xs text-muted-foreground">Difference</p>
                       </div>
                       <span className="text-muted-foreground">
-                        {expandedReferee === referee.id ? '▲' : '▼'}
+                        {expandedReferee === referee.id ? 'v' : '>'}
                       </span>
                     </div>
                   </div>

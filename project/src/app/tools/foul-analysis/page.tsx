@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Foul Analysis',
   description: 'Detailed foul statistics by referee. Analyze fouls per match, foul-to-card ratios, and referee leniency patterns.',
   openGraph: {
-    title: 'Foul Analysis - RefStats',
+    title: 'Foul Analysis - RefTrends',
     description: 'Comprehensive foul statistics and analysis.',
-    url: 'https://refstats.com/tools/foul-analysis',
+    url: 'https://reftrends.com/tools/foul-analysis',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/foul-analysis',
+    canonical: 'https://reftrends.com/tools/foul-analysis',
   },
 };
 

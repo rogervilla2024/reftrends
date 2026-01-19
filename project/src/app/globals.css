@@ -10,38 +10,43 @@
 
 @layer base {
   :root {
-    /* RefStats Dark Theme - Primary Colors */
-    --background: 222.2 47.4% 11.2%;      /* Deep Navy #0f172a */
-    --foreground: 0 0% 100%;               /* White */
-    --card: 217.2 32.6% 17.5%;            /* Slate #1e293b */
-    --card-foreground: 0 0% 100%;
-    --popover: 217.2 32.6% 17.5%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 217 91% 60%;                /* Electric Blue #3b82f6 */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217.2 32.6% 17.5%;       /* Slate */
+    /* RefTrends Light Theme - Based on Documentation */
+    --background: 210 17% 98%;            /* #F8F9FA Light Gray */
+    --foreground: 210 11% 15%;            /* #212529 Dark Text */
+    --card: 0 0% 100%;                    /* #FFFFFF White */
+    --card-foreground: 210 11% 15%;       /* #212529 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+    --primary: 213 53% 24%;               /* #1E3A5F Dark Blue */
+    --primary-foreground: 0 0% 100%;      /* White */
+    --secondary: 356 78% 56%;             /* #E63946 Red */
     --secondary-foreground: 0 0% 100%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;  /* #94a3b8 */
-    --accent: 217 91% 60%;                 /* Electric Blue */
+    --muted: 210 14% 89%;                 /* #DEE2E6 */
+    --muted-foreground: 210 7% 46%;       /* #6C757D */
+    --accent: 145 63% 49%;                /* #2ECC71 Green */
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;         /* Rose #ef4444 */
+    --destructive: 354 70% 54%;           /* #DC3545 Red Card */
     --destructive-foreground: 0 0% 100%;
-    --border: 217.2 32.6% 25%;
-    --input: 217.2 32.6% 25%;
-    --ring: 217 91% 60%;
+    --border: 210 14% 89%;                /* #DEE2E6 */
+    --input: 210 14% 89%;
+    --ring: 213 53% 24%;                  /* Primary Blue */
 
     /* Custom Status Colors */
-    --success: 160 84% 39%;               /* Emerald #10b981 */
-    --warning: 38 92% 50%;                /* Amber #f59e0b */
-    --danger: 0 84% 60%;                  /* Rose #ef4444 */
+    --success: 134 61% 41%;               /* #28A745 */
+    --warning: 27 98% 54%;                /* #FD7E14 */
+    --danger: 354 70% 54%;                /* #DC3545 */
+    --info: 188 78% 41%;                  /* #17A2B8 */
+
+    /* Card Colors for Football */
+    --yellow-card: 45 100% 51%;           /* #FFC107 */
+    --red-card: 354 70% 54%;              /* #DC3545 */
 
     /* Chart Colors */
-    --chart-1: 217 91% 60%;               /* Electric Blue */
-    --chart-2: 160 84% 39%;               /* Emerald */
-    --chart-3: 38 92% 50%;                /* Amber */
-    --chart-4: 280 65% 60%;               /* Purple */
-    --chart-5: 340 75% 55%;               /* Pink */
+    --chart-1: 213 53% 24%;               /* Primary Blue */
+    --chart-2: 145 63% 49%;               /* Accent Green */
+    --chart-3: 45 100% 51%;               /* Yellow */
+    --chart-4: 356 78% 56%;               /* Secondary Red */
+    --chart-5: 188 78% 41%;               /* Info */
 
     --radius: 0.5rem;
   }

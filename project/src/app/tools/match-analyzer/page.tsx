@@ -9,16 +9,16 @@ export const metadata: Metadata = {
   title: 'Match Analyzer',
   description: 'Analyze upcoming football matches with referee impact predictions, card probabilities, over/under estimates, and team head-to-head statistics.',
   openGraph: {
-    title: 'Match Analyzer - RefStats',
+    title: 'Match Analyzer - RefTrends',
     description: 'Analyze matches with referee impact predictions and card probabilities.',
-    url: 'https://refstats.com/tools/match-analyzer',
+    url: 'https://reftrends.com/tools/match-analyzer',
   },
   twitter: {
-    title: 'Match Analyzer - RefStats',
+    title: 'Match Analyzer - RefTrends',
     description: 'Analyze matches with referee impact predictions and card probabilities.',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/match-analyzer',
+    canonical: 'https://reftrends.com/tools/match-analyzer',
   },
 };
 

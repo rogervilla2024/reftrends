@@ -1,0 +1,423 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - link "RefTrends - Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RefTrends
+      - menubar [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Referees" [ref=e10] [cursor=pointer]:
+          - /url: /referees
+        - link "Leagues" [ref=e11] [cursor=pointer]:
+          - /url: /leagues
+        - button "Tools menu" [ref=e13] [cursor=pointer]:
+          - text: Tools
+          - img [ref=e14]
+  - main [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - heading "Referees" [level=1] [ref=e20]
+        - paragraph [ref=e21]: Browse and compare referee statistics across Europe's top leagues
+      - generic [ref=e22]:
+        - generic [ref=e24]:
+          - img
+          - searchbox "Search referees" [ref=e25]
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: "Min Matches:"
+            - spinbutton "Min Matches:" [ref=e29]
+          - generic [ref=e30]:
+            - generic [ref=e31]: "Avg Yellow:"
+            - spinbutton "Avg Yellow:" [ref=e32]
+            - generic [ref=e33]: "-"
+            - spinbutton [ref=e34]
+        - generic [ref=e35]:
+          - button "All Leagues" [ref=e36] [cursor=pointer]
+          - button "Bundesliga" [ref=e37] [cursor=pointer]
+          - button "Eredivisie" [ref=e38] [cursor=pointer]
+          - button "FIFA Club World Cup" [ref=e39] [cursor=pointer]
+          - button "Jupiler Pro League" [ref=e40] [cursor=pointer]
+          - button "La Liga" [ref=e41] [cursor=pointer]
+          - button "Ligue 1" [ref=e42] [cursor=pointer]
+          - button "Premier League" [ref=e43] [cursor=pointer]
+          - button "Primeira Liga" [ref=e44] [cursor=pointer]
+          - button "Serie A" [ref=e45] [cursor=pointer]
+          - button "Superliga" [ref=e46] [cursor=pointer]
+          - button "Süper Lig" [ref=e47] [cursor=pointer]
+          - button "UEFA Champions League" [ref=e48] [cursor=pointer]
+          - button "UEFA Europa Conference League" [ref=e49] [cursor=pointer]
+          - button "UEFA Europa League" [ref=e50] [cursor=pointer]
+        - paragraph [ref=e52]: Showing 1-15 of 556 referees
+        - table [ref=e55]:
+          - rowgroup [ref=e56]:
+            - row "Name Nationality Matches v Avg Yellow Avg Red Penalties Strictness Actions" [ref=e57]:
+              - columnheader "Name" [ref=e58]:
+                - button "Name" [ref=e59] [cursor=pointer]
+              - columnheader "Nationality" [ref=e60]:
+                - button "Nationality" [ref=e61] [cursor=pointer]
+              - columnheader "Matches v" [ref=e62]:
+                - button "Matches v" [ref=e63] [cursor=pointer]
+              - columnheader "Avg Yellow" [ref=e64]:
+                - button "Avg Yellow" [ref=e65] [cursor=pointer]
+              - columnheader "Avg Red" [ref=e66]:
+                - button "Avg Red" [ref=e67] [cursor=pointer]
+              - columnheader "Penalties" [ref=e68]:
+                - button "Penalties" [ref=e69] [cursor=pointer]
+              - columnheader "Strictness" [ref=e70]:
+                - button "Strictness" [ref=e71] [cursor=pointer]
+              - columnheader "Actions" [ref=e72]:
+                - generic [ref=e73]: Actions
+          - rowgroup [ref=e74]:
+            - row "Daniele Orsato Italy 18 3.31 0.18 0.14 7.1 View Daniele Orsato's profile" [ref=e75]:
+              - cell "Daniele Orsato" [ref=e76]:
+                - link "Daniele Orsato" [ref=e77] [cursor=pointer]:
+                  - /url: /referees/daniele-orsato
+              - cell "Italy" [ref=e78]
+              - cell "18" [ref=e79]
+              - cell "3.31" [ref=e80]
+              - cell "0.18" [ref=e81]
+              - cell "0.14" [ref=e82]
+              - cell "7.1" [ref=e83]
+              - cell "View Daniele Orsato's profile" [ref=e84]:
+                - link "View Daniele Orsato's profile" [ref=e85] [cursor=pointer]:
+                  - /url: /referees/daniele-orsato
+                  - button "View Daniele Orsato's profile" [ref=e86]: View
+            - row "Peter Bankes - 13 4.46 0.15 0.31 4.9 View Peter Bankes's profile" [ref=e87]:
+              - cell "Peter Bankes" [ref=e88]:
+                - link "Peter Bankes" [ref=e89] [cursor=pointer]:
+                  - /url: /referees/peter-bankes
+              - cell "-" [ref=e90]
+              - cell "13" [ref=e91]
+              - cell "4.46" [ref=e92]
+              - cell "0.15" [ref=e93]
+              - cell "0.31" [ref=e94]
+              - cell "4.9" [ref=e95]
+              - cell "View Peter Bankes's profile" [ref=e96]:
+                - link "View Peter Bankes's profile" [ref=e97] [cursor=pointer]:
+                  - /url: /referees/peter-bankes
+                  - button "View Peter Bankes's profile" [ref=e98]: View
+            - row "Samuel Barrott - 12 4.00 0.08 0.50 4.3 View Samuel Barrott's profile" [ref=e99]:
+              - cell "Samuel Barrott" [ref=e100]:
+                - link "Samuel Barrott" [ref=e101] [cursor=pointer]:
+                  - /url: /referees/samuel-barrott
+              - cell "-" [ref=e102]
+              - cell "12" [ref=e103]
+              - cell "4.00" [ref=e104]
+              - cell "0.08" [ref=e105]
+              - cell "0.50" [ref=e106]
+              - cell "4.3" [ref=e107]
+              - cell "View Samuel Barrott's profile" [ref=e108]:
+                - link "View Samuel Barrott's profile" [ref=e109] [cursor=pointer]:
+                  - /url: /referees/samuel-barrott
+                  - button "View Samuel Barrott's profile" [ref=e110]: View
+            - row "Stuart Attwell England 12 5.00 0.17 0.33 5.5 View Stuart Attwell's profile" [ref=e111]:
+              - cell "Stuart Attwell" [ref=e112]:
+                - link "Stuart Attwell" [ref=e113] [cursor=pointer]:
+                  - /url: /referees/stuart-attwell
+              - cell "England" [ref=e114]
+              - cell "12" [ref=e115]
+              - cell "5.00" [ref=e116]
+              - cell "0.17" [ref=e117]
+              - cell "0.33" [ref=e118]
+              - cell "5.5" [ref=e119]
+              - cell "View Stuart Attwell's profile" [ref=e120]:
+                - link "View Stuart Attwell's profile" [ref=e121] [cursor=pointer]:
+                  - /url: /referees/stuart-attwell
+                  - button "View Stuart Attwell's profile" [ref=e122]: View
+            - row "Craig Pawson - 11 1.91 0.09 0.09 2.2 View Craig Pawson's profile" [ref=e123]:
+              - cell "Craig Pawson" [ref=e124]:
+                - link "Craig Pawson" [ref=e125] [cursor=pointer]:
+                  - /url: /referees/craig-pawson
+              - cell "-" [ref=e126]
+              - cell "11" [ref=e127]
+              - cell "1.91" [ref=e128]
+              - cell "0.09" [ref=e129]
+              - cell "0.09" [ref=e130]
+              - cell "2.2" [ref=e131]
+              - cell "View Craig Pawson's profile" [ref=e132]:
+                - link "View Craig Pawson's profile" [ref=e133] [cursor=pointer]:
+                  - /url: /referees/craig-pawson
+                  - button "View Craig Pawson's profile" [ref=e134]: View
+            - row "Simon Hooper England 11 4.36 0.18 0.09 4.9 View Simon Hooper's profile" [ref=e135]:
+              - cell "Simon Hooper" [ref=e136]:
+                - link "Simon Hooper" [ref=e137] [cursor=pointer]:
+                  - /url: /referees/simon-hooper
+              - cell "England" [ref=e138]
+              - cell "11" [ref=e139]
+              - cell "4.36" [ref=e140]
+              - cell "0.18" [ref=e141]
+              - cell "0.09" [ref=e142]
+              - cell "4.9" [ref=e143]
+              - cell "View Simon Hooper's profile" [ref=e144]:
+                - link "View Simon Hooper's profile" [ref=e145] [cursor=pointer]:
+                  - /url: /referees/simon-hooper
+                  - button "View Simon Hooper's profile" [ref=e146]: View
+            - row "Adrian Cordero Vega - 10 3.60 0.10 0.30 3.9 View Adrian Cordero Vega's profile" [ref=e147]:
+              - cell "Adrian Cordero Vega" [ref=e148]:
+                - link "Adrian Cordero Vega" [ref=e149] [cursor=pointer]:
+                  - /url: /referees/adrian-cordero-vega
+              - cell "-" [ref=e150]
+              - cell "10" [ref=e151]
+              - cell "3.60" [ref=e152]
+              - cell "0.10" [ref=e153]
+              - cell "0.30" [ref=e154]
+              - cell "3.9" [ref=e155]
+              - cell "View Adrian Cordero Vega's profile" [ref=e156]:
+                - link "View Adrian Cordero Vega's profile" [ref=e157] [cursor=pointer]:
+                  - /url: /referees/adrian-cordero-vega
+                  - button "View Adrian Cordero Vega's profile" [ref=e158]: View
+            - row "Alejandro Quintero Gonzalez - 10 5.10 0.90 0.20 7.8 View Alejandro Quintero Gonzalez's profile" [ref=e159]:
+              - cell "Alejandro Quintero Gonzalez" [ref=e160]:
+                - link "Alejandro Quintero Gonzalez" [ref=e161] [cursor=pointer]:
+                  - /url: /referees/alejandro-quintero-gonzalez
+              - cell "-" [ref=e162]
+              - cell "10" [ref=e163]
+              - cell "5.10" [ref=e164]
+              - cell "0.90" [ref=e165]
+              - cell "0.20" [ref=e166]
+              - cell "7.8" [ref=e167]
+              - cell "View Alejandro Quintero Gonzalez's profile" [ref=e168]:
+                - link "View Alejandro Quintero Gonzalez's profile" [ref=e169] [cursor=pointer]:
+                  - /url: /referees/alejandro-quintero-gonzalez
+                  - button "View Alejandro Quintero Gonzalez's profile" [ref=e170]: View
+            - row "Mateu Lahoz Spain 10 4.26 0.15 0.16 7.4 View Mateu Lahoz's profile" [ref=e171]:
+              - cell "Mateu Lahoz" [ref=e172]:
+                - link "Mateu Lahoz" [ref=e173] [cursor=pointer]:
+                  - /url: /referees/mateu-lahoz
+              - cell "Spain" [ref=e174]
+              - cell "10" [ref=e175]
+              - cell "4.26" [ref=e176]
+              - cell "0.15" [ref=e177]
+              - cell "0.16" [ref=e178]
+              - cell "7.4" [ref=e179]
+              - cell "View Mateu Lahoz's profile" [ref=e180]:
+                - link "View Mateu Lahoz's profile" [ref=e181] [cursor=pointer]:
+                  - /url: /referees/mateu-lahoz
+                  - button "View Mateu Lahoz's profile" [ref=e182]: View
+            - row "Thomas Bramall - 10 3.30 0.10 0.30 3.6 View Thomas Bramall's profile" [ref=e183]:
+              - cell "Thomas Bramall" [ref=e184]:
+                - link "Thomas Bramall" [ref=e185] [cursor=pointer]:
+                  - /url: /referees/thomas-bramall
+              - cell "-" [ref=e186]
+              - cell "10" [ref=e187]
+              - cell "3.30" [ref=e188]
+              - cell "0.10" [ref=e189]
+              - cell "0.30" [ref=e190]
+              - cell "3.6" [ref=e191]
+              - cell "View Thomas Bramall's profile" [ref=e192]:
+                - link "View Thomas Bramall's profile" [ref=e193] [cursor=pointer]:
+                  - /url: /referees/thomas-bramall
+                  - button "View Thomas Bramall's profile" [ref=e194]: View
+            - row "César Soto Grado - 9 5.44 0.33 0.11 6.4 View César Soto Grado's profile" [ref=e195]:
+              - cell "César Soto Grado" [ref=e196]:
+                - link "César Soto Grado" [ref=e197] [cursor=pointer]:
+                  - /url: /referees/cesar-soto-grado
+              - cell "-" [ref=e198]
+              - cell "9" [ref=e199]
+              - cell "5.44" [ref=e200]
+              - cell "0.33" [ref=e201]
+              - cell "0.11" [ref=e202]
+              - cell "6.4" [ref=e203]
+              - cell "View César Soto Grado's profile" [ref=e204]:
+                - link "View César Soto Grado's profile" [ref=e205] [cursor=pointer]:
+                  - /url: /referees/cesar-soto-grado
+                  - button "View César Soto Grado's profile" [ref=e206]: View
+            - row "Daniele Doveri - 9 4.22 0.11 0.11 4.6 View Daniele Doveri's profile" [ref=e207]:
+              - cell "Daniele Doveri" [ref=e208]:
+                - link "Daniele Doveri" [ref=e209] [cursor=pointer]:
+                  - /url: /referees/daniele-doveri
+              - cell "-" [ref=e210]
+              - cell "9" [ref=e211]
+              - cell "4.22" [ref=e212]
+              - cell "0.11" [ref=e213]
+              - cell "0.11" [ref=e214]
+              - cell "4.6" [ref=e215]
+              - cell "View Daniele Doveri's profile" [ref=e216]:
+                - link "View Daniele Doveri's profile" [ref=e217] [cursor=pointer]:
+                  - /url: /referees/daniele-doveri
+                  - button "View Daniele Doveri's profile" [ref=e218]: View
+            - row "Danny Makkelie - 9 3.89 0.22 0.56 4.6 View Danny Makkelie's profile" [ref=e219]:
+              - cell "Danny Makkelie" [ref=e220]:
+                - link "Danny Makkelie" [ref=e221] [cursor=pointer]:
+                  - /url: /referees/danny-makkelie
+              - cell "-" [ref=e222]
+              - cell "9" [ref=e223]
+              - cell "3.89" [ref=e224]
+              - cell "0.22" [ref=e225]
+              - cell "0.56" [ref=e226]
+              - cell "4.6" [ref=e227]
+              - cell "View Danny Makkelie's profile" [ref=e228]:
+                - link "View Danny Makkelie's profile" [ref=e229] [cursor=pointer]:
+                  - /url: /referees/danny-makkelie
+                  - button "View Danny Makkelie's profile" [ref=e230]: View
+            - row "Iosu Galech Apezteguia - 9 4.78 0.33 0.11 5.8 View Iosu Galech Apezteguia's profile" [ref=e231]:
+              - cell "Iosu Galech Apezteguia" [ref=e232]:
+                - link "Iosu Galech Apezteguia" [ref=e233] [cursor=pointer]:
+                  - /url: /referees/iosu-galech-apezteguia
+              - cell "-" [ref=e234]
+              - cell "9" [ref=e235]
+              - cell "4.78" [ref=e236]
+              - cell "0.33" [ref=e237]
+              - cell "0.11" [ref=e238]
+              - cell "5.8" [ref=e239]
+              - cell "View Iosu Galech Apezteguia's profile" [ref=e240]:
+                - link "View Iosu Galech Apezteguia's profile" [ref=e241] [cursor=pointer]:
+                  - /url: /referees/iosu-galech-apezteguia
+                  - button "View Iosu Galech Apezteguia's profile" [ref=e242]: View
+            - row "Isidro Diaz de Mera Escuderos - 9 4.00 0.67 0.33 6.0 View Isidro Diaz de Mera Escuderos's profile" [ref=e243]:
+              - cell "Isidro Diaz de Mera Escuderos" [ref=e244]:
+                - link "Isidro Diaz de Mera Escuderos" [ref=e245] [cursor=pointer]:
+                  - /url: /referees/isidro-diaz-de-mera-escuderos
+              - cell "-" [ref=e246]
+              - cell "9" [ref=e247]
+              - cell "4.00" [ref=e248]
+              - cell "0.67" [ref=e249]
+              - cell "0.33" [ref=e250]
+              - cell "6.0" [ref=e251]
+              - cell "View Isidro Diaz de Mera Escuderos's profile" [ref=e252]:
+                - link "View Isidro Diaz de Mera Escuderos's profile" [ref=e253] [cursor=pointer]:
+                  - /url: /referees/isidro-diaz-de-mera-escuderos
+                  - button "View Isidro Diaz de Mera Escuderos's profile" [ref=e254]: View
+        - navigation "Pagination" [ref=e255]:
+          - paragraph [ref=e256]: Page 1 of 38
+          - generic [ref=e257]:
+            - button "First" [disabled]
+            - button "Prev" [disabled]
+            - generic [ref=e258]:
+              - button "1" [ref=e259] [cursor=pointer]
+              - button "2" [ref=e260] [cursor=pointer]
+              - button "3" [ref=e261] [cursor=pointer]
+              - button "4" [ref=e262] [cursor=pointer]
+              - button "5" [ref=e263] [cursor=pointer]
+            - button "Next" [ref=e264] [cursor=pointer]
+            - button "Last" [ref=e265] [cursor=pointer]
+  - contentinfo "Site footer" [ref=e266]:
+    - generic [ref=e267]:
+      - generic [ref=e268]:
+        - generic [ref=e269]:
+          - heading "Leagues" [level=3] [ref=e270]
+          - list [ref=e271]:
+            - listitem [ref=e272]:
+              - link "Premier League" [ref=e273] [cursor=pointer]:
+                - /url: /leagues/39
+            - listitem [ref=e274]:
+              - link "La Liga" [ref=e275] [cursor=pointer]:
+                - /url: /leagues/140
+            - listitem [ref=e276]:
+              - link "Serie A" [ref=e277] [cursor=pointer]:
+                - /url: /leagues/135
+            - listitem [ref=e278]:
+              - link "Bundesliga" [ref=e279] [cursor=pointer]:
+                - /url: /leagues/78
+            - listitem [ref=e280]:
+              - link "Ligue 1" [ref=e281] [cursor=pointer]:
+                - /url: /leagues/61
+            - listitem [ref=e282]:
+              - link "Eredivisie" [ref=e283] [cursor=pointer]:
+                - /url: /leagues/88
+            - listitem [ref=e284]:
+              - link "Liga Portugal" [ref=e285] [cursor=pointer]:
+                - /url: /leagues/94
+            - listitem [ref=e286]:
+              - link "Super Lig" [ref=e287] [cursor=pointer]:
+                - /url: /leagues/203
+        - generic [ref=e288]:
+          - heading "Tools" [level=3] [ref=e289]
+          - list [ref=e290]:
+            - listitem [ref=e291]:
+              - link "Referee Lookup" [ref=e292] [cursor=pointer]:
+                - /url: /referees
+            - listitem [ref=e293]:
+              - link "Compare Refs" [ref=e294] [cursor=pointer]:
+                - /url: /tools/referee-comparison
+            - listitem [ref=e295]:
+              - link "Trend Analyzer" [ref=e296] [cursor=pointer]:
+                - /url: /tools/seasonal-trends
+            - listitem [ref=e297]:
+              - link "Match Predictor" [ref=e298] [cursor=pointer]:
+                - /url: /tools/match-analyzer
+            - listitem [ref=e299]:
+              - link "Penalty Stats" [ref=e300] [cursor=pointer]:
+                - /url: /tools/penalty-stats
+            - listitem [ref=e301]:
+              - link "Card Calculator" [ref=e302] [cursor=pointer]:
+                - /url: /tools/card-calculator
+        - generic [ref=e303]:
+          - heading "Resources" [level=3] [ref=e304]
+          - list [ref=e305]:
+            - listitem [ref=e306]:
+              - link "Methodology" [ref=e307] [cursor=pointer]:
+                - /url: /methodology
+            - listitem [ref=e308]:
+              - link "FAQ" [ref=e309] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e310]:
+              - link "Glossary" [ref=e311] [cursor=pointer]:
+                - /url: /glossary
+            - listitem [ref=e312]:
+              - link "About Us" [ref=e313] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e314]:
+              - link "Blog" [ref=e315] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e316]:
+              - link "Contact" [ref=e317] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e318]:
+          - heading "Company" [level=3] [ref=e319]
+          - list [ref=e320]:
+            - listitem [ref=e321]:
+              - link "Press Kit" [ref=e322] [cursor=pointer]:
+                - /url: /press-kit
+            - listitem [ref=e323]:
+              - link "Careers" [ref=e324] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e325]:
+              - link "Advertise" [ref=e326] [cursor=pointer]:
+                - /url: /advertise
+            - listitem [ref=e327]:
+              - link "Partners" [ref=e328] [cursor=pointer]:
+                - /url: /partners
+      - generic [ref=e329]:
+        - heading "Get Weekly Referee Insights" [level=3] [ref=e330]
+        - paragraph [ref=e331]: Get weekly referee insights and betting edges delivered to your inbox.
+        - generic [ref=e332]:
+          - textbox "Email address for newsletter" [ref=e333]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=e334] [cursor=pointer]
+        - generic [ref=e335] [cursor=pointer]:
+          - checkbox "Agree to receive marketing emails" [ref=e336]
+          - generic [ref=e337]: I agree to receive marketing emails. Unsubscribe anytime.
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - paragraph [ref=e340]: © 2026 RefTrends. All rights reserved.
+          - navigation "Legal links" [ref=e341]:
+            - generic [ref=e342]:
+              - link "Privacy Policy" [ref=e343] [cursor=pointer]:
+                - /url: /privacy-policy
+              - text: "|"
+            - generic [ref=e344]:
+              - link "Terms of Service" [ref=e345] [cursor=pointer]:
+                - /url: /terms-of-service
+              - text: "|"
+            - generic [ref=e346]:
+              - link "Disclaimer" [ref=e347] [cursor=pointer]:
+                - /url: /disclaimer
+              - text: "|"
+            - link "Cookie Policy" [ref=e349] [cursor=pointer]:
+              - /url: /cookies
+        - generic [ref=e350]:
+          - paragraph [ref=e351]: Data provided for informational purposes only. RefTrends does not encourage or facilitate gambling. Please bet responsibly.
+          - paragraph [ref=e352]:
+            - text: If you have a gambling problem, visit
+            - link "BeGambleAware.org" [ref=e353] [cursor=pointer]:
+              - /url: https://www.begambleaware.org
+          - paragraph [ref=e354]: 18+ - Gambling can be addictive. Play responsibly.
+  - alert [ref=e355]
+```

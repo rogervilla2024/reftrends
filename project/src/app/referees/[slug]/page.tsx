@@ -15,10 +15,53 @@ import {
 import { formatSeason } from '@/lib/season';
 import prisma from '@/lib/db';
 
-// Dynamic import for chart component (reduces initial bundle size)
+// Dynamic imports for chart components (reduces initial bundle size)
 const RefereeStatsChart = dynamic(() => import('@/components/RefereeStatsChart'), {
   loading: () => <div className="h-[500px] flex items-center justify-center text-muted-foreground">Loading chart...</div>,
   ssr: false,
+});
+
+const RefereeStatsCards = dynamic(() => import('@/components/RefereeStatsCards'), {
+  loading: () => <div className="h-32 flex items-center justify-center text-muted-foreground">Loading stats...</div>,
+});
+
+const CardHeatmap = dynamic(() => import('@/components/CardHeatmap'), {
+  loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading heatmap...</div>,
+});
+
+const RefereeTimeline = dynamic(() => import('@/components/RefereeTimeline'), {
+  loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading timeline...</div>,
+});
+
+const SeasonComparisonChart = dynamic(() => import('@/components/SeasonComparisonChart'), {
+  loading: () => <div className="h-80 flex items-center justify-center text-muted-foreground">Loading chart...</div>,
+  ssr: false,
+});
+
+const DetailedFormAnalysis = dynamic(
+  () => import('@/components/RefereeFormIndicator').then(mod => ({ default: mod.DetailedFormAnalysis })),
+  { loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading form...</div> }
+);
+
+// Betting Analysis Components
+const OddsComparison = dynamic(() => import('@/components/OddsComparison'), {
+  loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading odds...</div>,
+});
+
+const UpcomingMatchPrediction = dynamic(() => import('@/components/UpcomingMatchPrediction'), {
+  loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading prediction...</div>,
+});
+
+const HotColdStreaks = dynamic(() => import('@/components/HotColdStreaks'), {
+  loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading streaks...</div>,
+});
+
+const TeamCardProbabilities = dynamic(() => import('@/components/TeamCardProbabilities'), {
+  loading: () => <div className="h-64 flex items-center justify-center text-muted-foreground">Loading probabilities...</div>,
+});
+
+const RefereeRating = dynamic(() => import('@/components/RefereeRating'), {
+  loading: () => <div className="h-48 flex items-center justify-center text-muted-foreground">Loading ratings...</div>,
 });
 
 export async function generateMetadata({
@@ -47,14 +90,14 @@ export async function generateMetadata({
       title: `${referee.name} - Referee Statistics`,
       description,
       type: 'profile',
-      url: `https://refstats.com/referees/${referee.slug}`,
+      url: `https://reftrends.com/referees/${referee.slug}`,
     },
     twitter: {
-      title: `${referee.name} - RefStats`,
+      title: `${referee.name} - RefTrends`,
       description,
     },
     alternates: {
-      canonical: `https://refstats.com/referees/${referee.slug}`,
+      canonical: `https://reftrends.com/referees/${referee.slug}`,
     },
   };
 }
@@ -101,6 +144,11 @@ interface RefereeData {
       awayYellowCards: number;
       homeRedCards: number;
       awayRedCards: number;
+      cardEvents: {
+        id: number;
+        minute: number;
+        type: string;
+      }[];
     } | null;
   }[];
 }
@@ -118,7 +166,17 @@ async function getReferee(slug: string): Promise<RefereeData | null> {
             homeTeam: true,
             awayTeam: true,
             league: true,
-            stats: true,
+            stats: {
+              include: {
+                cardEvents: {
+                  select: {
+                    id: true,
+                    minute: true,
+                    type: true,
+                  },
+                },
+              },
+            },
           },
           orderBy: { date: 'desc' },
           take: 50,
@@ -187,12 +245,6 @@ export default async function RefereeProfilePage({
     }),
     { matches: 0, yellowCards: 0, redCards: 0, penalties: 0 }
   );
-
-  // Get upcoming matches (future dates)
-  const now = new Date();
-  const upcomingMatches = referee.matches
-    .filter((match) => new Date(match.date) > now)
-    .slice(0, 5);
 
   // Get recent completed matches
   const recentMatches = referee.matches
@@ -276,6 +328,15 @@ export default async function RefereeProfilePage({
     }))
     .reverse();
 
+  // Collect all card events for heatmap
+  const cardEvents = referee.matches
+    .flatMap((match) =>
+      match.stats?.cardEvents?.map((event) => ({
+        minute: event.minute,
+        type: event.type as 'yellow' | 'red',
+      })) ?? []
+    );
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Profile Header */}
@@ -332,7 +393,26 @@ export default async function RefereeProfilePage({
         </div>
       </div>
 
-      {/* Quick Stats Cards */}
+      {/* Enhanced Stats Cards */}
+      {currentStats && (
+        <section className="mb-8">
+          <h2 className="text-xl font-bold mb-4">Current Season Statistics</h2>
+          <RefereeStatsCards
+            stats={{
+              avgYellowCards: currentStats.avgYellowCards,
+              avgRedCards: currentStats.avgRedCards,
+              avgPenalties: currentStats.avgPenalties,
+              strictnessIndex: currentStats.strictnessIndex,
+              homeBiasScore: currentStats.homeBiasScore,
+              matchesOfficiated: currentStats.matchesOfficiated,
+              previousSeasonStrictness: referee.seasonStats[1]?.strictnessIndex,
+            }}
+            refereeName={referee.name}
+          />
+        </section>
+      )}
+
+      {/* Career Totals */}
       <section className="mb-8">
         <h2 className="text-xl font-bold mb-4">Career Statistics</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -377,6 +457,11 @@ export default async function RefereeProfilePage({
             </CardContent>
           </Card>
         </div>
+      </section>
+
+      {/* Community Rating */}
+      <section className="mb-8">
+        <RefereeRating refereeId={referee.id} refereeName={referee.name} />
       </section>
 
       {/* Season Statistics Table */}
@@ -462,6 +547,201 @@ export default async function RefereeProfilePage({
         </section>
       )}
 
+      {/* Referee Form Analysis */}
+      {recentMatches.length >= 3 && currentStats && (
+        <section className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Current Form (Last 5 Matches)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <DetailedFormAnalysis
+                matches={recentMatches.slice(0, 5).map(m => ({
+                  yellowCards: m.stats?.yellowCards || 0,
+                  redCards: m.stats?.redCards || 0,
+                  date: new Date(m.date).toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric',
+                  }),
+                  teams: `${m.homeTeam.name} vs ${m.awayTeam.name}`,
+                }))}
+                seasonAvg={currentStats.avgYellowCards + currentStats.avgRedCards}
+                refereeName={referee.name}
+              />
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
+      {/* Betting Analysis Section */}
+      {currentStats && (
+        <section className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-2xl font-bold">Betting Analysis</h2>
+            <span className="px-2 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium">
+              PRO
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Odds Comparison */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>Odds Comparison</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-green-500/20 text-green-400">
+                    +EV
+                  </span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <OddsComparison
+                  refereeAvgYellow={currentStats.avgYellowCards}
+                  refereeAvgRed={currentStats.avgRedCards}
+                  refereeMatches={currentStats.matchesOfficiated}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Match Prediction */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Match Prediction</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <UpcomingMatchPrediction
+                  refereeAvgYellow={currentStats.avgYellowCards}
+                  refereeAvgRed={currentStats.avgRedCards}
+                  refereeMatches={currentStats.matchesOfficiated}
+                  strictnessIndex={currentStats.strictnessIndex}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Hot/Cold Streaks */}
+            {recentMatches.length >= 3 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Hot/Cold Streaks</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <HotColdStreaks
+                    recentMatches={recentMatches.slice(0, 10).map(m => ({
+                      date: new Date(m.date).toLocaleDateString(),
+                      homeTeam: m.homeTeam.name,
+                      awayTeam: m.awayTeam.name,
+                      yellowCards: m.stats?.yellowCards || 0,
+                      redCards: m.stats?.redCards || 0,
+                      penalties: m.stats?.penalties || 0,
+                      totalCards: (m.stats?.yellowCards || 0) + (m.stats?.redCards || 0),
+                    }))}
+                    refereeAvgYellow={currentStats.avgYellowCards}
+                    refereeAvgRed={currentStats.avgRedCards}
+                  />
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Team Card Probabilities */}
+            {teamStatsArray.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Team Card Probabilities</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <TeamCardProbabilities
+                    teamHistory={teamStatsArray.map(t => ({
+                      teamName: t.teamName,
+                      teamLogo: t.teamLogo || undefined,
+                      matchesWithReferee: t.matches,
+                      totalYellowCards: t.yellowCards,
+                      totalRedCards: t.redCards,
+                      totalPenaltiesFor: 0,
+                      totalPenaltiesAgainst: 0,
+                      wins: t.wins,
+                      draws: t.draws,
+                      losses: t.losses,
+                    }))}
+                    refereeAvgYellow={currentStats.avgYellowCards}
+                    refereeAvgRed={currentStats.avgRedCards}
+                    refereeAvgPenalties={currentStats.avgPenalties}
+                  />
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Season Comparison Chart */}
+      {referee.seasonStats.length > 1 && (
+        <section className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Season Comparison</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SeasonComparisonChart
+                seasonStats={referee.seasonStats.map(stat => ({
+                  season: formatSeason(stat.season),
+                  matchesOfficiated: stat.matchesOfficiated,
+                  avgYellowCards: stat.avgYellowCards,
+                  avgRedCards: stat.avgRedCards,
+                  avgPenalties: stat.avgPenalties,
+                  strictnessIndex: stat.strictnessIndex,
+                  leagueName: leagueMap[stat.leagueApiId]?.name || 'Unknown',
+                }))}
+                refereeName={referee.name}
+              />
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
+      {/* Career Timeline */}
+      {referee.seasonStats.length > 1 && (
+        <section className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Career Timeline</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <RefereeTimeline
+                seasonStats={referee.seasonStats.map(stat => ({
+                  season: stat.season,
+                  leagueName: leagueMap[stat.leagueApiId]?.name || 'Unknown',
+                  matchesOfficiated: stat.matchesOfficiated,
+                  avgYellowCards: stat.avgYellowCards,
+                  avgRedCards: stat.avgRedCards,
+                  strictnessIndex: stat.strictnessIndex,
+                  totalYellowCards: stat.totalYellowCards,
+                  totalRedCards: stat.totalRedCards,
+                }))}
+                refereeName={referee.name}
+              />
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
+      {/* Card Distribution Heatmap */}
+      {cardEvents.length > 0 && (
+        <section className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Timing Distribution</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardHeatmap
+                cardEvents={cardEvents}
+                title="When Does This Referee Show Cards?"
+              />
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
       {/* Team-Specific Performance */}
       {teamStatsArray.length > 0 && (
         <section className="mb-8">
@@ -529,74 +809,6 @@ export default async function RefereeProfilePage({
         </section>
       )}
 
-      {/* Upcoming Assignments */}
-      <section className="mb-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Upcoming Assignments</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {upcomingMatches.length > 0 ? (
-              <div className="space-y-4">
-                {upcomingMatches.map((match) => (
-                  <div
-                    key={match.id}
-                    className="flex items-center justify-between p-4 bg-muted rounded-lg"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="text-center">
-                        <div className="text-sm text-muted-foreground">
-                          {new Date(match.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                          })}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {new Date(match.date).toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                          })}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {match.homeTeam.logo && (
-                          <Image
-                            src={match.homeTeam.logo}
-                            alt={match.homeTeam.name}
-                            width={24}
-                            height={24}
-                            className="rounded"
-                          />
-                        )}
-                        <span className="font-medium">{match.homeTeam.name}</span>
-                        <span className="text-muted-foreground">vs</span>
-                        <span className="font-medium">{match.awayTeam.name}</span>
-                        {match.awayTeam.logo && (
-                          <Image
-                            src={match.awayTeam.logo}
-                            alt={match.awayTeam.name}
-                            width={24}
-                            height={24}
-                            className="rounded"
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {match.league.name}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-muted-foreground text-center py-4">
-                No upcoming assignments scheduled.
-              </p>
-            )}
-          </CardContent>
-        </Card>
-      </section>
-
       {/* Match History */}
       <section className="mb-8">
         <Card>
@@ -613,6 +825,7 @@ export default async function RefereeProfilePage({
                     <TableHead className="text-center">Score</TableHead>
                     <TableHead className="text-center">Yellow</TableHead>
                     <TableHead className="text-center">Red</TableHead>
+                    <TableHead className="text-center">Pen</TableHead>
                     <TableHead>League</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -664,6 +877,13 @@ export default async function RefereeProfilePage({
                       <TableCell className="text-center">
                         {match.stats ? (
                           <span className="text-red-500">{match.stats.redCards}</span>
+                        ) : (
+                          '-'
+                        )}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        {match.stats ? (
+                          <span className="text-blue-500">{match.stats.penalties}</span>
                         ) : (
                           '-'
                         )}

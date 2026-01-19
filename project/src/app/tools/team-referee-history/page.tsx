@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Team vs Referee History',
   description: 'Analyze how teams perform with specific referees. View card statistics, win rates, and historical trends.',
   openGraph: {
-    title: 'Team vs Referee History - RefStats',
+    title: 'Team vs Referee History - RefTrends',
     description: 'Analyze team performance with specific referees.',
-    url: 'https://refstats.com/tools/team-referee-history',
+    url: 'https://reftrends.com/tools/team-referee-history',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/team-referee-history',
+    canonical: 'https://reftrends.com/tools/team-referee-history',
   },
 };
 

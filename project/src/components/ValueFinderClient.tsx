@@ -222,7 +222,7 @@ export default function ValueFinderClient({ matches, teamStats }: Props) {
         <Card className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/30">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span className="text-2xl">💰</span>
+              <span className="text-2xl font-bold text-green-500">$</span>
               Value Bets Found ({valueBets.length})
             </CardTitle>
           </CardHeader>
@@ -251,7 +251,7 @@ export default function ValueFinderClient({ matches, teamStats }: Props) {
           variant={showOnlyValue ? "default" : "outline"}
           onClick={() => setShowOnlyValue(!showOnlyValue)}
         >
-          {showOnlyValue ? '✓ ' : ''}Show Only Value Bets
+          {showOnlyValue ? '[x] ' : ''}Show Only Value Bets
         </Button>
         <span className="text-sm text-muted-foreground">
           {displayCalcs.length} matches shown
@@ -266,13 +266,13 @@ export default function ValueFinderClient({ matches, teamStats }: Props) {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2">
-                    {match.homeTeam.logo && <Image src={match.homeTeam.logo} alt="" width={24} height={24} />}
+                    {match.homeTeam.logo && <Image src={match.homeTeam.logo} alt={match.homeTeam.name} width={24} height={24} />}
                     <span className="font-medium">{match.homeTeam.name}</span>
                   </div>
                   <span className="text-muted-foreground">vs</span>
                   <div className="flex items-center gap-2">
                     <span className="font-medium">{match.awayTeam.name}</span>
-                    {match.awayTeam.logo && <Image src={match.awayTeam.logo} alt="" width={24} height={24} />}
+                    {match.awayTeam.logo && <Image src={match.awayTeam.logo} alt={match.awayTeam.name} width={24} height={24} />}
                   </div>
                 </div>
                 <div className="text-right text-sm text-muted-foreground">
@@ -282,7 +282,7 @@ export default function ValueFinderClient({ matches, teamStats }: Props) {
               </div>
               {match.referee && (
                 <Link href={`/referees/${match.referee.slug}`} className="text-sm text-primary hover:underline">
-                  🧑‍⚖️ {match.referee.name} ({match.referee.avgYellow.toFixed(2)} avg yellow)
+                  Ref: {match.referee.name} ({match.referee.avgYellow.toFixed(2)} avg yellow)
                 </Link>
               )}
             </CardHeader>
@@ -429,7 +429,7 @@ export default function ValueFinderClient({ matches, teamStats }: Props) {
       {matches.length === 0 && (
         <Card>
           <CardContent className="py-12 text-center">
-            <div className="text-4xl mb-4">📅</div>
+            <div className="text-4xl mb-4 text-muted-foreground font-bold">--</div>
             <h3 className="text-xl font-bold mb-2">No Upcoming Matches</h3>
             <p className="text-muted-foreground">
               Check back later when fixtures are scheduled with assigned referees

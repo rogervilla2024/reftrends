@@ -219,12 +219,12 @@ async function main(): Promise<void> {
   await updateRefereeStats();
 
   // Verify
-  const allRefStats = await prisma.refereeSeasonStats.groupBy({
+  const allRefTrends = await prisma.refereeSeasonStats.groupBy({
     by: ['leagueApiId'],
     _count: true,
   });
   console.log('\nReferee stats by league:');
-  for (const stat of allRefStats) {
+  for (const stat of allRefTrends) {
     console.log(`  League ${stat.leagueApiId}: ${stat._count} referees`);
   }
 

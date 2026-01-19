@@ -6,20 +6,38 @@ export const metadata: Metadata = {
   title: 'Betting Tools',
   description: 'Professional referee-based betting analysis tools. Match analyzer with card predictions, referee comparison charts, and statistical insights for smarter betting.',
   openGraph: {
-    title: 'Betting Tools - RefStats',
+    title: 'Betting Tools - RefTrends',
     description: 'Professional referee-based betting analysis tools for card predictions and statistical insights.',
-    url: 'https://refstats.com/tools',
+    url: 'https://reftrends.com/tools',
   },
   twitter: {
-    title: 'Betting Tools - RefStats',
+    title: 'Betting Tools - RefTrends',
     description: 'Professional referee-based betting analysis tools for card predictions and statistical insights.',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools',
+    canonical: 'https://reftrends.com/tools',
   },
 };
 
 const tools = [
+  {
+    id: 'betting-tips',
+    name: 'Betting Tips',
+    description: 'Data-driven betting insights based on referee tendencies and team discipline patterns.',
+    icon: '🎯',
+    features: ['AI Predictions', 'Confidence Scores', '+EV Finder', 'Daily Updates'],
+    status: 'available',
+    isNew: true,
+  },
+  {
+    id: 'sure-cards',
+    name: 'Sure Cards Finder',
+    description: 'Find high-probability card betting opportunities. Analyze referee-team combinations.',
+    icon: '🔥',
+    features: ['Win Rate %', 'O/U Rates', 'Combo Analysis', 'Filters'],
+    status: 'available',
+    isNew: true,
+  },
   {
     id: 'match-analyzer',
     name: 'Match Analyzer',
@@ -59,6 +77,33 @@ const tools = [
     icon: '💰',
     features: ['Odds Comparison', 'EV Calculator', '+Value Alerts'],
     status: 'available',
+  },
+  {
+    id: 'betting-history',
+    name: 'Betting History',
+    description: 'Track your bets, win rate, ROI, and performance over time. Export and analyze your betting patterns.',
+    icon: '📊',
+    features: ['Win Rate', 'ROI Tracker', 'Streak Analysis', 'Export/Import'],
+    status: 'available',
+    isNew: true,
+  },
+  {
+    id: 'bookmaker-comparison',
+    name: 'Bookmaker Comparison',
+    description: 'Compare card market odds across major bookmakers. Find best odds, lowest margins, and arbitrage opportunities.',
+    icon: '🏦',
+    features: ['Odds Compare', 'Margin Analysis', 'Best Value', 'Arbitrage Finder'],
+    status: 'available',
+    isNew: true,
+  },
+  {
+    id: 'odds-movement',
+    name: 'Odds Movement',
+    description: 'Track card market odds movement over time. Spot steam moves, analyze trends, and understand market sentiment.',
+    icon: '📈',
+    features: ['Line Charts', 'Steam Alerts', 'Trend Analysis', 'Volatility'],
+    status: 'available',
+    isNew: true,
   },
   {
     id: 'home-away-bias',
@@ -173,6 +218,11 @@ export default function ToolsPage() {
             {tool.status === 'coming-soon' && (
               <div className="absolute top-4 right-4 bg-muted px-2 py-1 rounded text-xs font-medium">
                 Coming Soon
+              </div>
+            )}
+            {'isNew' in tool && tool.isNew && (
+              <div className="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">
+                NEW
               </div>
             )}
             {tool.status === 'available' ? (

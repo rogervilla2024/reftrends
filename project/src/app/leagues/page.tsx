@@ -1,25 +1,34 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LEAGUE_INFO } from '@/lib/api-football';
 import { formatSeason, getCurrentSeason } from '@/lib/season';
 import prisma from '@/lib/db';
 
+const LeagueComparisonDashboard = dynamic(
+  () => import('@/components/LeagueComparisonDashboard'),
+  {
+    loading: () => <div className="h-96 flex items-center justify-center text-muted-foreground">Loading dashboard...</div>,
+    ssr: false,
+  }
+);
+
 export const metadata: Metadata = {
   title: 'Leagues & Tournaments',
   description: 'Explore referee statistics across top football leagues and tournaments: Premier League, La Liga, Serie A, Bundesliga, Ligue 1, UEFA Champions League, World Cup, and more.',
   openGraph: {
-    title: 'Leagues & Tournaments - RefStats',
+    title: 'Leagues & Tournaments - RefTrends',
     description: 'Explore referee statistics across top football leagues and international tournaments.',
-    url: 'https://refstats.com/leagues',
+    url: 'https://reftrends.com/leagues',
   },
   twitter: {
-    title: 'Leagues & Tournaments - RefStats',
+    title: 'Leagues & Tournaments - RefTrends',
     description: 'Explore referee statistics across top football leagues and international tournaments.',
   },
   alternates: {
-    canonical: 'https://refstats.com/leagues',
+    canonical: 'https://reftrends.com/leagues',
   },
 };
 
@@ -34,6 +43,9 @@ interface LeagueWithStats {
   refereeCount: number;
   avgYellowCards: number;
   avgRedCards: number;
+  avgPenalties: number;
+  avgFouls: number;
+  strictnessIndex: number;
 }
 
 async function getLeagues(): Promise<LeagueWithStats[]> {
@@ -64,10 +76,26 @@ async function getLeagues(): Promise<LeagueWithStats[]> {
         (sum, m) => sum + (m.stats?.redCards || 0),
         0
       );
+      const totalPenalties = matchesWithStats.reduce(
+        (sum, m) => sum + (m.stats?.penalties || 0),
+        0
+      );
+      const totalFouls = matchesWithStats.reduce(
+        (sum, m) => sum + (m.stats?.fouls || 0),
+        0
+      );
 
       const uniqueReferees = new Set(
         league.matches.filter((m) => m.refereeId).map((m) => m.refereeId)
       );
+
+      const avgYellowCards = matchesWithStats.length > 0 ? totalYellow / matchesWithStats.length : 0;
+      const avgRedCards = matchesWithStats.length > 0 ? totalRed / matchesWithStats.length : 0;
+      const avgPenalties = matchesWithStats.length > 0 ? totalPenalties / matchesWithStats.length : 0;
+      const avgFouls = matchesWithStats.length > 0 ? totalFouls / matchesWithStats.length : 0;
+
+      // Calculate strictness index: weighted combination of cards
+      const strictnessIndex = avgYellowCards * 1 + avgRedCards * 3;
 
       return {
         id: league.id,
@@ -78,10 +106,11 @@ async function getLeagues(): Promise<LeagueWithStats[]> {
         season: league.season,
         matchCount: completedMatches.length,
         refereeCount: uniqueReferees.size,
-        avgYellowCards:
-          matchesWithStats.length > 0 ? totalYellow / matchesWithStats.length : 0,
-        avgRedCards:
-          matchesWithStats.length > 0 ? totalRed / matchesWithStats.length : 0,
+        avgYellowCards,
+        avgRedCards,
+        avgPenalties,
+        avgFouls,
+        strictnessIndex,
       };
     });
   } catch (error) {
@@ -118,6 +147,9 @@ export default async function LeaguesPage() {
       refereeCount: dbLeague?.refereeCount || 0,
       avgYellowCards: dbLeague?.avgYellowCards || 0,
       avgRedCards: dbLeague?.avgRedCards || 0,
+      avgPenalties: dbLeague?.avgPenalties || 0,
+      avgFouls: dbLeague?.avgFouls || 0,
+      strictnessIndex: dbLeague?.strictnessIndex || 0,
     };
   };
 
@@ -265,80 +297,24 @@ export default async function LeaguesPage() {
         </div>
       </section>
 
-      {/* League Comparison Section */}
+      {/* League Comparison Dashboard */}
       <section className="mt-12">
-        <h2 className="text-2xl font-bold mb-6">League Comparison</h2>
-        <Card>
-          <CardContent className="pt-6">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-3 px-4">Competition</th>
-                    <th className="text-center py-3 px-4">Type</th>
-                    <th className="text-center py-3 px-4">Matches</th>
-                    <th className="text-center py-3 px-4">Referees</th>
-                    <th className="text-center py-3 px-4">Avg Yellow</th>
-                    <th className="text-center py-3 px-4">Avg Red</th>
-                    <th className="text-center py-3 px-4">Discipline</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {allDisplayLeagues
-                    .filter(l => l.matchCount > 0)
-                    .sort((a, b) => b.avgYellowCards - a.avgYellowCards)
-                    .map((league, index) => {
-                      const disciplineRating = (
-                        league.avgYellowCards * 1 +
-                        league.avgRedCards * 3
-                      ).toFixed(2);
-                      return (
-                        <tr key={league.apiId} className="border-b hover:bg-muted/50">
-                          <td className="py-3 px-4">
-                            <div className="flex items-center gap-2">
-                              <span className="text-muted-foreground">
-                                #{index + 1}
-                              </span>
-                              <span className="font-medium">{league.name}</span>
-                            </div>
-                          </td>
-                          <td className="text-center py-3 px-4">
-                            <span className={`px-2 py-1 rounded text-xs ${
-                              league.type === 'cup'
-                                ? 'bg-primary/10 text-primary'
-                                : 'bg-muted'
-                            }`}>
-                              {league.type === 'cup' ? 'Tournament' : 'League'}
-                            </span>
-                          </td>
-                          <td className="text-center py-3 px-4">{league.matchCount}</td>
-                          <td className="text-center py-3 px-4">{league.refereeCount}</td>
-                          <td className="text-center py-3 px-4">
-                            <span className="text-yellow-500 font-medium">
-                              {league.avgYellowCards.toFixed(2)}
-                            </span>
-                          </td>
-                          <td className="text-center py-3 px-4">
-                            <span className="text-red-500 font-medium">
-                              {league.avgRedCards.toFixed(2)}
-                            </span>
-                          </td>
-                          <td className="text-center py-3 px-4">
-                            <span className="font-bold text-primary">
-                              {disciplineRating}
-                            </span>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4 text-center">
-              Discipline Rating = (Avg Yellow x 1) + (Avg Red x 3). Higher = stricter officiating.
-            </p>
-          </CardContent>
-        </Card>
+        <h2 className="text-2xl font-bold mb-6">League Comparison Dashboard</h2>
+        <LeagueComparisonDashboard
+          leagues={allDisplayLeagues.map(l => ({
+            apiId: l.apiId,
+            name: l.name,
+            country: l.country,
+            logo: l.logo,
+            matchCount: l.matchCount,
+            refereeCount: l.refereeCount,
+            avgYellowCards: l.avgYellowCards,
+            avgRedCards: l.avgRedCards,
+            avgPenalties: l.avgPenalties,
+            avgFouls: l.avgFouls,
+            strictnessIndex: l.strictnessIndex,
+          }))}
+        />
       </section>
     </div>
   );

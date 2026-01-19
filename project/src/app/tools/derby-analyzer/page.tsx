@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Derby Analyzer',
   description: 'Analyze referee behavior in derby and rivalry matches. Compare card statistics between derby and regular matches.',
   openGraph: {
-    title: 'Derby Analyzer - RefStats',
+    title: 'Derby Analyzer - RefTrends',
     description: 'Referee behavior analysis in derby matches.',
-    url: 'https://refstats.com/tools/derby-analyzer',
+    url: 'https://reftrends.com/tools/derby-analyzer',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/derby-analyzer',
+    canonical: 'https://reftrends.com/tools/derby-analyzer',
   },
 };
 

@@ -25,6 +25,7 @@ export interface RefereeTableData {
   matchesOfficiated: number;
   avgYellowCards: number;
   avgRedCards: number;
+  avgPenalties: number;
   strictnessIndex: number;
   leagueId?: number;
   leagueName?: string;
@@ -35,7 +36,7 @@ export interface LeagueFilter {
   name: string;
 }
 
-type SortField = 'name' | 'nationality' | 'matchesOfficiated' | 'avgYellowCards' | 'avgRedCards' | 'strictnessIndex';
+type SortField = 'name' | 'nationality' | 'matchesOfficiated' | 'avgYellowCards' | 'avgRedCards' | 'avgPenalties' | 'strictnessIndex';
 type SortOrder = 'asc' | 'desc';
 
 interface RefereeDataTableProps {
@@ -76,6 +77,9 @@ const RefereeRow = memo(function RefereeRow({ referee }: RefereeRowProps) {
       </TableCell>
       <TableCell className="text-right hidden md:table-cell">
         <span className="text-red-500">{referee.avgRedCards.toFixed(2)}</span>
+      </TableCell>
+      <TableCell className="text-right hidden md:table-cell">
+        <span className="text-blue-500">{referee.avgPenalties.toFixed(2)}</span>
       </TableCell>
       <TableCell className="text-right hidden lg:table-cell">
         <span className={getStrictnessColor(referee.strictnessIndex)}>
@@ -212,7 +216,7 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
   // Sort indicator
   const getSortIndicator = (field: SortField) => {
     if (sortField !== field) return null;
-    return sortOrder === 'asc' ? ' ↑' : ' ↓';
+    return sortOrder === 'asc' ? ' ^' : ' v';
   };
 
   return (
@@ -416,6 +420,18 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
                   Avg Red{getSortIndicator('avgRedCards')}
                 </button>
               </TableHead>
+              <TableHead className="text-right hidden md:table-cell">
+                <button
+                  type="button"
+                  onClick={() => handleSort('avgPenalties')}
+                  className={cn(
+                    "flex items-center gap-1 ml-auto hover:text-foreground transition-colors",
+                    sortField === 'avgPenalties' && "text-foreground font-semibold"
+                  )}
+                >
+                  Penalties{getSortIndicator('avgPenalties')}
+                </button>
+              </TableHead>
               <TableHead className="text-right hidden lg:table-cell">
                 <button
                   type="button"
@@ -436,7 +452,7 @@ export function RefereeDataTable({ referees, leagues = [], isLoading = false }: 
           <TableBody>
             {paginatedReferees.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="p-0">
+                <TableCell colSpan={8} className="p-0">
                   <NoRefereesFound onClear={clearFilters} />
                 </TableCell>
               </TableRow>

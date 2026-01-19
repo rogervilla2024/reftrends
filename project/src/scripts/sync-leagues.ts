@@ -50,6 +50,13 @@ interface FixtureStats {
   statistics: Array<{ type: string; value: number | string | null }>;
 }
 
+interface FixtureEvent {
+  time: { elapsed: number };
+  team: { id: number };
+  type: string;
+  detail: string;
+}
+
 
 async function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -206,6 +213,10 @@ async function syncFixtureStats(leagueId: number, season: number): Promise<void>
       status: { in: ['FT', 'Match Finished'] },
       stats: null,
     },
+    include: {
+      homeTeam: true,
+      awayTeam: true,
+    },
     take: 50, // Limit to avoid API rate limits
   });
 
@@ -217,9 +228,29 @@ async function syncFixtureStats(leagueId: number, season: number): Promise<void>
 
       const stats = await apiRequest<FixtureStats[]>(`/fixtures/statistics?fixture=${match.apiId}`);
 
+      // Fetch events for penalty data
+      await sleep(1200); // Rate limit
+      const events = await apiRequest<FixtureEvent[]>(`/fixtures/events?fixture=${match.apiId}`);
+
+      // Count penalties from events
+      let penalties = 0;
+      let homePenalties = 0;
+      let awayPenalties = 0;
+
+      for (const event of events) {
+        if (event.detail === 'Penalty' || event.detail === 'Missed Penalty') {
+          penalties++;
+          if (event.team.id === match.homeTeam.apiId) {
+            homePenalties++;
+          } else {
+            awayPenalties++;
+          }
+        }
+      }
+
       if (stats && stats.length >= 2) {
-        const homeStats = stats.find(s => s.team.id === match.homeTeamId);
-        const awayStats = stats.find(s => s.team.id === match.awayTeamId);
+        const homeStats = stats.find(s => s.team.id === match.homeTeam.apiId);
+        const awayStats = stats.find(s => s.team.id === match.awayTeam.apiId);
 
         const getValue = (statsArray: FixtureStats | undefined, type: string): number => {
           if (!statsArray) return 0;
@@ -241,7 +272,9 @@ async function syncFixtureStats(leagueId: number, season: number): Promise<void>
             yellowCards: homeYellow + awayYellow,
             redCards: homeRed + awayRed,
             fouls: homeFouls + awayFouls,
-            penalties: 0, // Would need events API for accurate count
+            penalties,
+            homePenalties,
+            awayPenalties,
             homeYellowCards: homeYellow,
             awayYellowCards: awayYellow,
             homeRedCards: homeRed,
@@ -249,7 +282,7 @@ async function syncFixtureStats(leagueId: number, season: number): Promise<void>
           },
         });
 
-        console.log(`  Stats synced for match ${match.apiId}`);
+        console.log(`  Stats synced for match ${match.apiId} (${penalties} penalties)`);
       }
     } catch (err) {
       console.error(`  Error syncing stats for match ${match.apiId}:`, err);

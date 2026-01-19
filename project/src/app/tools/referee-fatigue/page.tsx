@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Referee Fatigue Analysis',
   description: 'Analyze how referee fatigue affects card decisions. Compare performance based on rest days between matches.',
   openGraph: {
-    title: 'Referee Fatigue Analysis - RefStats',
+    title: 'Referee Fatigue Analysis - RefTrends',
     description: 'How rest time affects referee decisions.',
-    url: 'https://refstats.com/tools/referee-fatigue',
+    url: 'https://reftrends.com/tools/referee-fatigue',
   },
   alternates: {
-    canonical: 'https://refstats.com/tools/referee-fatigue',
+    canonical: 'https://reftrends.com/tools/referee-fatigue',
   },
 };
 
