@@ -127,7 +127,7 @@ export default function DailyValueBets({ fixtures }: Props) {
 
   // Filter and sort value bets
   const filteredBets = useMemo(() => {
-    let filtered = valueBets.filter(bet => bet.ev >= minEV);
+    const filtered = valueBets.filter(bet => bet.ev >= minEV);
 
     switch (sortBy) {
       case 'ev':
